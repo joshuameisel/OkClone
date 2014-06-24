@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140624135235) do
     t.string   "orientation",     null: false
     t.date     "birthdate",       null: false
     t.string   "country",         null: false
+    t.string   "session_token",   null: false
     t.integer  "zip_code"
     t.string   "email",           null: false
     t.string   "password_digest", null: false
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140624135235) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["username"], name: "index_users_on_username", using: :btree
+  add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

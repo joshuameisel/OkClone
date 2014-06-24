@@ -1,0 +1,82 @@
+<%= render "shared/errors" %>
+
+<header>
+  <nav>
+    <h1 class="logo">okclone</h1>
+    <ul>
+      <li>Already a member?</li>
+      <li><%= link_to "Sign in", new_session_url %></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <form action="<%= users_url %>" method="post">
+    <input 
+      type="hidden" 
+      name="authenticity_token" 
+      value="<%= form_authenticity_token %>">
+      
+    <label>
+      I am
+      <select name="user[gender]">
+        <option value="f">Female</option>
+        <option value="m">Male</option>
+      </select>
+    </label>
+    
+    <label>
+      and
+      <select name="user[orientation]">
+        <option value="straight">Straight</option>
+        <option value="gay">Gay</option>
+        <option value="bisexual">Bisexual</option>
+      </select>
+    </label>
+    <br>
+    
+    <label>
+      Birthdate<br>
+      <input type="date" name="user[birthdate]" value="1990-06-10">
+    </label>
+    <br>
+    
+    <label>
+      Country<br>
+      <select name="user[country]">
+        <option value="us">United States</option>
+        <option value="uk">United Kingdoms</option>
+        <option value="ca">Canada</option>
+      </select>
+    </label>
+    <br>
+    
+    <label>
+      Zip code<br>
+      <input type="text" name="user[zip_code]" value="i.e. 10001">
+    </label>
+    <br>
+    
+    <label>
+      Email Address<br>
+      <input type="text" name="user[email]">
+    </label>
+    <br>
+    
+    <label>
+      Username<br>
+      <input type="text" name="user[username]">
+    </label>
+    <br>
+    
+    <label>
+      Password<br>
+      <input type="password" name="user[password]">
+    </label>
+    <br>
+    
+    <input type="submit" value="done">
+    
+    
+  </form>
+</main>

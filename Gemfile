@@ -21,6 +21,10 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'binding_of_caller'
+gem 'better_errors'
+gem 'bcrypt-ruby', :require => 'bcrypt'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

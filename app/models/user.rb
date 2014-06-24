@@ -4,13 +4,12 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
   
   validates :username, :gender, :orientation, :birthdate, :country, 
-    :session_token, :zip_code, :email, :password_digest, 
+    :session_token, :zip_code, :email, 
     presence: true
-  validates(
-    :password,
-    :length => { :minimum => 6, :allow_nil => true }
-  )
-  validates :username, :session_token, uniqueness: true
+  validates :password, :length => { :minimum => 6, :allow_nil => true }
+  validates :username, :email, :session_token, uniqueness: true
+  validate :zip_code_is_proper
+  validate :password_digest_presence
   
   def self.find_by_credentials(username, password)
       user = User.find_by(username: username)
@@ -44,5 +43,12 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
+  end
+  
+  def password_digest_presence
+    errors.add(:password, "can't be blank") unless password_digest
+  end
+  
+  def zip_code_is_proper
   end
 end
