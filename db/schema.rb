@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140624135235) do
     t.string   "orientation",     null: false
     t.integer  "min_age",         null: false
     t.integer  "max_age",         null: false
-    t.date     "birthdate",       null: false
+    t.date     "dob",             null: false
     t.string   "country",         null: false
     t.string   "session_token",   null: false
     t.integer  "zip_code"
