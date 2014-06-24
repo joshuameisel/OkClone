@@ -8,16 +8,27 @@
 </head>
 <body>
 
-<% if current_user %>
-  <nav>
-    <ul>
-      <li><%= link_to "profile", user_url(current_user) %></li>
-      <li><%= button_to "Sign out", session_url, method: :delete %></li>
-    </ul>
-  </nav>
-<% end %>
 
-<%= yield %>
+<header>
+  <nav>
+    <% if current_user %>
+      <ul>
+        <li><%= link_to "profile", user_url(current_user) %></li>
+        <li><%= button_to "Sign out", session_url, method: :delete %></li>
+      </ul>
+    <% else %>
+      <h1 class="logo">okclone</h1>
+      <ul>
+        <li>Already a member?</li>
+        <li><%= link_to "Sign in", new_session_url %></li>
+      </ul>
+    <% end %>
+  </nav>
+</header>
+
+<main>
+  <%= yield %>
+</main>
 
 </body>
 </html>

@@ -1,3 +1,10 @@
-<% @users.each do |user| %>
+<h1>Matches</h1>
 
-<% end %>
+<ul id="matches">
+  <% @users.each do |user| %>
+    <ul class="match" id="<%= user.id %>">
+      <li id="username"><%= link_to user.username, user_url(user) %></li>
+      <li id="user-age-and-location"></li>
+    </ul>
+  <% end %>
+</ul>
