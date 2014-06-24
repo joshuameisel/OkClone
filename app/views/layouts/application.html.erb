@@ -8,6 +8,15 @@
 </head>
 <body>
 
+<% if current_user %>
+  <nav>
+    <ul>
+      <li><%= link_to "profile", user_url(current_user) %></li>
+      <li><%= button_to "Sign out", session_url, method: :delete %></li>
+    </ul>
+  </nav>
+<% end %>
+
 <%= yield %>
 
 </body>
