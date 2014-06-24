@@ -1,7 +1,6 @@
 OkClone::Application.routes.draw do
-  root_to 'users#home'
+  root 'users#new'
   resource :session, only: [:new, :create, :destroy]
-  get 'home' => 'users#home'
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

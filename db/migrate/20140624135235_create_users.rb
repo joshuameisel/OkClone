@@ -4,6 +4,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :username, null: false
       t.string :gender, null: false
       t.string :orientation, null: false
+      t.integer :min_age, null: false
+      t.integer :max_age, null: false
       t.date :birthdate, null: false
       t.string :country, null: false
       t.string :session_token, null: false

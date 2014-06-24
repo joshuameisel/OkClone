@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       return
     else
       login_user!(user)
-      redirect_to cats_url
+      redirect_to users_url
     end
   end
 
