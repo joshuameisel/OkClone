@@ -18,12 +18,12 @@ class User < ActiveRecord::Base
     return nil if user.nil?
     user.is_password?(password) ? user : nil
   end
-  
-  # def age
-  #   now = Time.now.utc.to_date
-  #   now.year - dob.year - ((dob.month > dob.month ||
-  #     (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
-  # end
+
+  def age
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((dob.month > dob.month ||
+      (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
 
   def is_password?(unencrypted_password)
     BCrypt::Password
