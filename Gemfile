@@ -31,7 +31,7 @@ end
 
 group :test do
   gem 'guard-rspec'
-  gem 'fake'
+  gem 'faker'
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'

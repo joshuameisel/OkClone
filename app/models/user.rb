@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
   attr_reader :password
   
+  has_one :profile
+  
   before_validation :ensure_session_token
   before_validation :ensure_age_preferences
+  before_create :make_profile
   
   validates :username, :gender, :min_age, :max_age, :dob, 
     :country, :session_token, :email, 
@@ -19,12 +22,8 @@ class User < ActiveRecord::Base
     user.is_password?(password) ? user : nil
   end
   
-  def self.now
-    Time.now.utc.to_date
-  end
-
   def age
-    now = User.now
+    now = Time.now.utc.to_date
     now.year - dob.year - ((now.month > dob.month ||
       (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
@@ -45,7 +44,7 @@ class User < ActiveRecord::Base
     
     options = defaults.merge(options)
     
-    now = User.now
+    now = Time.now.utc.to_date
     min_dob = Date.new(now.year - max_age, now.month, now.day)
     max_dob = Date.new(now.year - min_age, now.month, now.day)
     
@@ -53,7 +52,7 @@ class User < ActiveRecord::Base
     options[:who_like].each do |likes|
       where_str.concat("AND (#{likes}=true)")
     end
-    
+
     User.where(where_str, options[:show_me], min_dob, max_dob)
   end
 
@@ -102,6 +101,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def make_profile
+    self.profile = Profile.create
+  end
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
