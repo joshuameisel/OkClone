@@ -8,16 +8,29 @@ describe User do
   it { should validate_presence_of(:dob) }
   it { should validate_presence_of(:country) }
   it { should validate_presence_of(:email) }
+  it { should validate_presence_of(:password)}
+  
+  
+  it "should set a mininimum/maximum age" do
+    expect(straight_man.min_age).to eq(18)
+    expect(straight_man.max_age).to eq(30)
+  end
+
+
+  let(:straight_man) do 
+    FactoryGirl.create(:user,
+      gender: "m",
+      likes_f: true,
+      dob: Date.new(1990, 2, 2)
+    )
+  end
+  
+  it "should set a mininimum/maximum age" do
+    expect(straight_man.min_age).to eq(18)
+    expect(straight_man.max_age).to eq(30)
+  end
   
   describe "#users" do
-    let(:straight_man) do 
-      FactoryGirl.create(:user,
-        gender: "m",
-        likes_f: true,
-        dob: Date.new(1990, 2, 2)
-      )
-    end
-    
     let(:straight_woman) do
       FactoryGirl.create(:user,
         gender: "f",  
