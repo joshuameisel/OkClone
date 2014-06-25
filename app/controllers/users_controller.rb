@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_logged_out!, :only => :new
+  before_filter :require_user!, :only => :index
   
   def index
     @users = current_user.users

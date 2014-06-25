@@ -47,7 +47,7 @@ users = User.create([
     gender: "m",
     orientation: "straight",
     min_age: 18,
-    max_age: 23,
+    max_age: 60,
     dob: Date.new(1991, 5, 23),
     country: "us",
     zip_code: 11249,

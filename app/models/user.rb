@@ -29,10 +29,14 @@ class User < ActiveRecord::Base
       (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
   
+  def other_gender
+    self.gender == "m" ? "f" : "m"
+  end
+  
   def users(options = {})
     defaults = {
       show_me: [],
-      who_like: gender,
+      who_like: ["likes_#{gender}"],
       min_age: min_age,
       max_age: max_age
     }
@@ -45,17 +49,12 @@ class User < ActiveRecord::Base
     min_dob = Date.new(now.year - max_age, now.month, now.day)
     max_dob = Date.new(now.year - min_age, now.month, now.day)
     
-    users = []
-    options[:show_me].each do |gender|
-      users.concat(
-        User.where(
-          "(gender='#{gender}') AND 
-          (likes_#{options[:who_like]}=true) AND
-          (dob BETWEEN '#{min_dob}' AND '#{max_dob}')"
-        )
-      )
+    where_str = "(gender IN (?)) AND (dob BETWEEN ? AND ?)"
+    options[:who_like].each do |likes|
+      where_str.concat("AND (#{likes}=true)")
     end
-    users
+    
+    User.where(where_str, options[:show_me], min_dob, max_dob)
   end
 
   def is_password?(unencrypted_password)
