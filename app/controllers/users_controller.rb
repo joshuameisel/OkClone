@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :require_logged_out!, :only => :new
   
   def index
-    @users = User.all
+    @users = current_user.users
   end
 
   def show

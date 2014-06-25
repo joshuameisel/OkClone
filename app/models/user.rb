@@ -18,11 +18,44 @@ class User < ActiveRecord::Base
     return nil if user.nil?
     user.is_password?(password) ? user : nil
   end
+  
+  def self.now
+    Time.now.utc.to_date
+  end
 
   def age
-    now = Time.now.utc.to_date
-    now.year - dob.year - ((dob.month > dob.month ||
+    now = User.now
+    now.year - dob.year - ((now.month > dob.month ||
       (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
+  
+  def users(options = {})
+    defaults = {
+      show_me: [],
+      who_like: gender,
+      min_age: min_age,
+      max_age: max_age
+    }
+    defaults[:show_me] << "m" if likes_m
+    defaults[:show_me] << "f" if likes_f
+    
+    options = defaults.merge(options)
+    
+    now = User.now
+    min_dob = Date.new(now.year - max_age, now.month, now.day)
+    max_dob = Date.new(now.year - min_age, now.month, now.day)
+    
+    users = []
+    options[:show_me].each do |gender|
+      users.concat(
+        User.where(
+          "(gender='#{gender}') AND 
+          (likes_#{options[:who_like]}=true) AND
+          (dob BETWEEN '#{min_dob}' AND '#{max_dob}')"
+        )
+      )
+    end
+    users
   end
 
   def is_password?(unencrypted_password)
