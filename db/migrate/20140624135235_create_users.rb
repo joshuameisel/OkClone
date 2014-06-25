@@ -3,7 +3,8 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :username, null: false
       t.string :gender, null: false
-      t.string :orientation, null: false
+      t.boolean :likes_m, default: false
+      t.boolean :likes_f, default: false
       t.integer :min_age, null: false
       t.integer :max_age, null: false
       t.date :dob, null: false

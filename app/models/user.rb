@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
   before_validation :ensure_age_preferences
   
-  validates :username, :gender, :orientation, :min_age, :max_age, :dob, 
+  validates :username, :gender, :min_age, :max_age, :dob, 
     :country, :session_token, :email, 
     presence: true
   validates :password, :length => { :minimum => 6, :allow_nil => true }
@@ -37,6 +37,29 @@ class User < ActiveRecord::Base
       @password = unencrypted_password
       self.password_digest =
         BCrypt::Password.create(unencrypted_password)
+    end
+  end
+  
+  def orientation=(pref)
+    case self.gender
+    when "m"
+      case pref
+      when "straight"
+        self.likes_f = true
+      when "gay"
+        self.likes_m = true
+      when "bisexual"
+        self.likes_f, self.likes_m = true, true
+      end
+    when "f"
+      case pref
+      when "straight"
+        self.likes_m = true
+      when "gay"
+        self.likes_f = true
+      when "bisexual"
+        self.likes_m, self.likes_f = true, true
+      end
     end
   end
 

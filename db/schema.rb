@@ -17,17 +17,18 @@ ActiveRecord::Schema.define(version: 20140624135235) do
   enable_extension "plpgsql"
 
   create_table "users", force: true do |t|
-    t.string   "username",        null: false
-    t.string   "gender",          null: false
-    t.string   "orientation",     null: false
-    t.integer  "min_age",         null: false
-    t.integer  "max_age",         null: false
-    t.date     "dob",             null: false
-    t.string   "country",         null: false
-    t.string   "session_token",   null: false
+    t.string   "username",                        null: false
+    t.string   "gender",                          null: false
+    t.boolean  "likes_m",         default: false
+    t.boolean  "likes_f",         default: false
+    t.integer  "min_age",                         null: false
+    t.integer  "max_age",                         null: false
+    t.date     "dob",                             null: false
+    t.string   "country",                         null: false
+    t.string   "session_token",                   null: false
     t.integer  "zip_code"
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
+    t.string   "email",                           null: false
+    t.string   "password_digest",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
