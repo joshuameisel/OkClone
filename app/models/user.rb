@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
   before_validation :ensure_age_preferences
   
-  validates :username, :gender, :orientation, :min_age, :max_age, :birthdate, 
+  validates :username, :gender, :orientation, :min_age, :max_age, :dob, 
     :country, :session_token, :email, 
     presence: true
   validates :password, :length => { :minimum => 6, :allow_nil => true }
@@ -18,14 +18,10 @@ class User < ActiveRecord::Base
     return nil if user.nil?
     user.is_password?(password) ? user : nil
   end
-  
-  def dob
-    birthdate
-  end
-  
+
   def age
     now = Time.now.utc.to_date
-    now.year - dob.year - ((dob.month > dob.month || 
+    now.year - dob.year - ((dob.month > dob.month ||
       (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 

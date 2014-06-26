@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_logged_out!, :only => :new
+  
   def index
     @users = User.all
   end
@@ -26,7 +28,7 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(
-      :username, :gender, :orientation, :birthdate, :country, 
+      :username, :gender, :orientation, :dob, :country, 
       :session_token, :zip_code, :email, :password
     )
   end
