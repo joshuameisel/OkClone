@@ -20,7 +20,7 @@ describe User do
   let(:straight_man) do 
     FactoryGirl.create(:user,
       gender: "m",
-      likes_f: true,
+      orientation: "straight",
       dob: Date.new(1990, 2, 2)
     )
   end
@@ -34,7 +34,7 @@ describe User do
     let(:straight_woman) do
       FactoryGirl.create(:user,
         gender: "f",  
-        likes_m: true,
+        orientation: "straight",
         dob: Date.new(1988, 12, 28)
       )
     end
@@ -42,7 +42,7 @@ describe User do
     let(:cougar) do
       FactoryGirl.create(:user,
         gender: "f",
-        likes_m: true,
+        orientation: "straight",
         dob: Date.new(1960, 12, 28)
       )
     end
@@ -50,8 +50,16 @@ describe User do
     let(:gay_man) do  
       FactoryGirl.create(:user,
         gender: "m",
-        likes_m: true,
+        orientation: "gay",
         dob: Date.new(1991, 4, 16)
+      )
+    end
+    
+    let(:bisexual_man) do  
+      FactoryGirl.create(:user,
+        gender: "m",
+        orientation: "bisexual",
+        dob: Date.new(1989, 4, 16)
       )
     end
     
@@ -69,12 +77,29 @@ describe User do
          expect(gay_man.users).not_to include straight_man
       end
       
-      it "does include users with the right attributes" do
+      it "does include correct matches for users with gender preference" do
         expect(straight_man.users).to include straight_woman
       end
       
+      it "does include correct matches for users without gender preference" do
+        expect(bisexual_man.users).to include straight_woman
+        expect(bisexual_man.users).to include gay_man
+        expect(gay_man.users).to include bisexual_man
+      end
+      
+      
       it "doesn't return onesself" do
         expect(gay_man.users).not_to include gay_man
+      end
+    end
+    
+    context "with" do
+      
+      it "correctly overwrites defaults" do
+        options = 
+          {show_me: ["m", "f"], who_like: ["m"], min_age: 18, max_age: 70}
+        expect(straight_woman.users(options))
+          .to include cougar, gay_man, bisexual_man
       end
     end
   end

@@ -28,32 +28,66 @@ class User < ActiveRecord::Base
       (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
   
-  def other_gender
-    self.gender == "m" ? "f" : "m"
+  def self.other_gender(gender)
+    gender == "m" ? "f" : "m"
+  end
+  
+  def likes
+    case self.orientation
+    when "straight"
+      [User.other_gender(gender)]
+    when "gay"
+      [gender]
+    when "bisexual"
+      [gender, User.other_gender(gender)]
+    end
   end
   
   def users(options = {})
     defaults = {
-      show_me: [],
-      who_like: ["likes_#{gender}"],
+      show_me: likes,
+      who_like: [gender],
       min_age: min_age,
       max_age: max_age
     }
-    defaults[:show_me] << "m" if likes_m
-    defaults[:show_me] << "f" if likes_f
     
     options = defaults.merge(options)
+    show_me = options[:show_me]
+    who_like = options[:who_like]
     
     now = Time.now.utc.to_date
-    min_dob = Date.new(now.year - max_age, now.month, now.day)
-    max_dob = Date.new(now.year - min_age, now.month, now.day)
+    min_dob = Date.new(now.year - options[:max_age], now.month, now.day)
+    max_dob = Date.new(now.year - options[:min_age], now.month, now.day)
     
-    where_str = "(gender IN (?)) AND (dob BETWEEN ? AND ?)"
-    options[:who_like].each do |likes|
-      where_str.concat("AND (#{likes}=true)")
+    where_str = "(id!=#{id}) AND (dob BETWEEN ? AND ?)"
+    where_args = [min_dob, max_dob]
+    
+    
+    # easy case where we only (possibly) care about gender, not orientation
+    if who_like.length == 2
+      if show_me.length < 2
+        where_str.concat(" AND (gender=?)")
+        where_args << show_me.first
+      end
+      
+    # hard case where we care about orientation
+    else
+      where_str.concat(" AND ")
+      where_concats = []
+      
+      show_me.each do |gen|  
+        orientations = ["bisexual"].concat([
+          gen == who_like.first ? "gay" : "straight"
+        ])
+        
+        where_concats << "(gender=? AND orientation IN (?))"
+        where_args.concat([gen, orientations])
+      end
+      
+      where_str.concat("(#{where_concats.join(' OR ')})")
     end
 
-    User.where(where_str, options[:show_me], min_dob, max_dob)
+    User.where(where_str, *where_args)
   end
 
   def is_password?(unencrypted_password)
@@ -68,29 +102,6 @@ class User < ActiveRecord::Base
       @password = unencrypted_password
       self.password_digest =
         BCrypt::Password.create(unencrypted_password)
-    end
-  end
-  
-  def likes
-    case self.gender
-    when "m"
-      case pref
-      when "straight"
-        self.likes_f = true
-      when "gay"
-        self.likes_m = true
-      when "bisexual"
-        self.likes_f, self.likes_m = true, true
-      end
-    when "f"
-      case pref
-      when "straight"
-        self.likes_m = true
-      when "gay"
-        self.likes_f = true
-      when "bisexual"
-        self.likes_m, self.likes_f = true, true
-      end
     end
   end
 
