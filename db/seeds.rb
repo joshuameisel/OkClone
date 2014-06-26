@@ -6,16 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-<<<<<<< HEAD
-users = User.create
-=======
 users = User.create([
   {
     username: "josh",
     gender: "m",
     orientation: "straight",
-    min_age: 20,
-    max_age: 26,
     dob: Date.new(1990, 2, 2),
     country: "us",
     zip_code: 11222,
@@ -40,8 +35,6 @@ users = User.create([
     username: "cougar",
     gender: "f",
     orientation: "straight",
-    min_age: 18,
-    max_age: 23,
     dob: Date.new(1960, 12, 28),
     country: "us",
     zip_code: 90210,
@@ -54,12 +47,42 @@ users = User.create([
     gender: "m",
     orientation: "straight",
     min_age: 18,
-    max_age: 50,
+    max_age: 60,
     dob: Date.new(1991, 5, 23),
     country: "us",
     zip_code: 11249,
     email: "jacobappet@gmail.com",
     password: "glitch"
+  },
+  
+  {
+    username: "bryan",
+    gender: "m",
+    orientation: "gay",
+    min_age: 20,
+    max_age: 26,
+    dob: Date.new(1991, 4, 16),
+    country: "us",
+    zip_code: 10002,
+    email: "bryan@gmail.com",
+    password: "glitch"
+  }, 
+  
+  {
+    username: "rod",
+    gender: "m",
+    orientation: "gay",
+    dob: Date.new(1989, 4, 16),
+    country: "us",
+    zip_code: 10031,
+    email: "rod@gmail.com",
+    password: "glitch"
   }
 ])
->>>>>>> users
+
+Profile.find(2).update({
+  religion: "Jew",
+  summary: "Just an LA gal tryin' to make it in the big City!",
+  likes: "\"The Bachelor,\" the bachelor",
+  most_private: "When I swim my fingies get pruny"
+})

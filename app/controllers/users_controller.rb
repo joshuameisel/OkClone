@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   before_filter :require_logged_out!, :only => :new
+  before_filter :require_user!, :only => :index
   
   def index
-    @users = User.all
+    @users = current_user.users
   end
 
   def show
     @user = User.find(params[:id])
+    @profile = @user.profile
   end
 
   def create

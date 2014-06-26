@@ -48,10 +48,3 @@ test:
   database: OkClone_test
   pool: 5
   username: joshuameisel
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: OkClone_production
-  pool: 5
-  username: joshuameisel

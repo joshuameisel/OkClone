@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624135235) do
+ActiveRecord::Schema.define(version: 20140625201525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "profiles", force: true do |t|
+    t.integer  "user_id",        null: false
+    t.text     "summary"
+    t.text     "job"
+    t.text     "fortes"
+    t.text     "physical_forte"
+    t.text     "likes"
+    t.text     "six_things"
+    t.text     "think_about"
+    t.text     "friday_night"
+    t.text     "most_private"
+    t.string   "religion"
+    t.string   "ethnicity"
+    t.string   "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false

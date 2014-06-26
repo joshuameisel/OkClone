@@ -4,8 +4,8 @@
   <% @users.each do |user| %>
     <li>
       <ul class="match" id="<%= user.id %>">
-        <li id="username"><%= link_to user.username, user_url(user) %></li>
-        <li id="user-age-and-location">
+        <li class="username"><%= link_to user.username, user_url(user) %></li>
+        <li class="user-info">
           <%= user.zip_code %> · <%= user.age %>
         </li>
       </ul>
