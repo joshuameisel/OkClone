@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render :new
+    render layout: "signed_out"
   end
 
   private

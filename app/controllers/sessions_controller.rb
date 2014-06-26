@@ -23,6 +23,6 @@ class SessionsController < ApplicationController
   end
 
   def new
-    render :new
+    render layout: "signed_out"
   end
 end

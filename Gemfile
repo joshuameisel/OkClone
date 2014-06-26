@@ -24,6 +24,8 @@ gem 'jquery-rails'
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
+gem 'seed_dump'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'

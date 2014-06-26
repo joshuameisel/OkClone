@@ -1,0 +1,76 @@
+html, header, nav, ul, li, h1, main, body, label, input, select, form {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+}
+
+ul {
+	list-style: none;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+.group:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.signed-out form {
+	margin: auto;
+	width: 300px;
+	display: block;
+	padding: 15px;
+}
+
+.signed-out label {
+	display: block;
+}
+
+.signed-out select {
+	display: block;
+	margin-bottom: 15px;
+	background: white;
+}
+
+.signed-out input {
+	display: block;
+	margin-bottom: 15px;
+}
+
+body.signed-out {
+	background: #eee;
+}
+
+.signed-out header h1 {
+	float: left;
+	color: #44a;
+	font-size: 45px;
+}
+
+.signed-out .dark {
+	color: #00f;
+}
+
+.signed-out nav ul {
+	float: right;
+}
+
+.signed-out header {
+	border-bottom: 1px solid lightgrey;
+	background: #eee;
+}
+
+.signed-out header nav {
+	width: 800px;
+	margin: auto;
+	padding: 20px;
+}
+
+.signed-out nav ul li {
+	float: left;
+	padding: 15px 10px;
+}

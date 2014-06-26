@@ -1,73 +1,82 @@
-<%= render "shared/errors" %>
+<header>
+	<nav class="group" id="sign-up">
+		<h1 id="logo">josh</h1>
+		<h1 id="logo" class="dark">k</h1>
+		<h1 id="logo">cupid</h1>
+		<ul>
+	    <li>Already a member?</li>
+	    <li><%= link_to "Sign in", new_session_url %></li>
+	  </ul>
+	</nav>
+</header>
 
-<form action="<%= users_url %>" method="post">
-  <input 
-    type="hidden" 
-    name="authenticity_token" 
-    value="<%= form_authenticity_token %>">
+<main>
+	<%= render "shared/errors" %>
+
+	<form id="new-user" action="<%= users_url %>" method="post">
+	  <input 
+	    type="hidden" 
+	    name="authenticity_token" 
+	    value="<%= form_authenticity_token %>">
     
-  <label>
-    I am
-    <select name="user[gender]">
-      <option value="f">Female</option>
-      <option value="m">Male</option>
-    </select>
-  </label>
+	  <label>
+	    I am
+	    <select name="user[gender]">
+	      <option value="f">Female</option>
+	      <option value="m">Male</option>
+	    </select>
+	  </label>
   
-  <label>
-    and
-    <select name="user[orientation]">
-      <option value="straight">Straight</option>
-      <option value="gay">Gay</option>
-      <option value="bisexual">Bisexual</option>
-    </select>
-  </label>
-  <br>
+	  <label>
+	    and
+	    <select name="user[orientation]">
+	      <option value="straight">Straight</option>
+	      <option value="gay">Gay</option>
+	      <option value="bisexual">Bisexual</option>
+	    </select>
+	  </label>
   
-  <label>
-    Birthdate<br>
-    <input type="date" name="user[dob]" value="1990-06-10">
-  </label>
-  <br>
+	  <label>
+	    Birthdate
+	    <input type="date" name="user[dob]" value="1990-06-10">
+	  </label>
   
-  <label>
-    Country<br>
-    <select name="user[country]">
-      <option value="us">United States</option>
-      <option value="uk">United Kingdoms</option>
-      <option value="ca">Canada</option>
-    </select>
-  </label>
-  <br>
+	  <label>
+	    Country
+	    <select name="user[country]">
+	      <option value="us">United States</option>
+	      <option value="uk">United Kingdoms</option>
+	      <option value="ca">Canada</option>
+	    </select>
+	  </label>
   
-  <label>
-    Zip code<br>
-    <input 
-      type="text" 
-      name="user[zip_code]" 
-      value="<%= @user.zip_code || "i.e. 10001" %>">
-  </label>
-  <br>
-  
-  <label>
-    Email Address<br>
-    <input type="text" name="user[email]" value="<%= @user.email %>">
-  </label>
-  <br>
-  
-  <label>
-    Username<br>
-    <input type="text" name="user[username]" value="<%= @user.username %>">
-  </label>
-  <br>
-  
-  <label>
-    Password<br>
-    <input type="password" name="user[password]" value="<%= @user.password %>">
-  </label>
-  <br>
-  
-  <input type="submit" value="done">
+	  <label>
+	    Zip code
+	    <input 
+	      type="text" 
+	      name="user[zip_code]" 
+	      value="<%= @user.zip_code || "i.e. 10001" %>">
+	  </label>
   
   
-</form>
+	  <label>
+	    Email Address
+	    <input type="text" name="user[email]" value="<%= @user.email %>">
+	  </label>
+  
+	  <label>
+	    Username
+	    <input type="text" name="user[username]" value="<%= @user.username %>">
+	  </label>
+  
+  
+	  <label>
+	    Password
+	    <input type="password" name="user[password]" value="<%= @user.password %>">
+	  </label>
+  
+	  <input type="submit" value="done">
+  
+  
+	</form>
+</main>
