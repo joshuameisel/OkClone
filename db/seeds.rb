@@ -71,3 +71,10 @@ users = User.create([
     password: "glitch"
   }
 ])
+
+Profile.find(2).update({
+  religion: "Jew",
+  summary: "Just an LA gal tryin' to make it in the big City!",
+  likes: "\"The Bachelor,\" the bachelor",
+  most_private: "When I swim my fingies get pruny"
+})
