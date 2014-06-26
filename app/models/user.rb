@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   
   before_validation :ensure_session_token
   before_validation :ensure_age_preferences
-  before_create :make_profile
+  after_create :make_profile
   
   validates :username, :gender, :min_age, :max_age, :dob, 
     :country, :session_token, :email, 
@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def orientation=(pref)
+  def likes
     case self.gender
     when "m"
       case pref
