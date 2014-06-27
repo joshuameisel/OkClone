@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       redirect_to users_url
     else
       flash.now[:errors] = @user.errors.full_messages
-      render :new
+      render :new, layout: "signed_out"
     end
   end
 
