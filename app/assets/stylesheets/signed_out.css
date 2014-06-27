@@ -5,6 +5,13 @@ html, header, nav, ul, li, h1, main, body, label, input, select, form {
 	font: inherit;
 }
 
+h1#sign-in {
+	text-align: center;
+	padding: 50px;
+	font-size: 40px;
+	padding-bottom: 30px;
+}
+
 ul {
 	list-style: none;
 }
@@ -28,6 +35,7 @@ body {
 
 .signed-out label {
 	display: block;
+	padding: 8px;
 }
 
 .signed-out select {
