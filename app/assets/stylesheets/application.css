@@ -33,7 +33,7 @@ body, html {
 
 main {
   display: block;
-  background: white;
+  background: #eee;
   width: 800px;
   margin: auto;
   padding: 20px;

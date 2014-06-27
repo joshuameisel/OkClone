@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
   before_filter :require_logged_out!, :only => :new
   before_filter :require_user!, :only => :index
-  
+
   def index
-    @users = current_user.users
+    if params[:search]
+      @users = current_user.users(search_params)
+    else
+      @users = current_user.users
+    end
   end
 
   def show
@@ -28,9 +32,18 @@ class UsersController < ApplicationController
   end
 
   private
+  def search_params
+    {
+      show_me: User.genders(params[:search][:show_me].to_i),
+      who_like: User.genders(params[:search][:who_like].to_i),
+      min_age: params[:search][:min_age].to_i,
+      max_age: params[:search][:max_age].to_i
+    }
+  end
+
   def user_params
     params.require(:user).permit(
-      :username, :gender, :orientation, :dob, :country, 
+      :username, :gender, :orientation, :dob, :country,
       :session_token, :zip_code, :email, :password
     )
   end

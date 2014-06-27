@@ -14,3 +14,34 @@
 .matches#main {
   padding-top: 10px;
 }
+
+.matches form {
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.matches h3 {
+  font-size: 12px;
+  float: left;
+}
+
+#age {
+  float: left;
+}
+
+.matches select {
+  background: white;
+  border: 1px solid lightgrey;
+  float: left;
+}
+
+.matches .age {
+  float: left;
+  width: 100px;
+}
+
+ul#matches {
+  border-top: 1px solid lightgrey;
+  padding: 10px;
+}
