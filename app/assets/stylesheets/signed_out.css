@@ -35,18 +35,26 @@ body {
 
 .signed-out label {
 	display: block;
-	padding: 8px;
+  font-size: 15px;
+  color: #444;
 }
 
-.signed-out select {
+.signed-out select, input {
 	display: block;
 	margin-bottom: 15px;
-	background: white;
+  margin-top: 5px;
+	border: 2px solid lightgrey;
 }
 
 .signed-out input {
-	display: block;
-	margin-bottom: 15px;
+  padding: 5px;
+}
+
+.signed-out #submit {
+  padding: 10px 20px;
+	background: #44a;
+  color: white;
+  border: none;
 }
 
 body.signed-out {
@@ -55,8 +63,11 @@ body.signed-out {
 
 .signed-out header h1 {
 	float: left;
-	color: #44a;
 	font-size: 45px;
+}
+
+.signed-out .light {
+	color: #44a;
 }
 
 .signed-out .dark {

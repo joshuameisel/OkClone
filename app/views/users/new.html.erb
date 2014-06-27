@@ -1,8 +1,8 @@
 <header>
 	<nav class="group" id="sign-up">
-		<h1 id="logo">josh</h1>
+		<h1 id="logo" class="light">josh</h1>
 		<h1 id="logo" class="dark">k</h1>
-		<h1 id="logo">cupid</h1>
+		<h1 id="logo" class="light">cupid</h1>
 		<ul>
 	    <li>Already a member?</li>
 	    <li><%= link_to "Sign in", new_session_url %></li>
@@ -14,11 +14,11 @@
 	<%= render "shared/errors" %>
 
 	<form id="new-user" action="<%= users_url %>" method="post">
-	  <input 
-	    type="hidden" 
-	    name="authenticity_token" 
+	  <input
+	    type="hidden"
+	    name="authenticity_token"
 	    value="<%= form_authenticity_token %>">
-    
+
 	  <label>
 	    I am
 	    <select name="user[gender]">
@@ -26,7 +26,7 @@
 	      <option value="m">Male</option>
 	    </select>
 	  </label>
-  
+
 	  <label>
 	    and
 	    <select name="user[orientation]">
@@ -35,12 +35,12 @@
 	      <option value="bisexual">Bisexual</option>
 	    </select>
 	  </label>
-  
+
 	  <label>
 	    Birthdate
 	    <input type="date" name="user[dob]" value="1990-06-10">
 	  </label>
-  
+
 	  <label>
 	    Country
 	    <select name="user[country]">
@@ -49,34 +49,34 @@
 	      <option value="ca">Canada</option>
 	    </select>
 	  </label>
-  
+
 	  <label>
 	    Zip code
-	    <input 
-	      type="text" 
-	      name="user[zip_code]" 
+	    <input
+	      type="text"
+	      name="user[zip_code]"
 	      value="<%= @user.zip_code || "i.e. 10001" %>">
 	  </label>
-  
-  
+
+
 	  <label>
 	    Email Address
 	    <input type="text" name="user[email]" value="<%= @user.email %>">
 	  </label>
-  
+
 	  <label>
 	    Username
 	    <input type="text" name="user[username]" value="<%= @user.username %>">
 	  </label>
-  
-  
+
+
 	  <label>
 	    Password
 	    <input type="password" name="user[password]" value="<%= @user.password %>">
 	  </label>
-  
-	  <input type="submit" value="done">
-  
-  
+
+	  <input id="submit" type="submit" value="done">
+
+
 	</form>
 </main>

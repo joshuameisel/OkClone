@@ -11,3 +11,51 @@
  *= require_self
  *= require_tree .
  */
+
+a, .button_to input {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  background: #24d;
+}
+
+header a {
+  color: lightblue;
+}
+
+header nav {
+  float: right;
+}
+
+header li {
+  float: left;
+}
+
+header input {
+  color: lightblue;
+  background: none;
+  border: 0;
+}
+
+
+<header>
+  <nav class="group">
+  	<ul>
+			<% if current_user %>
+        <li><%= link_to "profile", user_url(current_user) %></li>
+        <li><%= button_to "Sign out", session_url, method: :delete %></li>
+			<% else %>
+        <li><%= link_to "Sign in", new_session_url %></li>
+				<li><%= link_to "Join us", root_url %></li>
+			<% end %>
+    </ul>
+  </nav>
+</header>
