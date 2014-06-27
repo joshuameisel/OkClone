@@ -12,7 +12,7 @@
  *= require_tree .
  */
 
-a, .button_to input {
+a, .button_to input, main {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -27,16 +27,30 @@ html {
   background: #24d;
 }
 
+body, html {
+  height: 100%;
+}
+
+main {
+  display: block;
+  background: white;
+  width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
 header a {
   color: lightblue;
 }
 
 header nav {
   float: right;
+  width: 300px;
 }
 
 header li {
   float: left;
+  padding: 9px;
 }
 
 header input {
@@ -44,18 +58,3 @@ header input {
   background: none;
   border: 0;
 }
-
-
-<header>
-  <nav class="group">
-  	<ul>
-			<% if current_user %>
-        <li><%= link_to "profile", user_url(current_user) %></li>
-        <li><%= button_to "Sign out", session_url, method: :delete %></li>
-			<% else %>
-        <li><%= link_to "Sign in", new_session_url %></li>
-				<li><%= link_to "Join us", root_url %></li>
-			<% end %>
-    </ul>
-  </nav>
-</header>
