@@ -3,6 +3,27 @@
 </section>
 
 <section class="matches" id="main">
+	<form id="search-params" action="<%= users_url %>" method="get">
+
+    <h3>Show me</h3>
+
+    <select name="show_me">
+      <option value="f">Girls</option>
+      <option value="m">Guys</option>
+    </select>
+
+    <h3>who like</h3>
+
+    <select name="">
+      <option value="f">girls</option>
+      <option value="m">guys</option>
+      <option value="m">guys</option>
+    </select>
+
+    <h3>ages</h3>
+
+	  <input id="submit" type="submit" value="search">
+	</form>
 
   <ul id="matches">
     <% @users.each do |user| %>
