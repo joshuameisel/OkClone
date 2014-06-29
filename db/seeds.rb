@@ -80,6 +80,14 @@ users = User.create([
   }
 ])
 
+messages = Message.create([
+  {
+    body: "Hey, how's it going",
+    sender_id: 1,
+    recipient_id: 2
+  }
+])
+
 Profile.find(2).update({
   religion: "Jew",
   summary: "Just an LA gal tryin' to make it in the big City!",

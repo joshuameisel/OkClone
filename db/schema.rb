@@ -11,10 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625201525) do
+ActiveRecord::Schema.define(version: 20140629210547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversation_memberships", force: true do |t|
+    t.integer  "user_id",         null: false
+    t.integer  "conversation_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "conversations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.text     "body",               null: false
+    t.integer  "sender_id",          null: false
+    t.integer  "recipient_id",       null: false
+    t.integer  "messages_thread_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["messages_thread_id"], name: "index_messages_on_messages_thread_id", using: :btree
+  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id",        null: false

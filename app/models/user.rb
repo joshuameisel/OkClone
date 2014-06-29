@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   has_one :profile
+  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
+  has_many :received_messages, class_name: "Message", foreign_key: :recipient_id
 
   before_validation :ensure_session_token
   before_validation :ensure_age_preferences

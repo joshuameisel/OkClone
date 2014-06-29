@@ -35,4 +35,5 @@
 	<p><%= @profile.likes %></p>
 	<h3>The most private thing I’m willing to admit</h3>
 	<p><%= @profile.most_private %></p>
+	<%= link_to "send message", new_message_url(@user) %>
 </section>
