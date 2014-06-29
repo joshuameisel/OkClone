@@ -1,16 +1,25 @@
 class Message < ActiveRecord::Base
-  before_creation: :ensure_thread 
-  validates: :sender_id, :recipient_id, :message_id, presence: true
-
-  belongs_to( 
-    :thread, 
-    class_name: "MessageThread", 
-    foreign_key: :message_thread_id
-  )
+  belongs_to :conversation
+  belongs_to :sender, class_name: "User", foreign_key: :sender_id
+  belongs_to :recipient, class_name: "User", foreign_key: :recipient_id
+  
+  # before_creation doesn't work?
+  before_validation :ensure_thread
+  validates :sender_id, :recipient_id, :conversation_id, presence: true
   
   private
   
   def ensure_thread
-    MessageThread.find_or_create_by(sender_id: :sender_id, recipient_id: )
+    sender.conversations.each do |conversation|
+      if conversation.participants.include?(recipient)
+        self.conversation = conversation
+      end
+    end
+    
+    self.conversation = Conversation.create
+    conversation.memberships.create([
+      {user_id: sender_id},
+      {user_id: recipient_id}
+    ])
   end
 end
