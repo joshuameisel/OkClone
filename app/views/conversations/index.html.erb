@@ -1,10 +1,8 @@
 <ul>
 <% @conversations.each do |conversation| %>
-	<li>
-		<%= link_to( 
-				conversation.messages.first.snippet, 
-				conversation_url(conversation))%>
-	</li>
+  <a href="<%= conversation_url(conversation) %>">
+    <%= conversation.messages.last.snippet %>
+  </a>
 		
 <% end %>
 </ul>

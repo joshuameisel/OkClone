@@ -1,4 +1,8 @@
 OkClone::Application.routes.draw do
+  namespace :api, defaults: {format: :json} do 
+    resources :users 
+  end
+  
   root 'users#new'
   resource :session, only: [:new, :create, :destroy]
   get '/match', to: "users#index", as: "users"
