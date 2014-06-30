@@ -8,8 +8,18 @@
   </ul>
 </section>
 
-<section class="right" id="details">
-	<table>
+<section class="left group" id="profile">
+	<h3>My self-summary</h3>
+	<p><%= @profile.summary %></p>
+	<h3>Favorite books, movies, shows, music, and food</h3>
+	<p><%= @profile.likes %></p>
+	<h3>The most private thing I’m willing to admit</h3>
+	<p><%= @profile.most_private %></p>
+	<%= link_to "Send message", new_message_url(@user) %>
+</section>
+
+<section class="right group" id="details">
+	<table class="profile-details">
 		<thead>
 			<tr>
 				<th colspan="2">My Details</th>
@@ -25,15 +35,5 @@
 				<td><%= @profile.religion %></td>
 			</tr>
 		</tbody>
-	</ul>
-</section>
-
-<section class="left" id="profile">
-	<h3>My self-summary</h3>
-	<p><%= @profile.summary %></p>
-	<h3>Favorite books, movies, shows, music, and food</h3>
-	<p><%= @profile.likes %></p>
-	<h3>The most private thing I’m willing to admit</h3>
-	<p><%= @profile.most_private %></p>
-	<%= link_to "send message", new_message_url(@user) %>
+  </table>
 </section>

@@ -1,10 +1,16 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
 .matches#top {
   width: 100%;
   padding-bottom: 10px;
   border-bottom: 1px solid lightgrey;
+}
+
+.matches#right {
+  float: right;
 }
 
 .matches h1 {
@@ -44,4 +50,39 @@
 ul#matches {
   border-top: 1px solid lightgrey;
   padding: 10px;
+}
+
+#profile.left {
+  float: left;
+  width: 450px;
+}
+
+#profile.right {
+  float: right;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+.profile-details {
+  margin: 18.72px;
+  padding-left: 18.72px;
+}
+
+.profile-details thead {
+  text-align: left;
+}
+
+.profile-details td, .prifle-details th {
+  padding: 5px;
+  padding-left: 0;
+  border-bottom: 1px solid grey;
+}
+
+.profile-details th {
+  font-weight: bold;
+}
+
+.profile-details tr {
 }

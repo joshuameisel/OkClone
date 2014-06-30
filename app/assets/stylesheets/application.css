@@ -9,8 +9,41 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require_tree ./non-layouts
  */
+
+html, section, header, nav, ul, li, h1, body, label, input, select,
+form, table, tr, table, thead, tbody, tr, td, th {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+}
+
+h1#sign-in {
+	text-align: center;
+	padding: 50px;
+	font-size: 40px;
+	padding-bottom: 30px;
+}
+
+ul {
+	list-style: none;
+}
+
+html {
+  background: #24d;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+.group:after {
+	content: "";
+	display: block;
+	clear: both;
+}
 
 a, .button_to input, main {
 	margin: 0;
@@ -23,19 +56,37 @@ a {
   text-decoration: none;
 }
 
-html {
-  background: #24d;
-}
-
 body, html {
   height: 100%;
 }
 
-main {
+.content {
+  width: 975px;
+  margin: auto;
+}
+
+.content-sidebar {
+  float: left;
+  width: 200px;
+  background: darkblue;
+}
+
+.content-sidebar a {
+  color: lightblue;
+  padding: 10px 5px;
+  display: block;
+  border-bottom: 2px solid #005;
+}
+
+.content-sidebar a:hover {
+  background: #005;
+}
+
+.content-main {
   display: block;
   background: #eee;
-  width: 800px;
-  margin: auto;
+  width: 735px;
+  float: right;
   padding: 20px;
 }
 
@@ -43,9 +94,14 @@ header a {
   color: lightblue;
 }
 
+header {
+  display: block;
+  margin: auto;
+  width: 975px;
+}
+
 header nav {
   float: right;
-  width: 300px;
 }
 
 header li {

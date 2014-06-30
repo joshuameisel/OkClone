@@ -7,33 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header class="group">
+    <nav>
+    	<ul>
+  			<% if current_user %>
+          <li><%= link_to "Profile", user_url(current_user) %></li>
+          <li><%= button_to "Sign out", session_url, method: :delete %></li>
+  			<% else %>
+          <li><%= link_to "Sign in", new_session_url %></li>
+  				<li><%= link_to "Join us", root_url %></li>
+  			<% end %>
+      </ul>
+    </nav>
+  </header>
 
-
-<header class="group">
-  <nav>
-  	<ul>
-			<% if current_user %>
-        <li><%= link_to "Profile", user_url(current_user) %></li>
-        <li><%= button_to "Sign out", session_url, method: :delete %></li>
-			<% else %>
-        <li><%= link_to "Sign in", new_session_url %></li>
-				<li><%= link_to "Join us", root_url %></li>
-			<% end %>
-    </ul>
-  </nav>
-</header>
-
-<sidebar>
-	<nav>
-		<ul>
-			<li><%= link_to "Browse Matches", users_url %></li>
-			<li><%= link_to "Messages", conversations_url %></li>
-		</ul>
-	</nav>
-</sidebar>
-
-<main><%= yield %></main>
-
-
+  <div class="content group">
+    <section class="content-sidebar">
+    	<nav>
+    		<ul>
+    			<li><%= link_to "Browse Matches", users_url %></li>
+    			<li><%= link_to "Messages", conversations_url %></li>
+    		</ul>
+    	</nav>
+    </section>
+    <section class="content-main"><%= yield %></section>
+  </div>
 </body>
 </html>
