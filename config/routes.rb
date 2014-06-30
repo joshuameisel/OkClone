@@ -1,6 +1,4 @@
 OkClone::Application.routes.draw do
-  resources :conversations
-
   root 'users#new'
   resource :session, only: [:new, :create, :destroy]
   get '/match', to: "users#index", as: "users"
@@ -10,9 +8,8 @@ OkClone::Application.routes.draw do
     end
   end
   
-  get 'thread/:user_id', to: 'conversations#show', as: "thread"
-  resources :conversations, only: :show
-  get '/messages', to: "conversations#index", as: "threads"
+  get 'thread/:id', to: 'conversations#show', as: "conversation"
+  get '/messages', to: "conversations#index", as: "conversations"
   
 
   # The priority is based upon order of creation: first created -> highest priority.

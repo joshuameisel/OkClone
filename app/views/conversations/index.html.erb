@@ -1,0 +1,10 @@
+<ul>
+<% @conversations.each do |conversation| %>
+	<li>
+		<%= link_to( 
+				conversation.messages.first.snippet, 
+				conversation_url(conversation))%>
+	</li>
+		
+<% end %>
+</ul>

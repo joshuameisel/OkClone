@@ -7,6 +7,10 @@ class Message < ActiveRecord::Base
   before_validation :ensure_thread
   validates :sender_id, :recipient_id, :conversation_id, presence: true
   
+  def snippet
+    body.slice(0,20) + "..."
+  end
+  
   private
   
   def ensure_thread
