@@ -1,1 +1,38 @@
-<h1>Yooo</h1>
+<section class="top" id="profile-head">
+  <ul>
+    <li class="username"><%= user.get("username") %></li>
+    <li class="user-info">
+      <%= user.get("age") %> · <%= user.get("gender") %> · <%= user.get("orientation") %> (<%= user.get("zip_code") %>)
+    </li>
+  </ul>
+</section>
+
+<section class="left group" id="profile">
+  <h3>My self-summary</h3>
+  <p><%= profile.summary %></p>
+  <h3>Favorite books, movies, shows, music, and food</h3>
+  <p><%= profile.likes %></p>
+  <h3>The most private thing I’m willing to admit</h3>
+  <p><%= profile.most_private %></p>
+  <button class="send-message">Send message</button>
+</section>
+
+<section class="right group" id="details">
+  <table class="profile-details">
+    <thead>
+      <tr>
+        <th colspan="2">My Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Orientation</td>
+        <td><%= user.get("orientation") %></td>
+      </tr>
+      <tr>
+        <td>Religion</td>
+        <td><%= profile.religion %></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

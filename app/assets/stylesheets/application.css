@@ -13,7 +13,7 @@
  */
 
 html, section, header, nav, ul, li, h1, body, label, input, select,
-form, table, tr, table, thead, tbody, tr, td, th {
+form, table, tr, table, thead, tbody, tr, td, th, button {
 	margin: 0;
 	padding: 0;
 	border: 0;

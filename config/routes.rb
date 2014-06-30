@@ -1,6 +1,6 @@
 OkClone::Application.routes.draw do
   namespace :api, defaults: {format: :json} do 
-    resources :users 
+    resources :users
   end
   
   root 'users#new'
@@ -12,7 +12,7 @@ OkClone::Application.routes.draw do
     end
   end
   
-  get 'thread/:id', to: 'conversations#show', as: "conversation"
+  get '/thread/:id', to: 'conversations#show', as: "conversation"
   get '/messages', to: "conversations#index", as: "conversations"
   
 

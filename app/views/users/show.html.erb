@@ -1,4 +1,3 @@
-<div class="user-profile"></div>
 <h1>hey</h1>
 <script>
 $(document).ready(function () {
@@ -6,53 +5,10 @@ $(document).ready(function () {
   var user = new OkClone.Models.User({id: id});
   user.fetch({
     success: function () {
-      debugger
       var view = new OkClone.Views.UserShow({model: user});
-      $(".user-profile").html(view.render().$el);
+      $(".content-main").html(view.render().$el);
     }
   })
   
 })
 </script>
-
-
-
-<!-- <section class="top" id="profile-head">
-  <ul>
-    <li class="username"><%= @user.username %></li>
-    <li class="user-info">
-      <%= @user.age %>/<%= @user.gender %>/<%= @user.orientation %>
-    </li>
-    <li class="user-info"><%= @user.zip_code %></li>
-  </ul>
-</section>
-
-<section class="left group" id="profile">
-  <h3>My self-summary</h3>
-  <p><%= @profile.summary %></p>
-  <h3>Favorite books, movies, shows, music, and food</h3>
-  <p><%= @profile.likes %></p>
-  <h3>The most private thing I’m willing to admit</h3>
-  <p><%= @profile.most_private %></p>
-  <%= link_to "Send message", new_message_url(@user) %>
-</section>
-
-<section class="right group" id="details">
-  <table class="profile-details">
-    <thead>
-      <tr>
-        <th colspan="2">My Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Orientation</td>
-        <td><%= @user.orientation %></td>
-      </tr>
-      <tr>
-        <td>Religion</td>
-        <td><%= @profile.religion %></td>
-      </tr>
-    </tbody>
-  </table>
-</section> -->
