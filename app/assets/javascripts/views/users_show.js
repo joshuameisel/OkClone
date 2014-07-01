@@ -30,6 +30,7 @@ OkClone.Views.UserShow = Backbone.View.extend({
 			ownProfile: this.ownProfile
 		});
     this.$el.html(topView.render().$el)
+    this.subViews << topView
 
     return this
   }

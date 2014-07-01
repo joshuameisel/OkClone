@@ -10,7 +10,15 @@ OkClone.Views.ProfileTop = Backbone.View.extend({
   updateUser: function(event){
     event.preventDefault();
     var params = $(event.currentTarget).serializeJSON();
-    this.model.save(params);
+    var view = this;
+    this.model.save(params, {
+      wait: true,
+      error: function (model, response) {
+        view.$el.prepend(
+          "<p class='errors'>" + response.responseText + "</p>"
+        );
+      }
+    });
     $(".profile-top.activated").toggleClass("activated")
   },
 
@@ -20,7 +28,6 @@ OkClone.Views.ProfileTop = Backbone.View.extend({
 	},
 
   render: function () {
-    console.log("rendered")
     var renderedContent = this.template({user: this.model})
     this.$el.html(renderedContent)
 
