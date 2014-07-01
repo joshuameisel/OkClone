@@ -1,12 +1,10 @@
 <script>
 $(document).ready(function () {
-  var id = parseInt(location.pathname.split("/")[2]);
-  var user = new OkClone.Models.User({id: id});
+  var user = new OkClone.Models.User({id: <%= params[:id] %>});
   user.fetch({
     success: function () {
       var view = new OkClone.Views.UserShow({
-        model: user,
-        ownProfile: <%= current_user.id %> === id
+        model: user
       });
       $(".content-main").html(view.render().$el);
     }
