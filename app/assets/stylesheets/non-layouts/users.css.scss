@@ -52,6 +52,48 @@ ul#matches {
   padding: 10px;
 }
 
+.profile-top ul {
+	float: left;
+}
+
+.editable .profile-top-wrapper:hover {
+	background: white;
+}
+
+.profile-top-wrapper {
+	float: left;
+	padding: 5px;
+}
+
+.editable .profile-top-wrapper:hover .edit {
+	opacity: 1;
+}
+
+.profile-top .username {
+	font-size: 30px;
+	color: #555;
+}
+
+.profile-top .user-info {
+	font-size: 12px;
+	color: #aaa;
+	float: left;
+}
+
+.profile .edit {
+	display: none;
+	margin-left: 10px;
+	padding: 5px;
+	color: white;
+	background: green;
+	opacity: 0.45;
+}
+
+.profile.editable .edit {
+	display: block;
+	float: left;
+}
+
 #profile.left {
   float: left;
   width: 450px;

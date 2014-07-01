@@ -5,7 +5,7 @@ $(document).ready(function () {
   var user = new OkClone.Models.User({id: id});
   user.fetch({
     success: function () {
-      var view = new OkClone.Views.UserShow({model: user});
+      var view = new OkClone.Views.UserShow({model: user, ownProfile: <%= current_user.id %> === id});
       $(".content-main").html(view.render().$el);
     }
   })
