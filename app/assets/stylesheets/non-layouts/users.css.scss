@@ -94,8 +94,57 @@ ul#matches {
 	float: left;
 }
 
+.modal-screen {
+  background: white;
+  opacity: 0.6;
+  display: block;
+  width: 800px;
+  height: 800px;
+}
+
+.modal {
+  display: none;
+}
+
+.activated .modal {
+  display: block;
+}
+
+.modal form {
+  border: 1px solid grey;
+  z-index: 1000;
+}
+
 #edit-user-info form {
   position: absolute;
+  top: 20%;
+  left: 35%;
+  background: white;
+  padding: 20px 30px;
+  font-size: 14px;
+}
+
+#edit-user-info h1 {
+	font-size: 24px;
+	color: #555;
+}
+
+#edit-user-info .form-row {
+  margin-top: 40px;
+}
+
+#edit-user-info input, #edit-user-info select {
+  border: 1px solid lightgrey;
+  padding: 10px;
+}
+
+#edit-user-info h4 {
+  color: #aaa;
+  width: 80px;
+  text-align: right;
+  padding: 11px 20px;
+  float: left;
+  margin-right: 30px;
 }
 
 #profile.left {

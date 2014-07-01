@@ -5,15 +5,14 @@
 	    <%= user.get("age") %> · <%= user.get("gender") %> · <%= user.get("orientation") %> (<%= user.get("zip_code") %>)
 	  </li>
 	</ul>
-	<button class="edit">edit</li>
+	<button class="edit">edit</button>
 </div>
 
 <section id="edit-user-info" class="modal">
   <form>
     <h1>Your basic information</h1>
     <div class="form-row">
-      <label>
-        Username
+      <label><h4>Username</h4>
         <input
           type="text"
           name="user[username]"
@@ -22,8 +21,7 @@
     </div>
 
     <div class="form-row">
-      <label>
-        I am
+      <label><h4>I am</h4>
   	    <select name="user[gender]">
   	      <option value="f" <% if (user.get("gender") === "f") { %>
             selected<% } %>>Female</option>
@@ -34,15 +32,13 @@
     </div>
 
     <div class="form-row">
-  	  <label>
-  	    My birthdate
+  	  <label><h4>My birthday</h4>
   	    <input type="date" name="user[dob]" value="<%= user.get("dob") %>">
   	  </label>
     </div>
 
     <div class="form-row">
-  	  <label>
-        Location
+  	  <label><h4>Location</h3>
   	    <select name="user[country]">
   	      <option value="us" <% if (user.get("country") === "us") { %>
             selected<% } %>>United States</option>
@@ -55,7 +51,7 @@
     </div>
 
     <div class="form-row">
-  	  <label>
+  	  <label><h4></h4>
   	    <input
   	      type="text"
   	      name="user[zip_code]"
@@ -63,7 +59,24 @@
   	  </label>
     </div>
 
+    <input type="submit" value="Save">
+    <h2 class="submit">Cancel</h2>
   </form>
   <span class="modal-x hide-modal">&times;</span>
   <div class="modal-screen"></div>
 </section>
+
+<script>
+window.showModal = function(event){
+  $(this.parentElement).toggleClass("activated");
+}
+
+window.hideModal = function(event){
+  $(this).closest(".activated").toggleClass("activated");
+}
+
+$(document).ready(function(){
+  $(".editable").on("click", ".show-modal", window.showModal);
+  $(".editable").on("click", ".hide-modal", window.hideModal);
+});
+</script>

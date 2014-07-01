@@ -12,12 +12,30 @@
  *= require_tree ./non-layouts
  */
 
-html, section, header, nav, ul, li, h1, h4, body, label, input, select, form, 
+html, section, header, nav, ul, li, h1, h4, body, label, form,
 table, tr, table, thead, tbody, tr, td, th, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font: inherit;
+  vertical-align: baseline;
+}
+
+input,
+button,
+textarea,
+select {
+  display: inline-block;
+  box-sizing: content-box;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  vertical-align: baseline;
+  background: transparent;
+  color: inherit;
 }
 
 h1#sign-in {
