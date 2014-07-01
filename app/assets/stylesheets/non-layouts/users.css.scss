@@ -97,9 +97,11 @@ ul#matches {
 .modal-screen {
   background: white;
   opacity: 0.6;
-  display: absolute;
-  width: 1000px;
-  height: 1000px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .modal {
@@ -117,8 +119,10 @@ ul#matches {
 
 #edit-user-info form {
   position: absolute;
-  top: 20%;
-  left: 35%;
+  top: 50px;
+  left: 50%;
+  width: 500px;
+  margin-left: -280px;
   background: white;
   padding: 20px 30px;
   font-size: 14px;
@@ -147,16 +151,25 @@ ul#matches {
   margin-right: 30px;
 }
 
-.modal button {
+form button {
   padding: 5px 25px;
   font-weight: bold;
 }
 
-.modal .submit {
+form .submit {
   margin-top: 40px;
   background: green;
   opacity: 0.8;
   color: white;
+}
+
+form .submit#edit-user-info {
+  background: #44a;
+  opacity: 1;
+}
+
+form .submit#edit-user-info:hover {
+  opacity: 0.4;
 }
 
 button.hide-modal {
