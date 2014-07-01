@@ -3,6 +3,5 @@ window.OkClone = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
-  }
+  initialize: function() {}
 };

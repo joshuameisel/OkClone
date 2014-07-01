@@ -66,7 +66,7 @@ ul#matches {
 }
 
 .editable .profile-top-wrapper:hover .edit {
-	opacity: 1;
+	opacity: 0.8;
 }
 
 .profile-top .username {
@@ -97,9 +97,9 @@ ul#matches {
 .modal-screen {
   background: white;
   opacity: 0.6;
-  display: block;
-  width: 800px;
-  height: 800px;
+  display: absolute;
+  width: 1000px;
+  height: 1000px;
 }
 
 .modal {
@@ -145,6 +145,30 @@ ul#matches {
   padding: 11px 20px;
   float: left;
   margin-right: 30px;
+}
+
+.modal button {
+  padding: 5px 25px;
+  font-weight: bold;
+}
+
+.modal .submit {
+  margin-top: 40px;
+  background: green;
+  opacity: 0.8;
+  color: white;
+}
+
+button.hide-modal {
+  border: 1px solid #aaa;
+}
+
+button.hide-modal:hover {
+  background: #ddd;
+}
+
+.modal .submit:hover {
+  opacity: 0.45;
 }
 
 #profile.left {

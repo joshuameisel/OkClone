@@ -59,10 +59,9 @@
   	  </label>
     </div>
 
-    <input type="submit" value="Save">
-    <h2 class="submit">Cancel</h2>
+    <button class="submit">Save</button>
+    <button class="hide-modal">Cancel</button>
   </form>
-  <span class="modal-x hide-modal">&times;</span>
   <div class="modal-screen"></div>
 </section>
 
@@ -72,11 +71,13 @@ window.showModal = function(event){
 }
 
 window.hideModal = function(event){
+  event.preventDefault();
   $(this).closest(".activated").toggleClass("activated");
 }
 
 $(document).ready(function(){
   $(".editable").on("click", ".show-modal", window.showModal);
   $(".editable").on("click", ".hide-modal", window.hideModal);
+
 });
 </script>

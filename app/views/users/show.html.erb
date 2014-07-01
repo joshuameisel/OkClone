@@ -1,14 +1,16 @@
-<h1>hey</h1>
 <script>
 $(document).ready(function () {
   var id = parseInt(location.pathname.split("/")[2]);
   var user = new OkClone.Models.User({id: id});
   user.fetch({
     success: function () {
-      var view = new OkClone.Views.UserShow({model: user, ownProfile: <%= current_user.id %> === id});
+      var view = new OkClone.Views.UserShow({
+        model: user,
+        ownProfile: <%= current_user.id %> === id
+      });
       $(".content-main").html(view.render().$el);
     }
   })
-  
+
 })
 </script>
