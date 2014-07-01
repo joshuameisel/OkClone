@@ -1,6 +1,8 @@
 OkClone::Application.routes.draw do
   namespace :api, defaults: {format: :json} do
-    resources :users
+    resources :users do
+      resource :profile
+    end
   end
 
   root 'users#new'

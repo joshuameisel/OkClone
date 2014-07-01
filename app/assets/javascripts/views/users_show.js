@@ -1,5 +1,4 @@
 OkClone.Views.UserShow = Backbone.View.extend({
-  template: JST["users/show"],
   className: "profile",
 
   events: {
@@ -14,6 +13,10 @@ OkClone.Views.UserShow = Backbone.View.extend({
     }
   },
 
+  profile: function() {
+    return new OkClone.Models.Profile(this.model.get("profile"))
+  },
+
   showModal: function(event){
     $(event.currentTarget.parentElement).toggleClass("activated");
   },
@@ -24,11 +27,23 @@ OkClone.Views.UserShow = Backbone.View.extend({
   },
 
   render: function () {
+    var view = this;
     var topView = new OkClone.Views.ProfileTop({
 			model: this.model,
 		});
-    this.$el.html(topView.render().$el)
-    this.subViews << topView
+    this.$el.html(topView.render().$el);
+    this.subViews << topView;
+    var $left = $("<section>").addClass("profile-left group")
+                              .attr("id", "profile");
+    this.$el.append($left);
+
+    ["summary", "likes", "most_private"].forEach(function (attr) {
+      var itemView = new OkClone.Views.ProfileItem({
+        model: view.profile(),
+        attr: attr
+      })
+      $left.append(itemView.render().$el);
+    });
 
     return this
   }
