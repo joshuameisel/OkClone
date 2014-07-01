@@ -1,4 +1,4 @@
-<div class="profile-top-wrapper">
+<div class="profile-top-wrapper show-modal">
 	<ul>
 	  <li class="username"><%= user.get("username") %></li>
 	  <li class="user-info">
@@ -7,3 +7,63 @@
 	</ul>
 	<button class="edit">edit</li>
 </div>
+
+<section id="edit-user-info" class="modal">
+  <form>
+    <h1>Your basic information</h1>
+    <div class="form-row">
+      <label>
+        Username
+        <input
+          type="text"
+          name="user[username]"
+          value="<%= user.get("username") %>">
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        I am
+  	    <select name="user[gender]">
+  	      <option value="f" <% if (user.get("gender") === "f") { %>
+            selected<% } %>>Female</option>
+  	      <option value="m" <% if (user.get("gender") === "m") { %>
+            selected<% } %>>Male</option>
+  	    </select>
+      </label>
+    </div>
+
+    <div class="form-row">
+  	  <label>
+  	    My birthdate
+  	    <input type="date" name="user[dob]" value="<%= user.get("dob") %>">
+  	  </label>
+    </div>
+
+    <div class="form-row">
+  	  <label>
+        Location
+  	    <select name="user[country]">
+  	      <option value="us" <% if (user.get("country") === "us") { %>
+            selected<% } %>>United States</option>
+  	      <option value="uk" <% if (user.get("country") === "uk") { %>
+            selected<% } %>>United Kingdom</option>
+  	      <option value="ca" <% if (user.get("country") === "ca") { %>
+            selected<% } %>>Canada</option>
+  	    </select>
+  	  </label>
+    </div>
+
+    <div class="form-row">
+  	  <label>
+  	    <input
+  	      type="text"
+  	      name="user[zip_code]"
+  	      value="<%= user.get("zip_code") %>">
+  	  </label>
+    </div>
+
+  </form>
+  <span class="modal-x hide-modal">&times;</span>
+  <div class="modal-screen"></div>
+</section>
