@@ -27,12 +27,23 @@ OkClone.Views.UserShow = Backbone.View.extend({
   },
 
   render: function () {
-    var view = this;
+    this.renderTop().renderLeft();
+
+    return this
+  },
+
+  renderTop: function () {
     var topView = new OkClone.Views.ProfileTop({
 			model: this.model,
 		});
     this.$el.html(topView.render().$el);
-    this.subViews << topView;
+    this.subViews.push(topView);
+
+    return this;
+  },
+
+  renderLeft: function () {
+    var view = this;
     var $left = $("<section>").addClass("profile-left group")
                               .attr("id", "profile");
     this.$el.append($left);
@@ -42,9 +53,14 @@ OkClone.Views.UserShow = Backbone.View.extend({
         model: view.profile(),
         attr: attr
       })
+      view.subViews.push(itemView);
       $left.append(itemView.render().$el);
     });
 
-    return this
+    return this;
+  },
+
+  renderRight: function () {
+    return this;
   }
 })
