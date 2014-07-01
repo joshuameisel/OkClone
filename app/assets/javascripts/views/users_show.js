@@ -27,7 +27,7 @@ OkClone.Views.UserShow = Backbone.View.extend({
   },
 
   render: function () {
-    this.renderTop().renderLeft();
+    this.renderTop().renderLeft().renderRight();
 
     return this
   },
@@ -61,6 +61,13 @@ OkClone.Views.UserShow = Backbone.View.extend({
   },
 
   renderRight: function () {
+    var rightView = new OkClone.Views.ProfileDetails({
+      model: this.model,
+      profile: this.profile()
+    });
+    this.$el.append(rightView.render().$el);
+    this.subViews.push(rightView);
+
     return this;
   }
 })

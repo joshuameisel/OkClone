@@ -1,19 +1,17 @@
-<section class="right group" id="details">
-  <table class="profile-details">
-    <thead>
-      <tr>
-        <th colspan="2">My Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Orientation</td>
-        <td><%= user.get("orientation") %></td>
-      </tr>
-      <tr>
-        <td>Religion</td>
-        <td><%= profile.religion %></td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+<table class="profile-details">
+  <thead>
+    <tr>
+      <th colspan="2">My Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Orientation</td>
+      <td><%= user.get("orientation") %></td>
+    </tr>
+    <tr>
+      <td>Religion</td>
+      <td><%= profile.get("religion") %></td>
+    </tr>
+  </tbody>
+</table>
