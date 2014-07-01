@@ -3,8 +3,19 @@ OkClone.Views.ProfileTop = Backbone.View.extend({
 	tagName: "section",
 	className: "profile-top",
 
+  events: {
+    "submit form": "updateUser"
+  },
+
+  updateUser: function(event){
+    debugger
+  },
+
 	initialize: function () {
 		this.$el.addClass("group");
+    if (this.model.id === currentUserId) {
+      this.$el.addClass("activated");
+    }
 	},
 
   render: function () {

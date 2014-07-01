@@ -65,19 +65,3 @@
   <div class="modal-screen"></div>
 </section>
 
-<script>
-window.showModal = function(event){
-  $(this.parentElement).toggleClass("activated");
-}
-
-window.hideModal = function(event){
-  event.preventDefault();
-  $(this).closest(".activated").toggleClass("activated");
-}
-
-$(document).ready(function(){
-  $(".editable").on("click", ".show-modal", window.showModal);
-  $(".editable").on("click", ".hide-modal", window.hideModal);
-
-});
-</script>
