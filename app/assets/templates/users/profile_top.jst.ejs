@@ -1,4 +1,4 @@
-<div class="profile-top-wrapper show-modal">
+<div class="profile-top-wrapper activates-edit">
 	<ul>
 	  <li class="username"><%= user.get("username") %></li>
 	  <li class="user-info">
@@ -60,7 +60,7 @@
     </div>
 
     <button class="submit" id="edit-user-info">Save</button>
-    <button class="hide-modal">Cancel</button>
+    <button class="cancel activates-edit">Cancel</button>
   </form>
   <div class="modal-screen"></div>
 </section>

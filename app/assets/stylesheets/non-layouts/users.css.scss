@@ -176,11 +176,11 @@ form .submit#edit-user-info:hover {
   opacity: 0.4;
 }
 
-button.hide-modal {
+button.cancel {
   border: 1px solid #aaa;
 }
 
-button.hide-modal:hover {
+button.cancel:hover {
   background: #ddd;
 }
 
@@ -203,8 +203,17 @@ button.hide-modal:hover {
   float: right;
 }
 
-h3 {
+.profile-item h3 {
   font-size: 16px;
+  float: left;
+}
+
+.edit:hover {
+  opacity: 0.8;
+}
+
+.activated .edit {
+  background: red;
 }
 
 .profile-details {

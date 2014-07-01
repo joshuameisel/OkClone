@@ -1,6 +1,6 @@
 OkClone.Views.ProfileItem = Backbone.View.extend({
   template: JST["users/profile_item"],
-  className: "profile-item",
+  className: "profile-item can-activate",
 
   initialize: function (options) {
     this.attr = options.attr;

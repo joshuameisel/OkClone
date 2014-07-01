@@ -2,8 +2,7 @@ OkClone.Views.UserShow = Backbone.View.extend({
   className: "profile",
 
   events: {
-    "click .show-modal": "showModal",
-    "click .hide-modal": "hideModal"
+    "click .activates-edit": "toggleActivated",
   },
 
   initialize: function (options) {
@@ -17,13 +16,8 @@ OkClone.Views.UserShow = Backbone.View.extend({
     return new OkClone.Models.Profile(this.model.get("profile"))
   },
 
-  showModal: function(event){
-    $(event.currentTarget.parentElement).toggleClass("activated");
-  },
-
-  hideModal: function(event){
-    event.preventDefault();
-    $(event.currentTarget).closest(".activated").toggleClass("activated");
+  toggleActivated: function (event) {
+    $(event.currentTarget).closest(".can-activate").toggleClass("activated");
   },
 
   render: function () {
