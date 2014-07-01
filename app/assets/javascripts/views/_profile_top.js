@@ -8,17 +8,19 @@ OkClone.Views.ProfileTop = Backbone.View.extend({
   },
 
   updateUser: function(event){
-    debugger
+    event.preventDefault();
+    var params = $(event.currentTarget).serializeJSON();
+    this.model.save(params);
+    $(".profile-top.activated").toggleClass("activated")
   },
 
 	initialize: function () {
 		this.$el.addClass("group");
-    if (this.model.id === currentUserId) {
-      this.$el.addClass("activated");
-    }
+    this.listenTo(this.model, "change", this.render);
 	},
 
   render: function () {
+    console.log("rendered")
     var renderedContent = this.template({user: this.model})
     this.$el.html(renderedContent)
 

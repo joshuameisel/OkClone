@@ -1,20 +1,20 @@
 OkClone::Application.routes.draw do
-  namespace :api, defaults: {format: :json} do 
+  namespace :api, defaults: {format: :json} do
     resources :users
   end
-  
+
   root 'users#new'
   resource :session, only: [:new, :create, :destroy]
   get '/match', to: "users#index", as: "users"
   resources :users, except: [:index, :new] do
-    member do 
+    member do
       resources :messages, only: :new
     end
   end
-  
+
   get '/thread/:id', to: 'conversations#show', as: "conversation"
   get '/messages', to: "conversations#index", as: "conversations"
-  
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
