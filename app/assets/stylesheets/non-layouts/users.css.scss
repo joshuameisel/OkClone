@@ -63,6 +63,7 @@ ul#matches {
 .profile-top-wrapper {
 	float: left;
 	padding: 5px;
+  margin-bottom: 20px;
 }
 
 .editable .profile-top-wrapper:hover .edit {
@@ -156,24 +157,27 @@ ul#matches {
 }
 
 form button {
-  padding: 5px 25px;
   font-weight: bold;
+  padding: 10px 20px;
 }
 
 form .submit {
   margin-top: 40px;
   background: green;
-  opacity: 0.8;
   color: white;
+ opacity: 0.8;
+}
+
+form .submit:hover {
+  opacity: 0.4;
 }
 
 form .submit#edit-user-info {
   background: #44a;
-  opacity: 1;
 }
 
-form .submit#edit-user-info:hover {
-  opacity: 0.4;
+form button#edit-user-info {
+  padding: 5px 25px;
 }
 
 button.cancel {
@@ -191,12 +195,6 @@ button.cancel:hover {
 .profile-left {
   float: left;
   width: 450px;
-}
-
-.profile-left button {
-  padding: 10px 20px;
-	background: #44a;
-  color: white;
 }
 
 .profile-right {
@@ -218,6 +216,14 @@ button.cancel:hover {
 
 .profile-item.activated p {
   display: none;
+}
+
+.profile-item textarea {
+  background: white;
+  border: 1px solid #aaa;
+  padding: 5px;
+  height: 125px;
+  width: 100%;
 }
 
 .on-activated {

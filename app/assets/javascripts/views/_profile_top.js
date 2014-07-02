@@ -7,19 +7,8 @@ OkClone.Views.ProfileTop = Backbone.View.extend({
     "submit form": "updateUser"
   },
 
-  updateUser: function(event){
-    event.preventDefault();
-    var params = $(event.currentTarget).serializeJSON();
-    var view = this;
-    this.model.save(params, {
-      wait: true,
-      error: function (model, response) {
-        view.$el.prepend(
-          "<p class='errors'>" + response.responseText + "</p>"
-        );
-      }
-    });
-    $(".profile-top.activated").toggleClass("activated")
+  updateUser: function(event) {
+    OkClone.Helpers.updateModel.bind(this)(event);
   },
 
 	initialize: function () {
