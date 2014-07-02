@@ -1,5 +1,7 @@
 OkClone.Models.Profile = Backbone.Model.extend({
-  url: "api/users/profile"
+  url: function () {
+    return "/api/users/" + this.get("user_id") + "/profile"
+  }
 });
 
 OkClone.Models.Profile.displayText = function (attr) {

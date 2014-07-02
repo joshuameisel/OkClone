@@ -12,6 +12,7 @@ OkClone.Views.ProfileItem = Backbone.View.extend({
   initialize: function (options) {
     this.attr = options.attr;
     this.$el.attr("id", this.attr);
+    this.listenTo(this.model, "change:" + this.attr, this.render);
   },
 
   render: function () {
