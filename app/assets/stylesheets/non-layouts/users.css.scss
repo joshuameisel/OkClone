@@ -66,7 +66,8 @@ ul#matches {
   margin-bottom: 20px;
 }
 
-.editable .profile-top-wrapper:hover .edit {
+.editable .activates-edit:hover .edit {
+  background: green;
 	opacity: 0.8;
 }
 
@@ -116,9 +117,6 @@ ul#matches {
 .modal form {
   border: 1px solid grey;
   z-index: 1000;
-}
-
-#edit-user-info form {
   position: absolute;
   top: 50px;
   left: 50%;
@@ -129,21 +127,25 @@ ul#matches {
   font-size: 14px;
 }
 
-#edit-user-info h1 {
+.modal form h1 {
 	font-size: 24px;
 	color: #555;
 }
 
-#edit-user-info .form-row {
+.modal .form-row {
   margin-top: 40px;
 }
 
-#edit-user-info input, #edit-user-info select {
+.modal .form-row {
+  margin-top: 40px;
+}
+
+.modal input, .modal select {
   border: 1px solid lightgrey;
   padding: 10px;
 }
 
-#edit-user-info h4 {
+.modal h4 {
   color: #aaa;
   width: 80px;
   text-align: right;
@@ -207,6 +209,7 @@ button.cancel:hover {
 }
 
 .edit:hover {
+  background: green;
   opacity: 0.8;
 }
 
@@ -237,6 +240,13 @@ button.cancel:hover {
 .profile-details {
   margin: 18.72px;
   padding-left: 18.72px;
+}
+
+.profile-right h2 {
+  float: left;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px;
 }
 
 .profile-details thead {

@@ -1,17 +1,18 @@
-OkClone.Models.Profile = Backbone.Model.extend({
+Profile = OkClone.Models.Profile = Backbone.Model.extend({
   url: function () {
     return "/api/users/" + this.get("user_id") + "/profile"
   }
 });
 
-OkClone.Models.Profile.displayText = function (attr) {
+Profile.displayText = function (attr) {
   switch(attr) {
     case "summary":
       return "My self-summary";
-      "likes", "most_private"
     case "likes":
       return "Favorite books, movies, shows, music, and food";
     case "most_private":
       return "The most private thing I'm willing to admit";
   }
 };
+
+Profile.religions = ["Jewish", "Christian", "Muslim"]

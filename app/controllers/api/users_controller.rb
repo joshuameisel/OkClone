@@ -16,7 +16,8 @@ class Api::UsersController < ApplicationController
     if @user.update_attributes(user_params)
       render :json => @user.to_json(methods: [:age, :profile])
     else
-      render :json => @user.errors.full_messages, :status => :unprocessable_entity
+      render :json => @user.errors.full_messages,
+        :status => :unprocessable_entity
     end
   end
 

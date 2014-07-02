@@ -4,9 +4,12 @@ OkClone.Helpers.updateModel = function (event) {
   var view = this;
   this.model.save(params, {
     wait: true,
+    success: function () {
+      view.$el.toggleClass("activated");
+    },
     error: function (model, response) {
       view.$el.find(".errors").html(response.responseText);
+      view.$el.toggleClass("activated");
     }
   });
-  this.$el.toggleClass("activated");
 };

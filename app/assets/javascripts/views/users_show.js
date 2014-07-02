@@ -57,8 +57,8 @@ OkClone.Views.UserShow = Backbone.View.extend({
 
   renderRight: function () {
     var rightView = new OkClone.Views.ProfileDetails({
-      model: this.model,
-      profile: this.profile()
+      model: this.profile(),
+      user: this.model
     });
     this.$el.append(rightView.render().$el);
     this.subViews.push(rightView);
