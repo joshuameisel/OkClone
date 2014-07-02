@@ -1,5 +1,11 @@
-<div class="group"></div>
+<div class="group">
   <h3><%= OkClone.Models.Profile.displayText(attr) %></h3>
   <button class="edit activates-edit">edit</button>
 </div>
 <p class="on-inactive"><%= profile.get(attr) %></p>
+
+<form class="on-activated" id="<%= attr %>">
+  <input type="textarea" value="<%= profile.get(attr) %>">
+  <button class="submit">Save</button>
+  <button class="cancel activates-edit">Cancel</button>
+</form>

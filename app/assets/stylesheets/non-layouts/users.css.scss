@@ -212,8 +212,20 @@ button.cancel:hover {
   opacity: 0.8;
 }
 
-.activated .edit {
-  background: red;
+.profile.editable .activated .edit {
+  display: none;
+}
+
+.profile-item.activated p {
+  display: none;
+}
+
+.on-activated {
+  display: none;
+}
+
+.activated .on-activated {
+  display: block;
 }
 
 .profile-details {
