@@ -1,12 +1,9 @@
 class Api::ProfilesController < ApplicationController
   def update
-    @user = User.find(params[:user_id])
-    @user.update_attributes(user_params) if params[:user]
-
-    @profile = @user.profile
+    @profile = Profile.find_by(user_id: params[:user_id])
     @profile.update_attributes(profile_params)
 
-    @errors = @user.errors.full_messages + @profile.errors.full_messages
+    @errors = @profile.errors.full_messages
 
     if @errors.empty?
       render :json => @profile
@@ -18,10 +15,6 @@ class Api::ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:summary, :likes, :most_private, :religion)
-  end
-
-  def user_params
-    params.require(:user).permit(:orientation)
+    params.permit(:summary, :likes, :most_private, :religion)
   end
 end

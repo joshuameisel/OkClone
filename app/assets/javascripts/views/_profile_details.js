@@ -8,7 +8,25 @@ OkClone.Views.ProfileDetails = Backbone.View.extend({
   },
 
   updateProfile: function(event) {
-    OkClone.Helpers.updateModel.bind(this)(event);
+    event.preventDefault();
+    var params = $(event.currentTarget).serializeJSON();
+    var view = this;
+
+    this.user.save(params["user"], {
+      wait: true,
+      success: function () {
+        view.model.save(params["profile"], {
+          wait: true,
+          success: function () {
+            view.$el.toggleClass("activated");
+          },
+          error: function (model, response) {
+            view.$el.find(".errors").html(response.responseText);
+            view.$el.toggleClass("activated");
+          }
+        });
+      }
+    });
   },
 
   initialize: function (options) {

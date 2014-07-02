@@ -5,7 +5,7 @@
 <p class="on-inactive"><%= profile.get(attr) %></p>
 
 <form class="on-activated" id="<%= attr %>">
-  <textarea name="profile[<%= attr %>]"><%= profile.escape(attr) %></textarea>
+  <textarea name="<%= attr %>"><%= profile.escape(attr) %></textarea>
   <button class="submit">Save</button>
   <button class="cancel activates-edit">Cancel</button>
 </form>
