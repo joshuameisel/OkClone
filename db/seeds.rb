@@ -14,10 +14,10 @@ users = User.create([
     dob: Date.new(1990, 2, 2),
     country: "us",
     zip_code: 11222,
-    email: "joshua.a.meisel@gmail.com",
+    email: "joshua@example.com",
     password: "glitch"
   },
-  
+
   {
     username: "simone",
     gender: "f",
@@ -27,10 +27,10 @@ users = User.create([
     dob: Date.new(1988, 12, 28),
     country: "us",
     zip_code: 90210,
-    email: "simone",
+    email: "simone@example.com",
     password: "glitch"
   },
-  
+
   {
     username: "cougar",
     gender: "f",
@@ -38,10 +38,10 @@ users = User.create([
     dob: Date.new(1960, 12, 28),
     country: "us",
     zip_code: 90210,
-    email: "cougar@gmail.com",
+    email: "cougar@example.com",
     password: "glitch"
   },
-  
+
   {
     username: "jake",
     gender: "m",
@@ -51,10 +51,10 @@ users = User.create([
     dob: Date.new(1991, 5, 23),
     country: "us",
     zip_code: 11249,
-    email: "jacob",
+    email: "jacob@example.com",
     password: "glitch"
   },
-  
+
   {
     username: "bryan",
     gender: "m",
@@ -64,10 +64,10 @@ users = User.create([
     dob: Date.new(1991, 4, 16),
     country: "us",
     zip_code: 10002,
-    email: "bryan@gmail.com",
+    email: "bryan@example.com",
     password: "glitch"
-  }, 
-  
+  },
+
   {
     username: "rod",
     gender: "m",
@@ -75,7 +75,7 @@ users = User.create([
     dob: Date.new(1989, 4, 16),
     country: "us",
     zip_code: 10031,
-    email: "rod@gmail.com",
+    email: "rod@example.com",
     password: "glitch"
   }
 ])

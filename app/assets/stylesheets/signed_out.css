@@ -39,11 +39,12 @@ body {
 	clear: both;
 }
 
-.signed-out form#new-user {
+.signed-out form {
 	margin: auto;
 	width: 300px;
 	display: block;
 	padding: 15px;
+  padding-bottom: 0;
 }
 
 .signed-out label {
@@ -59,15 +60,30 @@ body {
 	border: 2px solid lightgrey;
 }
 
-#new-user input {
+input {
   padding: 5px;
 }
 
-.signed-out #submit {
+.signed-out #submit.submit {
   padding: 10px 20px;
 	background: #44a;
   color: white;
   border: none;
+}
+
+.signed-out #submit.submit:hover {
+  opacity: 0.6;
+}
+
+form#demo-user {
+  padding: 0;
+}
+
+.signed-out .submit.demo-user#submit {
+  padding: 8px 18px;
+  background: red;
+  margin: 0;
+  border: 2px solid blue;
 }
 
 body.signed-out {
@@ -108,15 +124,7 @@ body.signed-out {
   margin-top: 5px;
 }
 
-form#demo-user {
-  float: right;
-}
-
-input#demo-user {
-  border: 2px solid blue;
-  background: red;
-  margin: 0;
-  padding: 5px;
-  font-size: 20px;
-  font-weight: bold;
+main#sign-up {
+  width: 400px;
+  margin: auto;
 }

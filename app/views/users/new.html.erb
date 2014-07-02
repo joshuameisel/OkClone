@@ -12,17 +12,6 @@
 
 <main id="sign-up">
 
-  <form id="demo-user" action="<%= session_url %>" method="post">
-	  <input
-	    type="hidden"
-	    name="authenticity_token"
-	    value="<%= form_authenticity_token %>">
-
-    <input type="hidden" name="user[username]" value="josh">
-    <input type="hidden" name="user[password]" value="glitch">
-	  <input id="demo-user" type="submit" value="Sign in as demo user">
-  </form>
-
 	<%= render "shared/errors" %>
 
 	<form id="new-user" action="<%= users_url %>" method="post">
@@ -87,6 +76,18 @@
 	    <input type="password" name="user[password]" value="<%= @user.password %>">
 	  </label>
 
-	  <input id="submit" type="submit" value="done">
+	  <input class="submit" id="submit" type="submit" value="done">
 	</form>
+
+  <form id="demo-user" action="<%= session_url %>" method="post">
+	  <input
+	    type="hidden"
+	    name="authenticity_token"
+	    value="<%= form_authenticity_token %>">
+
+    <input type="hidden" name="user[username]" value="simone">
+    <input type="hidden" name="user[password]" value="glitch">
+	  <input class="submit demo-user" id="submit"
+      type="submit" value="Sign in as demo user">
+  </form>
 </main>
