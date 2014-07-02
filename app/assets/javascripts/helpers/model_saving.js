@@ -5,9 +5,7 @@ OkClone.Helpers.updateModel = function (event) {
   this.model.save(params, {
     wait: true,
     error: function (model, response) {
-      view.$el.prepend(
-        "<p class='errors'>" + response.responseText + "</p>"
-      );
+      view.$el.find(".errors").html(response.responseText);
     }
   });
   this.$el.toggleClass("activated");
