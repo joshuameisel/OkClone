@@ -26,34 +26,36 @@
 
     <div class="form-row">
       <label><h4>Orientation</h4>
-	    <select name="user[orientation]">
-	      <option value="straight"
-          <% if (user.get("orientation") === "straight") { %>
-            selected
-          <% } %>>Straight</option>
-	      <option value="gay" <% if (user.get("orientation") === "gay") { %>
-          selected<% } %>>Gay</option>
-	      <option value="bisexual"
-          <% if (user.get("orientation") === "bisexual") { %>
-            selected
-          <% } %>>Bisexual</option>
-	    </select>
+  	    <select name="user[orientation]">
+  	      <option value="straight"
+            <% if (user.get("orientation") === "straight") { %>
+              selected
+            <% } %>>Straight</option>
+  	      <option value="gay" <% if (user.get("orientation") === "gay") { %>
+            selected<% } %>>Gay</option>
+  	      <option value="bisexual"
+            <% if (user.get("orientation") === "bisexual") { %>
+              selected
+            <% } %>>Bisexual</option>
+  	    </select>
+      </label>
     </div>
 
     <div class="form-row">
       <label><h4>Religion</h4>
-	    <select name="profile[religion]">
-	      <option value=0
-          <% if (user.get("orientation") === "straight") { %>
-            selected
-          <% } %>>Straight</option>
-	      <option value="gay" <% if (user.get("orientation") === "gay") { %>
-          selected<% } %>>Gay</option>
-	      <option value="bisexual"
-          <% if (user.get("orientation") === "bisexual") { %>
-            selected
-          <% } %>>Bisexual</option>
-	    </select>
+  	    <select name="profile[religion]">
+  	      <option value=0
+            <% if (user.get("orientation") === "straight") { %>
+              selected
+            <% } %>>Straight</option>
+  	      <option value=1 <% if (user.get("orientation") === "gay") { %>
+            selected<% } %>>Gay</option>
+  	      <option value=2
+            <% if (user.get("orientation") === "bisexual") { %>
+              selected
+            <% } %>>Bisexual</option>
+  	    </select>
+      </label>
     </div>
 
     <button class="submit" id="edit-user-info">Save</button>

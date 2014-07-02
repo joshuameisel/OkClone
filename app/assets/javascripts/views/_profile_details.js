@@ -14,15 +14,30 @@ OkClone.Views.ProfileDetails = Backbone.View.extend({
   initialize: function (options) {
     this.user = options.user;
     this.listenTo(this.model, "change", this.render);
+    this.listenTo(this.user, "change", this.render);
   },
 
   render: function () {
-    var renderedContent = this.template({
-      profile: this.model,
-      user: this.user
+    var view = this
+    this.user.fetch({
+      success: function () {
+        var renderedContent = view.template({
+          profile: view.model,
+          user: view.user
+        });
+        view.$el.html(renderedContent);
+      }
     });
-    this.$el.html(renderedContent);
 
     return this;
+    // success: function () {
+    //   var renderedContent = this.template({
+    //     profile: this.model,
+    //     user: this.user
+    //   });
+    //   this.$el.html(renderedContent);
+    //
+    //   return this;
+    // }
   }
-})
+});
