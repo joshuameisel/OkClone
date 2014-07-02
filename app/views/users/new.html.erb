@@ -10,7 +10,19 @@
 	</nav>
 </header>
 
-<main>
+<main id="sign-up">
+
+  <form id="demo-user" action="<%= session_url %>" method="post">
+	  <input
+	    type="hidden"
+	    name="authenticity_token"
+	    value="<%= form_authenticity_token %>">
+
+    <input type="hidden" name="user[username]" value="josh">
+    <input type="hidden" name="user[password]" value="glitch">
+	  <input id="demo-user" type="submit" value="Sign in as demo user">
+  </form>
+
 	<%= render "shared/errors" %>
 
 	<form id="new-user" action="<%= users_url %>" method="post">
@@ -76,7 +88,5 @@
 	  </label>
 
 	  <input id="submit" type="submit" value="done">
-
-
 	</form>
 </main>

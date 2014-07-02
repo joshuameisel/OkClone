@@ -39,7 +39,7 @@ body {
 	clear: both;
 }
 
-.signed-out form {
+.signed-out form#new-user {
 	margin: auto;
 	width: 300px;
 	display: block;
@@ -59,7 +59,7 @@ body {
 	border: 2px solid lightgrey;
 }
 
-.signed-out input {
+#new-user input {
   padding: 5px;
 }
 
@@ -105,4 +105,18 @@ body.signed-out {
 .signed-out nav ul li {
 	float: left;
 	padding: 15px 10px;
+  margin-top: 5px;
+}
+
+form#demo-user {
+  float: right;
+}
+
+input#demo-user {
+  border: 2px solid blue;
+  background: red;
+  margin: 0;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
 }
