@@ -122,8 +122,8 @@ ul#matches {
   border: 1px solid grey;
   z-index: 1000;
   position: absolute;
-  top: 50px;
-  left: 50%;
+  top: 80px;
+  left: 56%;
   width: 500px;
   margin-left: -280px;
   background: white;
@@ -171,10 +171,6 @@ button {
   opacity: 0.8;
 }
 
-button:hover {
-  opacity: 0.4;
-};
-
 .profile-item form .submit {
   margin-top: 40px;
   background: green;
@@ -193,11 +189,7 @@ button.cancel {
 }
 
 button.cancel:hover {
-  background: #eee;
-}
-
-.modal .submit:hover {
-  opacity: 0.45;
+  background: #ccc;
 }
 
 .profile-left {
@@ -214,8 +206,8 @@ h3 {
   float: left;
 }
 
-button:hover {
-  opacity: 0.4;
+button.submit:hover {
+  opacity: 0.55;
 }
 
 .profile.editable .activated .edit {
@@ -231,12 +223,16 @@ button:hover {
   display: none;
 }
 
-.profile-item textarea {
+.profile textarea {
   background: white;
   border: 1px solid #aaa;
   padding: 5px;
   height: 125px;
   width: 100%;
+}
+
+.profile-bottom button {
+  padding: 10px 50px;
 }
 
 .on-activated {
@@ -256,6 +252,10 @@ button:hover {
 	list-style: circle;
 	list-style-position: inside;
 }
+
+.profile-bottom button:hover {
+  opacity: .55;
+};
 
 .profile-details {
   margin: 18.72px;

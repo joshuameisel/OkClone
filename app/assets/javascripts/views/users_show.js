@@ -13,7 +13,7 @@ OkClone.Views.UserShow = Backbone.View.extend({
   },
 
   profile: function() {
-    return new OkClone.Models.Profile(this.model.get("profile"))
+    return new Profile(this.model.get("profile"))
   },
 
   toggleActivated: function (event) {
@@ -52,7 +52,7 @@ OkClone.Views.UserShow = Backbone.View.extend({
       $left.append(itemView.render().$el);
     });
 
-		var bottomView = new OkClone.Views.ProfileBottom({model: this.model});
+		var bottomView = new OkClone.Views.ProfileBottom({user: this.model});
 		$left.append(bottomView.render().$el);
 
     return this;
