@@ -1,8 +1,8 @@
 <ul>
 <% @conversations.each do |conversation| %>
-  <a href="<%= conversation_url(conversation) %>">
-    <%= conversation.messages.last.snippet %>
+  <a href="<%= conversation_user_url(User.find(conversation.other_user_id)) %>">
+    <%= Message.snippet(conversation.body) %>
   </a>
-		
+
 <% end %>
 </ul>

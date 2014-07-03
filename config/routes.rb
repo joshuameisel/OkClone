@@ -1,21 +1,22 @@
 OkClone::Application.routes.draw do
-  namespace :api, defaults: {format: :json} do
-    resources :users do
-      resources :messages
-      resource :profile
-    end
-  end
-
   root 'users#new'
-  resource :session, only: [:new, :create, :destroy]
-  get '/match', to: "users#index", as: "users"
-  resources :users, except: [:index, :new] do
-    member do
-      resources :messages, only: :new
+
+  namespace :api, defaults: {format: :json} do
+    resources :users, only: [:index, :show, :update] do
+      resources :messages, only: :create
+      resource :profile, only: :update
     end
   end
 
-  get '/thread/:id', to: 'conversations#show', as: "conversation"
+  resource :session, only: [:new, :create, :destroy]
+
+  get '/match', to: "users#index", as: "users"
+  resources :users, only: [:show, :create] do
+    member do
+      get '/messages', to: 'conversations#show', as: "conversation"
+    end
+  end
+
   get '/messages', to: "conversations#index", as: "conversations"
   get '/test', to: "tests#test"
 

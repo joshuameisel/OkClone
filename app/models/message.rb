@@ -4,7 +4,7 @@ class Message < ActiveRecord::Base
 
   validates :sender_id, :recipient_id, :body, presence: true
 
-  def snippet
+  def self.snippet(body)
     body.slice(0,20) + "..."
   end
 end

@@ -3,7 +3,6 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = current_user.conversations
-    fail
   end
 
   def show
