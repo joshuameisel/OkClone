@@ -1,6 +1,6 @@
 OkClone.Views.ProfileItem = Backbone.View.extend({
   template: JST["users/profile_item"],
-  className: "profile-item can-activate",
+  className: "profile-item gets-activated",
   events: {
     "submit form": "updateProfile"
   },

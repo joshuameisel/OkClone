@@ -1,7 +1,7 @@
 OkClone.Views.ProfileDetails = Backbone.View.extend({
   template: JST["users/profile_details"],
   tagName: "section",
-  className: "profile-right can-activate group",
+  className: "profile-right gets-activated group",
 
   events: {
     "submit form": "updateProfile"

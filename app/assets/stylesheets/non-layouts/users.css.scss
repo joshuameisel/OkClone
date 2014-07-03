@@ -67,7 +67,6 @@ ul#matches {
 }
 
 .editable .can-activate:hover .edit {
-  background: green;
 	opacity: 0.8;
 }
 
@@ -84,11 +83,16 @@ ul#matches {
 
 .profile .edit {
 	display: none;
+  margin-top: 0;
 	margin-left: 10px;
 	padding: 5px;
 	color: white;
 	background: green;
 	opacity: 0.45;
+}
+
+.profile .edit:hover {
+  opacity: 0.8;
 }
 
 .profile.editable .edit {
@@ -158,24 +162,24 @@ ul#matches {
   color: red;
 }
 
-form button {
+button {
   font-weight: bold;
   padding: 10px 20px;
+  margin-top: 40px;
+  background: #44a;
+  color: white;
+  opacity: 0.8;
 }
 
-form .submit {
+button:hover {
+  opacity: 0.4;
+};
+
+.profile-item form .submit {
   margin-top: 40px;
   background: green;
   color: white;
- opacity: 0.8;
-}
-
-form .submit:hover {
-  opacity: 0.4;
-}
-
-form .submit#edit-user-info {
-  background: #44a;
+  opacity: 0.8;
 }
 
 form button#edit-user-info {
@@ -183,11 +187,13 @@ form button#edit-user-info {
 }
 
 button.cancel {
+  background: transparent;
   border: 1px solid #aaa;
+  color: #333;
 }
 
 button.cancel:hover {
-  background: #ddd;
+  background: #eee;
 }
 
 .modal .submit:hover {
@@ -208,9 +214,8 @@ h3 {
   float: left;
 }
 
-.edit:hover {
-  background: green;
-  opacity: 0.8;
+button:hover {
+  opacity: 0.4;
 }
 
 .profile.editable .activated .edit {
@@ -243,6 +248,7 @@ h3 {
 }
 
 .profile-bottom h3 {
+  padding-top: 16px;
 	float: none;
 }
 
