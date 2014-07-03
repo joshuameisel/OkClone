@@ -1,5 +1,7 @@
 class Api::MessagesController < ApplicationController
   def create
+    5.times {puts}
+    puts message_params
     @message = current_user.sent_messages.new(message_params)
     if @message.save
       render :json => @profile
@@ -11,6 +13,6 @@ class Api::MessagesController < ApplicationController
   private
 
   def message_params
-    params.permit(:sender_id, :recipient_id, :body)
+    params.permit(:body, :recipient_id)
   end
 end

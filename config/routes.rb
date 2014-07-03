@@ -17,6 +17,7 @@ OkClone::Application.routes.draw do
 
   get '/thread/:id', to: 'conversations#show', as: "conversation"
   get '/messages', to: "conversations#index", as: "conversations"
+  get '/test', to: "tests#test"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

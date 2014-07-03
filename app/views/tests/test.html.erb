@@ -1,0 +1,20 @@
+<h2>test</h2>
+
+<%= render "shared/errors" %>
+
+<form id="sign-in" action="<%= api_user_messages_url(User.first) %>" method="post">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label for="message_recipientId">RecipientId</label>
+  <input type="text" name="recipient_id" id="message_recipientId">
+  <br>
+
+  <label for="user_password">Body</label>
+  <input type="text" name="body" id="user_password">
+  <br>
+
+  <input class="submit" id="submit" type="submit" value="Let's go">
+</form>
