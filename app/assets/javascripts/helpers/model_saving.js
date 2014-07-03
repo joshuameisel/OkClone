@@ -4,6 +4,7 @@ OkClone.Helpers.updateModel = function (event) {
   var view = this;
   this.model.save(params, {
     wait: true,
+    patch: true,
     success: function () {
       view.$el.toggleClass("activated");
     },

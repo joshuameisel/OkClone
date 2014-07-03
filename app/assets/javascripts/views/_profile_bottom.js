@@ -9,8 +9,7 @@ OkClone.Views.ProfileBottom = Backbone.View.extend({
   initialize: function (options) {
     this.user = options.user;
     this.model = new OkClone.Models.Message({
-      recipient_id: this.user.get("id"),
-      sender_id: currentUserId
+      recipient_id: this.user.get("id")
     });
   },
 

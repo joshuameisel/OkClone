@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   validate :zip_code_is_proper
   validate :password_digest_presence
 
+  def conversations
+
+  end
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
 
