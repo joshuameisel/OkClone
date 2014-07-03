@@ -85,6 +85,16 @@ messages = Message.create([
     body: "Hey, how's it going",
     sender_id: 1,
     recipient_id: 2
+  },
+  {
+    body: "Sup sup",
+    sender_id: 2,
+    recipient_id: 1
+  },
+  {
+    body: "yooo",
+    sender_id: 2,
+    recipient_id: 3
   }
 ])
 
@@ -92,5 +102,5 @@ Profile.find(2).update({
   religion: 0,
   summary: "Just an LA gal tryin' to make it in the big City!",
   likes: "\"The Bachelor,\" the bachelor",
-  most_private: "When I swim my fingies get pruny"
+  most_private: "I can't swim, ride a bike, or eat chicken"
 })
