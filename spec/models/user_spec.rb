@@ -81,8 +81,7 @@ describe User do
       end
 
       it "does include correct matches for users without gender preference" do
-        expect(bisexual_man.users).to include straight_woman
-        expect(bisexual_man.users).to include gay_man
+        expect(bisexual_man.users).to include(straight_woman, gay_man)
         expect(gay_man.users).to include bisexual_man
       end
 
@@ -93,12 +92,11 @@ describe User do
     end
 
     context "with" do
-
       it "correctly overwrites defaults" do
         options =
           {show_me: ["m", "f"], who_like: ["m"], min_age: 18, max_age: 70}
-        expect(straight_woman.users(options))
-          .to include cougar, gay_man, bisexual_man
+        expect(straight_woman.users(options)).to include(
+          cougar, gay_man, bisexual_man)
       end
     end
   end
@@ -106,7 +104,7 @@ describe User do
   describe "#conversations" do
     let(:first_message) do
       FactoryGirl.create(:message,
-        sender: gay_man, recipient: straight_man, created_at: 2.minutes.ago)
+        sender: gay_man, recipient: straight_man, created_at: 3.minutes.ago)
     end
 
     let(:second_message) do
@@ -130,13 +128,35 @@ describe User do
     end
 
     it "finds the correct users" do
-      expect(gay_man.conversations.map(&:other_user_id)).to include straight_man
+      initiate_messages
+      expect(gay_man.conversations.map(&:other_user_id)).to include(
+        straight_man.id, straight_woman.id)
     end
 
-    it "doesn't find incorrect users"
+    it "doesn't find incorrect users" do
+      initiate_messages
+      expect(gay_man.conversations.map(&:other_user_id)).not_to include(cougar)
+    end
 
-    it "uses the most recent message in a thread"
+    it "uses the most recent message in a thread" do
+      initiate_messages
+      expect(gay_man.conversations.map(&:body)).to include(
+        first_message.body, fourth_message.body)
+    end
 
-    it "orders the threads by most recent message"
+    it "orders the threads by most recent message" do
+      initiate_messages
+      expect(gay_man.conversations.first.other_user_id).to eq(straight_man.id)
+
+      fourth_message.update_attributes(created_at: 2.minutes.ago)
+      expect(gay_man.conversations.first.other_user_id).to eq(
+        straight_woman.id
+      )
+    end
   end
+end
+
+def initiate_messages
+  first_message && second_message && third_message && fourth_message &&
+    fifth_message
 end
