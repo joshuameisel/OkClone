@@ -8,13 +8,13 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user.to_json(methods: [:age, :profile])
+    render json: @user.to_json(methods: [:age, :profile, :likes])
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      render :json => @user.to_json(methods: [:age, :profile])
+      render :json => @user.to_json(methods: [:age, :profile, :likes])
     else
       render :json => @user.errors.full_messages,
         :status => :unprocessable_entity

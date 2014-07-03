@@ -11,8 +11,8 @@ class CreateProfiles < ActiveRecord::Migration
       t.text :think_about
       t.text :friday_night
       t.text :most_private
-      t.string :religion
-      t.string :ethnicity
+      t.integer :religion
+      t.integer :ethnicity
       t.string :height
 
       t.timestamps

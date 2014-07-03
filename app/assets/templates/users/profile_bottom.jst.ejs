@@ -1,0 +1,10 @@
+<h3>I'm looking for</h3>
+<ul>
+	<li>
+		<%= (user.get("likes").length > 1) ? "Everybody" : User.sexTexts[user.get("likes")[0]] %> 
+	</li>
+	<li>Ages <%= user.escape("min_age") %>-<%= user.escape("max_age") %></li>
+</ul>
+<% if (currentUserId !== user.get("id")) { %>
+	<button class="activates">Send Message</button>
+<% } %>

@@ -24,4 +24,4 @@ OkClone.Views.ProfileItem = Backbone.View.extend({
 
     return this;
   }
-})
+});

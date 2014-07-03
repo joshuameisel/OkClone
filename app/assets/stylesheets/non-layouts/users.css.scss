@@ -66,7 +66,7 @@ ul#matches {
   margin-bottom: 20px;
 }
 
-.editable .activates-edit:hover .edit {
+.editable .can-activate:hover .edit {
   background: green;
 	opacity: 0.8;
 }
@@ -203,7 +203,7 @@ button.cancel:hover {
   float: right;
 }
 
-.profile-item h3 {
+h3 {
   font-size: 16px;
   float: left;
 }
@@ -215,6 +215,11 @@ button.cancel:hover {
 
 .profile.editable .activated .edit {
   display: none;
+}
+
+.profile-item p {
+	margin-bottom: 25px;
+	margin-top: 5px;
 }
 
 .profile-item.activated p {
@@ -235,6 +240,15 @@ button.cancel:hover {
 
 .activated .on-activated {
   display: block;
+}
+
+.profile-bottom h3 {
+	float: none;
+}
+
+.profile-bottom li {
+	list-style: circle;
+	list-style-position: inside;
 }
 
 .profile-details {
