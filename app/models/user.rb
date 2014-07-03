@@ -20,7 +20,40 @@ class User < ActiveRecord::Base
   validate :password_digest_presence
 
   def conversations
+    str = "
+    SELECT full_msgs.other_user_id, full_msgs.created_at, full_msgs.body
+    FROM (
+      SELECT messages.*, (CASE
+              WHEN messages.sender_id=#{id}
+              THEN messages.recipient_id
+              ELSE messages.sender_id
+              END) AS other_user_id
+      FROM messages
+      WHERE messages.sender_id=#{id} OR
+      messages.recipient_id=#{id}
+    ) AS full_msgs
+    WHERE (full_msgs.sender_id=#{id} OR
+      full_msgs.recipient_id=#{id}) AND
+      full_msgs.created_at = (
+        SELECT msg.created_at
+        FROM (
+          SELECT messages.*, (CASE
+                  WHEN messages.sender_id=#{id}
+                  THEN messages.recipient_id
+                  ELSE messages.sender_id
+                  END) AS other_user_id
+          FROM messages
+          WHERE messages.sender_id=#{id} OR
+          messages.recipient_id=#{id}
+        ) as msg
+        WHERE msg.other_user_id=full_msgs.other_user_id
+        ORDER BY msg.created_at DESC
+        LIMIT 1
+      )
+    ORDER BY full_msgs.created_at DESC
+    "
 
+    Message.find_by_sql(str)
   end
 
   def self.find_by_credentials(username, password)
