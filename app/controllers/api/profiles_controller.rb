@@ -1,14 +1,12 @@
 class Api::ProfilesController < ApplicationController
   def update
     @profile = Profile.find_by(user_id: params[:user_id])
-    @profile.update_attributes(profile_params)
 
-    @errors = @profile.errors.full_messages
-
-    if @errors.empty?
+    if @profile.update_attributes(profile_params)
       render :json => @profile
     else
-      render :json => @errors, :status => :unprocessable_entity
+      render :json => @profile.errors.full_messages,
+        :status => :unprocessable_entity
     end
   end
 
