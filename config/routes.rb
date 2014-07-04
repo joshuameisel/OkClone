@@ -1,4 +1,6 @@
 OkClone::Application.routes.draw do
+  resources :photos
+
   root 'users#new'
 
   namespace :api, defaults: {format: :json} do

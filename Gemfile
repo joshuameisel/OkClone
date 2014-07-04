@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+gem 'figaro'
+
+gem 'paperclip', github: 'thoughtbot/paperclip'
+
+gem 'aws-sdk'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
