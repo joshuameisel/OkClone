@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
       WHERE (full_msgs.sender_id=#{id} OR
         full_msgs.recipient_id=#{id}) AND
         full_msgs.created_at = (
-          SELECT msg.created_at
+          SELECT MAX(created_at)
           FROM (
             SELECT messages.*, (CASE
                     WHEN messages.sender_id=#{id}
@@ -47,8 +47,6 @@ class User < ActiveRecord::Base
             messages.recipient_id=#{id}
           ) as msg
           WHERE msg.other_user_id=full_msgs.other_user_id
-          ORDER BY msg.created_at DESC
-          LIMIT 1
         )
       ORDER BY full_msgs.created_at DESC
       SQL
