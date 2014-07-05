@@ -1,0 +1,15 @@
+<form
+  action="<%= user_photos_url(current_user) %>"
+  method="post"
+  enctype="multipart/form-data"
+>
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <label>
+    Add a photo
+    <input type="file" name="photo_file">
+  </label>
+  <button>Submit</button>
+</form>

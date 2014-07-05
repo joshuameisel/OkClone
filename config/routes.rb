@@ -1,10 +1,9 @@
 OkClone::Application.routes.draw do
-  resources :photos
-
   root 'users#new'
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:index, :show, :update] do
+      resources :photos, only: [:index, :create, :new, :destroy]
       resources :messages, only: :create
       resource :profile, only: :update
     end
@@ -14,9 +13,8 @@ OkClone::Application.routes.draw do
 
   get '/match', to: "users#index", as: "users"
   resources :users, only: [:show, :create] do
-    member do
-      get '/messages', to: 'conversations#show', as: "conversation"
-    end
+    resources :photos, only: [:index, :new, :create]
+    get '/messages', to: 'conversations#show', as: "conversation"
   end
 
   get '/messages', to: "conversations#index", as: "conversations"
