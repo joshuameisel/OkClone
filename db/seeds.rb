@@ -98,9 +98,13 @@ messages = Message.create([
   }
 ])
 
-Profile.find(2).update({
+profiles = Profile.find_by(user_id: 2).update({
   religion: 0,
   summary: "Just an LA gal tryin' to make it in the big City!",
   likes: "\"The Bachelor,\" the bachelor",
   most_private: "I can't swim, ride a bike, or eat chicken"
 })
+
+(1..2).each do |i|
+  users[1].photos.create({photo_file: File.open("./db/seed_images/#{i}.jpg")})
+end

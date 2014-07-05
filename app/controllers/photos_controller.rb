@@ -2,7 +2,8 @@ class PhotosController < ApplicationController
   before_filter :require_current_user!, except: :index
 
   def index
-    @photos = User.find(params[:user_id]).photos.order(:photo_id)
+    @user = User.find(params[:user_id])
+    @photos = @user.photos.order(:photo_id)
   end
 
   def new
@@ -13,7 +14,6 @@ class PhotosController < ApplicationController
     if photo.save
       redirect_to user_photos_url(current_user)
     else
-      fail
       redirect_to new_user_photo_url(current_user)
     end
   end

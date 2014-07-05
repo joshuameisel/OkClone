@@ -1,5 +1,11 @@
+<h1>Profile Photos</h1>
+
 <ul>
   <% @photos.each do |photo| %>
     <li><img src="<%= photo.photo_file.url(:large) %>"></li>
   <% end %>
 </ul>
+
+<% if @user == current_user %>
+  <%= link_to "Add a photo", new_user_photo_url(current_user) %>
+<% end %>
