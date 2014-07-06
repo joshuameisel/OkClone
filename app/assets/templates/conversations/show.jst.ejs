@@ -1,3 +1,25 @@
+<ul class="messages">
 <% conversation.forEach(function (message) { %>
-  <h1><%= message.get("sender_id") %></h1>
+  <li class="group conversation">
+    <% var sender_id = message.get("sender_id") %>
+    <% var sender = conversation.participants[sender_id] %>
+    <a href="/users/<%= sender_id %>"><img src="
+      <% if (sender.get("profile_pic")) %>
+        <%= sender.get("profile_pic").photo_file.url(:thumb) %>
+      <% else %>
+        /images/default_thumb.gif
+      <% end %>
+    ">
+    </a>
+
+    <a class="conversation" href=
+      "<%= user_conversation_url(other_user) %>"
+    >
+      <p class="username">
+        <%= other_user.username %>
+      </p>
+      <p class="snippet"><%= Message.snippet(conversation.body) %></p>
+    </a>
+  </li>
 <% }) %>
+</ul>

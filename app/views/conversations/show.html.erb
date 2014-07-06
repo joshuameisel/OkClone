@@ -3,8 +3,16 @@ $(document).ready(function () {
   var conversation = new Conversation([], {userId: <%= params[:user_id] %>});
   conversation.fetch({
     success: function () {
-      var view = new ConversationShow({collection: conversation});
-      $(".content-main").html(view.render().$el);
+      conversation.participants()[
+        conversation.participantIds()["currentUser"]
+      ].fetch({success: function() {
+        conversation.participants()[
+          conversation.participantIds()["user"]
+        ].fetch({success: function() {
+          var view = new ConversationShow({collection: conversation});
+          $(".content-main").html(view.render().$el);
+        }});
+      }});
     }
   })
 })
