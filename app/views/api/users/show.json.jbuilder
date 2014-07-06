@@ -1,0 +1,1 @@
+json.partial!("user", :user => @user, :profile => @profile, :photos => @photos)
