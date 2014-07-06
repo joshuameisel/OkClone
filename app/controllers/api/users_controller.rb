@@ -11,8 +11,6 @@ class Api::UsersController < ApplicationController
     @profile = @user.profile
     @photos = @user.photos
     render "show"
-
-    # render json: @user.to_json(methods: [:age, :profile, :likes, :profile_pic])
   end
 
   def update

@@ -14,7 +14,8 @@ class Api::MessagesController < ApplicationController
         "sender_id=#{params[:user_id]} AND recipient_id=#{current_user.id} OR
         recipient_id=#{params[:user_id]} AND sender_id=#{current_user.id}")
       .order(:created_at)
-    render :json => @messages
+    @other_user = params[:user_id]
+    render "index"
   end
 
   private
