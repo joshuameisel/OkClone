@@ -1,6 +1,6 @@
 class Photo < ActiveRecord::Base
   has_attached_file :photo_file,
-    styles: {small: "150x150>", large: "300x300>"},
+    styles: {index: "240x200#>", profile: "160x160#>", full: "558x800>"},
     default_url: "/images/default.jpg"
 
   after_create :ensure_photo_id

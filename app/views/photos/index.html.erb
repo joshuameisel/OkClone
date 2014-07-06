@@ -2,7 +2,7 @@
 
 <ul>
   <% @photos.each do |photo| %>
-    <li><img src="<%= photo.photo_file.url(:large) %>"></li>
+    <li><img src="<%= photo.photo_file.url(:full) %>"></li>
   <% end %>
 </ul>
 
