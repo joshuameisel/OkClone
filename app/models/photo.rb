@@ -1,7 +1,8 @@
 class Photo < ActiveRecord::Base
   has_attached_file :photo_file, styles: {
-    index: "240x200#>",
-    profile: "160x160#>",
+    index: "240x200#",
+    thumb: "60x60#",
+    profile: "160x160#",
     full: "558x800>"
   }
 

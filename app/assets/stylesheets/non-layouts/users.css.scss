@@ -63,11 +63,16 @@ ul#matches {
 
 ul#matches > li {
   float: left;
-  margin: 10px 50px;
+  margin: 10px 10px;
 }
 
 .matches li {
   text-align: center;
+}
+
+.profile-top a {
+  float: left;
+  margin-bottom: 20px;
 }
 
 .profile-top ul {
@@ -77,7 +82,7 @@ ul#matches > li {
 .edit-user-info {
 	float: left;
 	padding: 5px;
-  margin-bottom: 20px;
+  margin: 55px 0 0 20px;
 }
 
 .editable .edit-user-info:hover {

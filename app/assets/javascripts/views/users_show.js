@@ -28,9 +28,7 @@ OkClone.Views.UserShow = Backbone.View.extend({
   },
 
   renderTop: function () {
-    var topView = new OkClone.Views.ProfileTop({
-			model: this.model,
-		});
+    var topView = new OkClone.Views.ProfileTop({model: this.model});
     this.$el.html(topView.render().$el);
     this.subViews.push(topView);
 
