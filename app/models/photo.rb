@@ -1,9 +1,9 @@
 class Photo < ActiveRecord::Base
-  has_attached_file :photo_file, styles: {small: "150x150>", large: "300x300>"}
+  has_attached_file :photo_file,
+    styles: {small: "150x150>", large: "300x300>"},
+    default_url: "/images/default.jpg"
 
-  before_validation :ensure_photo_id
-  validates :user_id, :photo_id, presence: true
-  validates_attachment_presence :photo_file
+  after_create :ensure_photo_id
   validates_attachment_content_type :photo_file, :content_type => /\Aimage\/.*\Z/
 
   belongs_to :photo_file

@@ -11,7 +11,7 @@ OkClone::Application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  get '/match', to: "users#index", as: "users"
+  get '/match', to: "users#index"
   resources :users, only: [:show, :create] do
     resources :photos, only: [:index, :new, :create]
     get '/messages', to: 'conversations#show', as: "conversation"

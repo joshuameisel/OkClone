@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login_user!(@user)
-      redirect_to users_url
+      redirect_to match_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new, layout: "signed_out"

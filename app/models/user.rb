@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   validate :zip_code_is_proper
   validate :password_digest_presence
 
+  def profile_pic
+    photos.find_by(photo_id: 1)
+  end
+
   def conversations
     Message.find_by_sql(<<-SQL)
       SELECT full_msgs.other_user_id, full_msgs.created_at, full_msgs.body

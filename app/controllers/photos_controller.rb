@@ -24,7 +24,7 @@ class PhotosController < ApplicationController
     if !current_user
       redirect_to root_url
     elsif params[:user_id].to_i != current_user.id
-      redirect_to users_url
+      redirect_to match_url
     end
   end
 end

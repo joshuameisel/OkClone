@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       return
     else
       login_user!(user)
-      redirect_to users_url
+      redirect_to match_url
     end
   end
 
