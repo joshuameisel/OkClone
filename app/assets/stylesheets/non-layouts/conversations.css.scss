@@ -1,3 +1,39 @@
 // Place all the styles related to the Conversations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.conversations li {
+  display: block;
+  background: white;
+  width: 500px;
+  margin-top: 5px;
+  padding: 7px 0 7px 33px;
+}
+
+.conversations a {
+  margin-right: 15px;
+  float: left;
+}
+
+.conversations a.conversation {
+  width: 268px;
+  margin: 14px 0;
+}
+
+.conversations img {
+  border-radius: 30px;
+}
+
+.conversations p {
+  width: 268px;
+}
+
+.conversations .username {
+  font-weight: bold;
+  color: black;
+}
+
+.conversations .snippet {
+  font-size: 12px;
+  color: #777;
+}

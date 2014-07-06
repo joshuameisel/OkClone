@@ -1,8 +1,25 @@
-<ul>
+<ul class="conversations">
 <% @conversations.each do |conversation| %>
-  <a href="<%= user_conversation_url(User.find(conversation.other_user_id)) %>">
-    <%= Message.snippet(conversation.body) %>
-  </a>
+  <% other_user = User.find(conversation.other_user_id) %>
 
+  <li class="group">
+    <a href="<%= user_url(other_user) %>"><img src="
+      <% if other_user.profile_pic %>
+        <%= other_user.profile_pic.photo_file.url(:thumb) %>
+      <% else %>
+        /images/default_thumb.gif
+      <% end %>
+    ">
+    </a>
+
+    <a class="conversation" href=
+      "<%= user_conversation_url(other_user) %>"
+    >
+      <p class="username">
+        <%= other_user.username %>
+      </p>
+      <p class="snippet"><%= Message.snippet(conversation.body) %></p>
+    </a>
+  </li>
 <% end %>
 </ul>
