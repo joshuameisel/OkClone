@@ -16,7 +16,6 @@ OkClone.Views.ProfileTop = Backbone.View.extend({
 	},
 
   render: function () {
-    debugger
     var renderedContent = this.template({user: this.model});
     this.$el.html(renderedContent);
 
