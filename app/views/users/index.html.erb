@@ -3,7 +3,7 @@
 </section>
 
 <section class="matches" id="main">
-	<form id="search-params" action="<%= match_url %>" method="get">
+	<form id="search-params" action="<%= match_url %>" method="get" class="group">
 
     <h3>Show me</h3>
     <select name="search[show_me]">
@@ -25,7 +25,7 @@
     <h3>to</h3>
     <input id="age" class="age" type="text" value="30" name="search[max_age]">
 
-	  <input id="submit" type="submit" value="search">
+	  <button class="submit">search</button>
 	</form>
 
   <ul id="matches">
