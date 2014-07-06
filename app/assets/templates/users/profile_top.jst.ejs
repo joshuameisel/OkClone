@@ -1,5 +1,6 @@
+<img src="<%= user.get("profile_picture").url(:profile) %>">
 <p class='errors'></p>
-<div class="profile-top-wrapper
+<div class="edit-user-info
   <%= (currentUserId === user.get("id")) ? "can-activate" : "" %>">
 	<ul>
 	  <li class="username"><%= user.get("username") %></li>

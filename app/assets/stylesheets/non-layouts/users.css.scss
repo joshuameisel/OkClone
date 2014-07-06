@@ -56,14 +56,14 @@ ul#matches {
 	float: left;
 }
 
-.editable .profile-top-wrapper:hover {
-	background: white;
-}
-
-.profile-top-wrapper {
+.edit-user-info {
 	float: left;
 	padding: 5px;
   margin-bottom: 20px;
+}
+
+.editable .edit-user-info:hover {
+	background: white;
 }
 
 .editable .can-activate:hover .edit {

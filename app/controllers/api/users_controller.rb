@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user.to_json(methods: [:age, :profile, :likes])
+    render json: @user.to_json(methods: [:age, :profile, :likes, :profile_pic])
   end
 
   def update
