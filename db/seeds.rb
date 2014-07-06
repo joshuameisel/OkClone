@@ -82,14 +82,22 @@ users = User.create([
 
 messages = Message.create([
   {
-    body: "Hey, how's it going",
+    body: "Hey, how's it going. You seem swell. I noticed you can't swim. " +
+      "Do you need an instructor? I know a good one.",
     sender_id: 1,
     recipient_id: 2
   },
   {
-    body: "Sup sup",
+    body: "Haha, nah, I can swim, I just say that to impress men.",
     sender_id: 2,
     recipient_id: 1
+  },
+  {
+    body: "Alright lol. I'm gonna show you how fast I type. " +
+      "You'll notice this took me less than a minute to send." +
+      ("hi "*30),
+    sender_id: 1,
+    recipient_id: 2
   },
   {
     body: "yooo",

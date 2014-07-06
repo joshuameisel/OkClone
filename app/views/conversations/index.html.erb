@@ -2,7 +2,7 @@
 <% @conversations.each do |conversation| %>
   <% other_user = User.find(conversation.other_user_id) %>
 
-  <li class="group">
+  <li class="group conversation">
     <a href="<%= user_url(other_user) %>"><img src="
       <% if other_user.profile_pic %>
         <%= other_user.profile_pic.photo_file.url(:thumb) %>

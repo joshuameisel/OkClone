@@ -1,5 +1,11 @@
-<ul>
-	<% @conversation.messages.each do |message| %>
-		<li><%= message.body %></li>
-	<% end %>
-</ul>
+<script>
+$(document).ready(function () {
+  var conversation = new Conversation([], {userId: <%= params[:user_id] %>});
+  conversation.fetch({
+    success: function () {
+      var view = new ConversationShow({collection: conversation});
+      $(".content-main").html(view.render().$el);
+    }
+  })
+})
+</script>

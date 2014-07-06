@@ -1,18 +1,10 @@
 class ConversationsController < ApplicationController
-  before_filter :require_participation!, only: :show
+  before_filter :require_user!
 
   def index
     @conversations = current_user.conversations
   end
 
   def show
-  end
-
-  private
-
-  def require_participation!
-    # unless Conversation.find(params[:id]).participants.include?(current_user)
-    #   raise "not found"
-    # end
   end
 end
