@@ -9,6 +9,14 @@
   padding: 7px 0 7px 33px;
 }
 
+.messages.show-conversation > li {
+  padding: 15px 0 15px 33px;
+}
+
+.messages li.new-message {
+  background: #ddd;
+}
+
 .messages a {
   margin-right: 15px;
   float: left;
@@ -41,4 +49,19 @@
 .messages .snippet {
   font-size: 12px;
   color: #777;
+}
+
+.new-message .form-row {
+  background: white;
+  width: 95%;
+}
+
+.new-message textarea {
+  width: 95%;
+  height: 100px;
+  padding: 10px;
+}
+
+.new-message button {
+  margin-top: 10px;
 }

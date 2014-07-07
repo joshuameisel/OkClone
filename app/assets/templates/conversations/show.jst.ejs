@@ -1,4 +1,4 @@
-<ul class="messages conversation-show">
+<ul class="messages show-conversation">
 <% conversation.forEach(function (message) { %>
   <% var author = message.get("author") %>
 
@@ -10,4 +10,12 @@
     <p class="body"><%= message.get("body") %></p>
   </li>
 <% }) %>
+
+  <li class="new-message">
+    <form>
+      <div class="form-row"><textarea name="body"></textarea></div>
+
+      <button class="submit" id="send-new-message">Send</button>
+    </form>
+  </section>
 </ul>

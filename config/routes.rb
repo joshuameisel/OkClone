@@ -2,8 +2,9 @@ OkClone::Application.routes.draw do
   root 'users#new'
 
   namespace :api, defaults: {format: :json} do
+    resources :messages, only: :create
     resources :users, only: [:index, :show, :update] do
-      resources :messages, only: [:create, :index]
+      resources :messages, only: :index
       resources :photos, only: [:create, :show]
       resource :profile, only: :update
     end
