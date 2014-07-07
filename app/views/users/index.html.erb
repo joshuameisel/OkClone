@@ -20,10 +20,12 @@
     </select>
 
     <h3>ages</h3>
-    <input id="age" class="age" type="text" value=18 name="search[min_age]">
+    <input id="age" class="age" type="text" value="<%= min_age %>"
+      name="search[min_age]">
 
     <h3>to</h3>
-    <input id="age" class="age" type="text" value=30 name="search[max_age]">
+    <input id="age" class="age" type="text" value="<%= max_age %>"
+       name="search[max_age]">
 
 	  <button class="submit">search</button>
 	</form>

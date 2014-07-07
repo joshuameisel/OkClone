@@ -21,4 +21,12 @@ module UsersHelper
       User::GENDERS.invert[[current_user.gender]] == num
     end
   end
+
+  def min_age
+    params[:search] ? params[:search][:min_age] : current_user.min_age
+  end
+
+  def max_age
+    params[:search] ? params[:search][:max_age] : current_user.max_age
+  end
 end
