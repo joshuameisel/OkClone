@@ -110,7 +110,7 @@ ul#matches > li {
 
 .edit {
 	display: none;
-  margin-top: 0;
+  margin-top: 10px;
 	margin-left: 10px;
 	padding: 5px;
 	color: white;
@@ -284,16 +284,21 @@ button.submit:hover {
   opacity: .55;
 };
 
-.profile-details {
-  margin: 18.72px;
-  padding-left: 18.72px;
+.profile-right {
+  margin-right: 38.72px;
 }
 
 .profile-right h2 {
+  margin-top: 16px;
   float: left;
   font-weight: bold;
   font-size: 20px;
   padding: 5px;
+  padding-left: 0;
+}
+
+.profile-right .edit {
+  margin-top: 19px;
 }
 
 .profile-details thead {
