@@ -70,13 +70,17 @@ ul#matches > li {
   text-align: center;
 }
 
+.profile-top {
+  margin-bottom: 50px;
+}
+
 .profile-top a {
   float: left;
-  margin-bottom: 20px;
 }
 
 .profile-top ul {
 	float: left;
+  margin-bottom: 20px;
 }
 
 .edit-user-info {
@@ -104,7 +108,7 @@ ul#matches > li {
 	float: left;
 }
 
-.profile .edit {
+.edit {
 	display: none;
   margin-top: 0;
 	margin-left: 10px;
@@ -114,11 +118,11 @@ ul#matches > li {
 	opacity: 0.45;
 }
 
-.profile .edit:hover {
+.edit:hover {
   opacity: 0.8;
 }
 
-.profile.editable .edit {
+.editable .edit {
 	display: block;
 	float: left;
 }

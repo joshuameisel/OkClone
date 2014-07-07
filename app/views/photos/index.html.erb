@@ -1,11 +1,25 @@
-<h1>Profile Photos</h1>
+<div class="photos" >
+  <h1>Profile Photos</h1>
 
-<ul>
-  <% @photos.each do |photo| %>
-    <li><img src="<%= photo.photo_file.url(:full) %>"></li>
+  <ul>
+    <% @photos.each do |photo| %>
+      <li><img src="<%= photo.photo_file.url(:full) %>"></li>
+    <% end %>
+  </ul>
+
+  <% if @user == current_user %>
+    <%= link_to "Add a photo", new_user_photo_url(current_user) %>
   <% end %>
-</ul>
 
-<% if @user == current_user %>
-  <%= link_to "Add a photo", new_user_photo_url(current_user) %>
-<% end %>
+  <script>
+  $(document).ready(function () {
+    var user = new OkClone.Models.User({id: <%= params[:user_id] %>});
+    user.fetch({
+      success: function () {
+        var view = new OkClone.Views.ProfileTop({model: user});
+        $(".content-main").prepend(view.render().$el);
+      }
+    })
+  })
+  </script>
+</div>
