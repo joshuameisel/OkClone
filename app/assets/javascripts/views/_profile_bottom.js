@@ -11,6 +11,7 @@ OkClone.Views.ProfileBottom = Backbone.View.extend({
     this.model = new OkClone.Models.Message({
       recipient_id: this.user.get("id")
     });
+    this.listenTo(this.user, "change:orientation", this.render)
   },
 
   sendMessage: function(event) {
