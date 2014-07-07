@@ -8,6 +8,11 @@ class Api::MessagesController < ApplicationController
     end
   end
 
+  def show
+    @message = Message.find(params[:id])
+    render "show"
+  end
+
   def index
     @messages = Message.all
       .where(
