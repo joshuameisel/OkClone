@@ -94,6 +94,19 @@ body, html {
   padding: 10px 5px;
   display: block;
   border-bottom: 2px solid #005;
+  position: relative;
+}
+
+.content-sidebar .badge {
+  margin-right: 15px;
+  color: #96b7ff;
+  background: #183270;
+  padding: 3px 7px;
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  font-size: 12px;
+  border-radius: 3px;
 }
 
 .content-sidebar a:hover {

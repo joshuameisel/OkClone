@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     photos.find_by(photo_id: 1)
   end
 
-  def unread_message_count
+  def unread_messages_count
     received_messages.where(read_status: 0).count
   end
 
