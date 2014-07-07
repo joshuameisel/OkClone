@@ -12,7 +12,11 @@
     </tr>
     <tr>
       <td>Religion</td>
-      <td><%= Profile.religions[profile.get("religion")] %></td>
+      <td>
+        <% if (profile.get("religion") != null) { %>
+          <%= Profile.religions[profile.get("religion")] %>
+        <% } else { %>—<% } %>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -43,16 +47,13 @@
     <div class="form-row">
       <label><h4>Religion</h4>
   	    <select name="profile[religion]">
-  	      <option value=0
-            <% if (user.get("orientation") === "straight") { %>
-              selected
-            <% } %>>Straight</option>
-  	      <option value=1 <% if (user.get("orientation") === "gay") { %>
-            selected<% } %>>Gay</option>
-  	      <option value=2
-            <% if (user.get("orientation") === "bisexual") { %>
-              selected
-            <% } %>>Bisexual</option>
+          <option value=<%= null %>>—</option>
+          <% for (var i = 0; i < Profile.religions.length; i++ ) { %>
+    	      <option value=<%= i %>
+              <% if (profile.get("religion") === i) { %>
+                selected
+              <% } %>><%= Profile.religions[i] %></option>
+          <% } %>
   	    </select>
       </label>
     </div>
