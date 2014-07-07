@@ -115,3 +115,5 @@ profiles = Profile.find_by(user_id: 2).update({
 (1..2).each do |i|
   users[1].photos.create(photo_file: File.open("./db/seed_images/#{i}.jpg"))
 end
+
+users[0].photos.create(photo_file: File.open("./db/seed_images/3.jpg"))

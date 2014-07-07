@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
     gender == "m" ? "f" : "m"
   end
 
+  def show_me_value
+    GENDERS.invert[likes]
+  end
+
   def likes
     case self.orientation
     when "straight"
@@ -93,15 +97,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def users(options = {})
-    defaults = {
-      show_me: likes,
-      who_like: [gender],
-      min_age: min_age,
-      max_age: max_age
-    }
+  def defaults
+    {show_me: likes, who_like: [gender], min_age: min_age, max_age: max_age}
+  end
 
-    options = defaults.merge(options)
+  def users(options = nil)
+    options ||= defaults
     show_me = options[:show_me]
     who_like = options[:who_like]
 

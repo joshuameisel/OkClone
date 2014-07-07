@@ -4,6 +4,10 @@ module UsersHelper
   end
 
   def show_me(num)
-    params[:search] ? params[:search][:show_me].to_i == num : nil
+    if params[:search]
+      params[:search][:show_me].to_i == num
+    else
+      current_user.show_me_value == num
+    end
   end
 end
