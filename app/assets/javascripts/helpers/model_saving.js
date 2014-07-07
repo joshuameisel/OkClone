@@ -1,8 +1,11 @@
-OkClone.Helpers.updateModel = function (event) {
+OkClone.Helpers.updateModel = function (event, modelToSave) {
+  if (!modelToSave) {
+    modelToSave = this.model;
+  }
   event.preventDefault();
   var params = $(event.currentTarget).serializeJSON();
   var view = this;
-  this.model.save(params, {
+  modelToSave.save(params, {
     wait: true,
     patch: true,
     success: function () {

@@ -9,8 +9,8 @@
   	</li>
   	<li>Ages <%= user.escape("min_age") %>-<%= user.escape("max_age") %></li>
   </ul>
-  <section id="edit-interested-in" class="modal">
-    <form>
+  <section class="modal">
+    <form id="edit-interested-in">
       <h1>Who are you looking for?</h1>
 
       <div class="form-row group">
@@ -31,15 +31,15 @@
 <% if (currentUserId && currentUserId !== user.get("id")) { %>
 	<button class="can-activate">Send Message</button>
   <p class="errors"></p>
-  <section id="message" class="modal">
-    <form>
+  <section class="modal">
+    <form id="send-message">
       <h1>
         Send <%= (user.get("gender") === "m") ? "him" : "her" %> a message
       </h1>
 
       <div class="form-row"><textarea name="body"></textarea></div>
 
-      <button class="submit" id="edit-user-info">Save</button>
+      <button class="submit" id="edit-user-info">Send</button>
       <button class="cancel can-activate" id="edit-user-info">Cancel</button>
     </form>
   </section>
