@@ -5,7 +5,7 @@
 	</li>
 	<li>Ages <%= user.escape("min_age") %>-<%= user.escape("max_age") %></li>
 </ul>
-<% if (currentUserId !== user.get("id")) { %>
+<% if (currentUserId && currentUserId !== user.get("id")) { %>
 	<button class="can-activate">Send Message</button>
   <p class="errors"></p>
   <section id="message" class="modal">
