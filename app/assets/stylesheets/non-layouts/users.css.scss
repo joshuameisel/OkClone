@@ -108,7 +108,7 @@ ul#matches > li {
 	float: left;
 }
 
-.edit {
+.edit, .edit.can-activate {
 	display: none;
   margin-top: 10px;
 	margin-left: 10px;
@@ -262,17 +262,23 @@ button.submit:hover {
   padding: 10px 50px;
 }
 
+.profile-bottom input[type="text"] {
+  width: 20px;
+  float: left;
+}
+
+.form-row label:nth-child(2) h4 {
+  margin: 0;
+  padding: 11px 15px;
+  width: 13px;
+}
+
 .on-activated {
   display: none;
 }
 
 .activated .on-activated {
   display: block;
-}
-
-.profile-bottom h3 {
-  padding-top: 16px;
-	float: none;
 }
 
 .profile-bottom li {
