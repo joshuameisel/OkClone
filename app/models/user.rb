@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     photos.find_by(photo_id: 1)
   end
 
+  def unread_message_count
+    received_messages.where(read_status: 0).count
+  end
+
   def conversations
     Message.find_by_sql(<<-SQL)
       SELECT full_msgs.other_user_id, full_msgs.created_at, full_msgs.body
