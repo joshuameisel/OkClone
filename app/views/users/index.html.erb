@@ -4,26 +4,25 @@
 
 <section class="matches" id="main">
 	<form id="search-params" action="<%= match_url %>" method="get" class="group">
-
-    <h3>Show me</h3>
     <select name="search[show_me]">
-      <option value="0">Girls</option>
-      <option value="1">Guys</option>
-      <option value="2">Guys and girls</option>
+      <% (0..2).each do |i| %>
+        <option value="<%= i %>" <%= "selected" if show_me(i) %>>
+          <%= search_text[:show_me][i] %></option>
+      <% end %>
     </select>
 
     <h3>who like</h3>
     <select name="search[who_like]">
-      <option value="0">girls</option>
-      <option value="1">guys</option>
-      <option value="2">both</option>
+      <option value=0>girls</option>
+      <option value=1>guys</option>
+      <option value=2>both</option>
     </select>
 
     <h3>ages</h3>
-    <input id="age" class="age" type="text" value="18" name="search[min_age]">
+    <input id="age" class="age" type="text" value=18 name="search[min_age]">
 
     <h3>to</h3>
-    <input id="age" class="age" type="text" value="30" name="search[max_age]">
+    <input id="age" class="age" type="text" value=30 name="search[max_age]">
 
 	  <button class="submit">search</button>
 	</form>
