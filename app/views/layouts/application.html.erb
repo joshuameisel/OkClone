@@ -29,9 +29,9 @@
     			<li>
             <a href="<%= conversations_url %>">Messages
               <% if current_user %>
-                <span class="badge">
-                  <%= current_user.unread_messages_count %>
-                </span>
+                <% if (badge_count = current_user.unread_messages_count) > 0 %>
+                  <span class="badge"><%= badge_count %></span>
+                <% end %>
               <% end %>
             </a>
           </li>

@@ -100,8 +100,8 @@ messages = Message.create([
   },
   {
     body: "yooo",
-    sender_id: 2,
-    recipient_id: 3
+    sender_id: 3,
+    recipient_id: 2
   }
 ])
 
