@@ -93,9 +93,8 @@ messages = Message.create([
     recipient_id: 1
   },
   {
-    body: "Alright lol. I'm gonna show you how fast I type. " +
-      "You'll notice this took me less than a minute to send." +
-      ("hi "*30),
+    body: ("Alright lol. I'm gonna show you how fast I type. " +
+      "You'll notice this took me less than a minute to send.") * 7,
     sender_id: 1,
     recipient_id: 2
   },

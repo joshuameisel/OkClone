@@ -1,4 +1,4 @@
-<ul class="conversations">
+<ul class="messages">
 <% @conversations.each do |conversation| %>
   <% other_user = User.find(conversation.other_user_id) %>
 
