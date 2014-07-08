@@ -32,19 +32,6 @@ users = User.create([
   },
 
   {
-    username: "cindy",
-    gender: "f",
-    orientation: "gay",
-    min_age: 24,
-    max_age: 33,
-    dob: Date.new(1988, 12, 28),
-    country: "us",
-    zip_code: 90210,
-    email: "cindy@example.com",
-    password: "glitch"
-  },
-
-  {
     username: "cougar",
     gender: "f",
     orientation: "straight",
