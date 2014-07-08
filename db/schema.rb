@@ -11,10 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707040102) do
+ActiveRecord::Schema.define(version: 20140708210326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acceptable_answers", force: true do |t|
+    t.integer  "answer_id",  null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "acceptable_answers", ["user_id", "answer_id"], name: "index_acceptable_answers_on_user_id_and_answer_id", unique: true, using: :btree
+
+  create_table "answer_choices", force: true do |t|
+    t.text     "body",        null: false
+    t.integer  "question_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answer_choices", ["question_id"], name: "index_answer_choices_on_question_id", using: :btree
+
+  create_table "answers", force: true do |t|
+    t.integer "answer_choice_id"
+    t.integer "user_id"
+  end
+
+  add_index "answers", ["user_id", "answer_choice_id"], name: "index_answers_on_user_id_and_answer_choice_id", using: :btree
 
   create_table "messages", force: true do |t|
     t.text     "body",                     null: false
@@ -59,6 +84,12 @@ ActiveRecord::Schema.define(version: 20140707040102) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
+
+  create_table "questions", force: true do |t|
+    t.text     "body",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false

@@ -69,6 +69,17 @@ users = User.create([
   },
 
   {
+    username: "conservative_dude",
+    gender: "m",
+    orientation: "straight",
+    dob: Date.new(1987, 2, 2),
+    country: "us",
+    zip_code: 10004,
+    email: "conservative@example.com",
+    password: "glitch"
+  },
+
+  {
     username: "rod",
     gender: "m",
     orientation: "gay",
@@ -105,15 +116,24 @@ messages = Message.create([
   }
 ])
 
-profiles = Profile.find_by(user_id: 2).update({
-  religion: 0,
-  summary: "Just an LA gal tryin' to make it in the big City!",
-  likes: "\"The Bachelor,\" the bachelor",
-  most_private: "I can't swim, ride a bike, or eat chicken"
-})
+profiles = [
+  Profile.find_by(user_id: 1).update({
+    religion: 0,
+    summary: "I'm a real swell guy.",
+    likes: "\"Just gimme them French-fried potaters\"",
+    most_private: "L-O-L, I-WON'T-TELL"
+  }),
 
-(1..2).each do |i|
-  users[1].photos.create(photo_file: File.open("./db/seed_images/#{i}.jpg"))
-end
+  Profile.find_by(user_id: 2).update({
+    religion: 0,
+    summary: "Just an LA gal tryin' to make it in the big City!",
+    likes: "\"The Bachelor,\" the bachelor",
+    most_private: "I can't swim, ride a bike, or eat chicken"
+  })
+]
 
 users[0].photos.create(photo_file: File.open("./db/seed_images/3.jpg"))
+
+(2..3).each do |i|
+  users[1].photos.create(photo_file: File.open("./db/seed_images/#{i}.jpg"))
+end
