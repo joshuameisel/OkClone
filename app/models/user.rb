@@ -30,34 +30,21 @@ class User < ActiveRecord::Base
 
   def conversations
     Message.find_by_sql(<<-SQL)
-      SELECT full_msgs.other_user_id, full_msgs.created_at, full_msgs.body
+    SELECT stripped_msgs.* FROM
+      (SELECT DISTINCT ON (full_msgs.other_user_id) full_msgs.other_user_id, 
+        full_msgs.created_at, full_msgs.body
       FROM (
-        SELECT messages.*, (CASE
-                WHEN messages.sender_id=#{id}
-                THEN messages.recipient_id
-                ELSE messages.sender_id
-                END) AS other_user_id
+        SELECT (CASE 
+            WHEN messages.sender_id=#{id} 
+            THEN messages.recipient_id 
+            ELSE messages.sender_id 
+            END) AS other_user_id, body, created_at
         FROM messages
         WHERE messages.sender_id=#{id} OR
         messages.recipient_id=#{id}
-      ) AS full_msgs
-      WHERE (full_msgs.sender_id=#{id} OR
-        full_msgs.recipient_id=#{id}) AND
-        full_msgs.created_at = (
-          SELECT MAX(created_at)
-          FROM (
-            SELECT messages.*, (CASE
-                    WHEN messages.sender_id=#{id}
-                    THEN messages.recipient_id
-                    ELSE messages.sender_id
-                    END) AS other_user_id
-            FROM messages
-            WHERE messages.sender_id=#{id} OR
-            messages.recipient_id=#{id}
-          ) as msg
-          WHERE msg.other_user_id=full_msgs.other_user_id
-        )
-      ORDER BY full_msgs.created_at DESC
+        ORDER BY created_at DESC
+      ) AS full_msgs) AS stripped_msgs
+    ORDER BY stripped_msgs.created_at DESC
       SQL
   end
 
