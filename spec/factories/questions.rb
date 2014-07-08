@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :question do
+    body "blahblahblah"
   end
 end

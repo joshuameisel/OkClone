@@ -154,9 +154,27 @@ describe User do
       )
     end
   end
+
+  describe "#match_percentage" do
+    let(:first_question)  {FactoryGirl.create(:question)}
+    let(:second_question) {FactoryGirl.create(:question)}
+    let(:third_question)  {FactoryGirl.create(:question)}
+    let(:fourth_question) {FactoryGirl.create(:question)}
+    let(:fifth_question) {FactoryGirl.create(:question)}
+
+    it "finds the correct users" do
+      initiate_questions
+      expect(first_question.body).to eq("blah" * 3)
+    end
+  end
 end
 
 def initiate_messages
   first_message && second_message && third_message && fourth_message &&
     fifth_message
+end
+
+def initiate_questions
+  first_question && second_question && third_question && fourth_question &&
+    fifth_question
 end
