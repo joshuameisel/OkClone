@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   validate :zip_code_is_proper
   validate :password_digest_presence
 
+  def match_percentage(match)
+  end
+
   def profile_pic
     photos.find_by(photo_id: 1)
   end

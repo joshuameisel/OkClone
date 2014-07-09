@@ -17,13 +17,13 @@ ActiveRecord::Schema.define(version: 20140708210326) do
   enable_extension "plpgsql"
 
   create_table "acceptable_answers", force: true do |t|
-    t.integer  "answer_id",  null: false
-    t.integer  "user_id",    null: false
+    t.integer  "answer_choice_id", null: false
+    t.integer  "user_id",          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "acceptable_answers", ["user_id", "answer_id"], name: "index_acceptable_answers_on_user_id_and_answer_id", unique: true, using: :btree
+  add_index "acceptable_answers", ["user_id", "answer_choice_id"], name: "index_acceptable_answers_on_user_id_and_answer_choice_id", unique: true, using: :btree
 
   create_table "answer_choices", force: true do |t|
     t.text     "body",        null: false
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 20140708210326) do
     t.text     "think_about"
     t.text     "friday_night"
     t.text     "most_private"
-    t.string   "religion"
-    t.string   "ethnicity"
+    t.integer  "religion"
+    t.integer  "ethnicity"
     t.string   "height"
     t.datetime "created_at"
     t.datetime "updated_at"

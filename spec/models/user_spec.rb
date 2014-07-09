@@ -19,7 +19,7 @@ describe User do
     FactoryGirl.create(:user,
       gender: "m",
       orientation: "straight",
-      dob: Date.new(1990, 2, 2)
+      dob: Date.new(1990, 2, 2),
     )
   end
 
@@ -27,7 +27,7 @@ describe User do
     FactoryGirl.create(:user,
       gender: "f",
       orientation: "straight",
-      dob: Date.new(1988, 12, 28)
+      dob: Date.new(1988, 12, 28),
     )
   end
 
@@ -35,7 +35,7 @@ describe User do
     FactoryGirl.create(:user,
       gender: "m",
       orientation: "gay",
-      dob: Date.new(1991, 4, 16)
+      dob: Date.new(1991, 4, 16),
     )
   end
 
@@ -156,15 +156,24 @@ describe User do
   end
 
   describe "#match_percentage" do
-    let(:first_question)  {FactoryGirl.create(:question)}
-    let(:second_question) {FactoryGirl.create(:question)}
-    let(:third_question)  {FactoryGirl.create(:question)}
-    let(:fourth_question) {FactoryGirl.create(:question)}
-    let(:fifth_question) {FactoryGirl.create(:question)}
+    3.times { |i| let("quest#{i}".to_sym) {FactoryGirl.create(:question)} }
 
-    it "finds the correct users" do
-      initiate_questions
-      expect(first_question.body).to eq("blah" * 3)
+    let(:answer_choice1) {FactoryGirl.create(:answer_choice, question_id: 1)}
+    let(:answer_choice2) {FactoryGirl.create(:answer_choice, question_id: 1)}
+    
+    let(:answer1) do 
+      FactoryGirl.create(:acceptable_answer, answer_choice_id: 1,
+        user_id: straight_man.id)
+    end
+
+    it "recognizes a non-match" do
+      FactoryGirl.create(
+        :answer, 
+        answer_choice_id: 2, 
+        user_id: straight_woman.id
+      )
+      
+      expect(straight_man.match_percentage(straight_woman)).to eq(0)
     end
   end
 end
@@ -175,6 +184,5 @@ def initiate_messages
 end
 
 def initiate_questions
-  first_question && second_question && third_question && fourth_question &&
-    fifth_question
+  3.times { |i| send("quest#{i}")}
 end
