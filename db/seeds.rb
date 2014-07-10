@@ -134,6 +134,6 @@ profiles = [
 
 users[0].photos.create(photo_file: File.open("./db/seed_images/3.jpg"))
 
-(2..3).each do |i|
+(1..2).each do |i|
   users[1].photos.create(photo_file: File.open("./db/seed_images/#{i}.jpg"))
 end

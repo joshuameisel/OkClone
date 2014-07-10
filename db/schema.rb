@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20140708210326) do
   create_table "answer_choices", force: true do |t|
     t.text     "body",        null: false
     t.integer  "question_id", null: false
+    t.integer  "order",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "answer_choices", ["question_id", "order"], name: "index_answer_choices_on_question_id_and_order", unique: true, using: :btree
   add_index "answer_choices", ["question_id"], name: "index_answer_choices_on_question_id", using: :btree
 
   create_table "answers", force: true do |t|
