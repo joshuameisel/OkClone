@@ -156,23 +156,111 @@ describe User do
   end
 
   describe "#match_percentage" do
-    3.times { |i| let("quest#{i}".to_sym) {FactoryGirl.create(:question)} }
+    2.times { |i| let("quest#{i + 1}".to_sym) {FactoryGirl.create(:question)} }
 
-    let(:answer_choice1) {FactoryGirl.create(:answer_choice, question_id: 1)}
-    let(:answer_choice2) {FactoryGirl.create(:answer_choice, question_id: 1)}
-    
-    let(:answer1) do 
-      FactoryGirl.create(:acceptable_answer, answer_choice_id: 1,
-        user_id: straight_man.id)
+    2.times do |i|
+      let("answer_choice#{i + 1}".to_sym) do 
+        FactoryGirl.create(:answer_choice, question_id: quest1.id)
+      end
+      
+      let("answer_choice#{i + 3}".to_sym) do 
+        FactoryGirl.create(:answer_choice, question_id: quest2.id)
+      end
     end
+    
+    FactoryGirl.create(:acceptable_answer, answer_choice_id: answer_choice1.id, 
+      user_id: straight_man.id)
 
     it "recognizes a non-match" do
       FactoryGirl.create(
         :answer, 
-        answer_choice_id: 2, 
-        user_id: straight_woman.id
-      )
+        answer_choice_id: answer_choice2.id, 
+        user_id: straight_woman.id)
       
+      expect(straight_man.match_percentage(straight_woman)).to eq(0)
+    end
+    
+    it "recognizes a match" do
+      FactoryGirl.create(
+        :answer, 
+        answer_choice_id: answer_choice1.id, 
+        user_id: straight_woman.id)
+      
+      expect(straight_man.match_percentage(straight_woman)).to eq(100)
+    end
+    
+    it "recognizes a match with multiple acceptable answer choices" do
+      FactoryGirl.create(
+        :answer, 
+        answer_choice_id: answer_choice2.id, 
+        user_id: straight_woman.id)
+      
+      FactoryGirl.create(
+        :acceptable_answer, 
+        answer_choice_id: answer_choice1.id,
+        user_id: straight_man.id)
+      
+      expect(straight_man.match_percentage(straight_woman)).to eq(100)
+    end
+    
+    it "ignores un-preferred questions" do
+      FactoryGirl.create(:question)
+      FactoryGirl.create(
+        :answer, 
+        answer_choice_id: answer_choice1.id, 
+        user_id: straight_woman.id)
+      
+      expect(straight_man.match_percentage(straight_woman)).to eq(100)
+    end
+    
+    it "ignores un-answered questions" do
+      [answer_choice1, answer_choice3].each do |answer_choice|
+        FactoryGirl.create(
+          :answer, 
+          answer_choice_id: answer_choice.id, 
+          user_id: straight_woman.id)
+      end
+      
+      FactoryGirl.create(
+        :answer, 
+        answer_choice_id: answer_choice1.id, 
+        user_id: straight_woman.id)
+      
+      expect(straight_man.match_percentage(straight_woman)).to eq(100)
+    end
+    
+    it "works with multiple questions preferred" do
+      FactoryGirl.create(
+        :acceptable_answer,
+        answer_choice_id: answer_choice3.id,
+        user_id: straight_man.id)
+      FactoryGirl.create(
+        :answer,
+        answer_choice_id: answer_choice4.id,
+        user_id: straight_woman.id)
+
+      expect(straight_man.match_percentage(straight_woman)).to eq(50)
+      
+      FactoryGirl.create(
+        :acceptable_answer,
+        answer_choice_id: answer_choice4.id,
+        user_id: straight_man.id)
+      
+      expect(straight_man.match_percentage(straight_woman)).to eq(100)
+    end
+    
+    it "works with multiple users" do
+      FactoryGirl.create(
+        :answer, 
+        answer_choice_id: answer_choice1.id, 
+        user_id: gay_man.id)
+        
+      FactoryGirl.create(
+        :answer, 
+        answer_choice_id: answer_choice2.id, 
+        user_id: straight_woman.id)
+        
+      expect(straight_man.match_percentage(gay_man)).to eq(0)      
       expect(straight_man.match_percentage(straight_woman)).to eq(0)
     end
   end
@@ -181,8 +269,4 @@ end
 def initiate_messages
   first_message && second_message && third_message && fourth_message &&
     fifth_message
-end
-
-def initiate_questions
-  3.times { |i| send("quest#{i}")}
 end
