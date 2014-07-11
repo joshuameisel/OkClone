@@ -56,7 +56,7 @@ users = User.create([
   },
 
   {
-    username: "bryan",
+    username: "stu2",
     gender: "m",
     orientation: "gay",
     min_age: 20,
@@ -69,18 +69,7 @@ users = User.create([
   },
 
   {
-    username: "conservative_dude",
-    gender: "m",
-    orientation: "straight",
-    dob: Date.new(1987, 2, 2),
-    country: "us",
-    zip_code: 10004,
-    email: "conservative@example.com",
-    password: "glitch"
-  },
-
-  {
-    username: "rod",
+    username: "frenchfries4ever",
     gender: "m",
     orientation: "gay",
     dob: Date.new(1989, 4, 16),
@@ -88,7 +77,25 @@ users = User.create([
     zip_code: 10031,
     email: "rod@example.com",
     password: "glitch"
+  },   
+])
+
+def straight_male_user(name, zip, birth_yr=1988)
+  {
+    username: name,
+    gender: "m",
+    orientation: "straight",
+    dob: Date.new(birth_yr, 2, 2),
+    country: "us",
+    zip_code: zip,
+    email: name + "@example.com",
+    password: "glitch"
   }
+end
+
+users += User.create([
+  straight_male_user("frank", 10005, 1977), straight_male_user("benny", 94305),
+  straight_male_user("curt", 11211), straight_male_user("stu", 10001)
 ])
 
 messages = Message.create([
@@ -137,3 +144,44 @@ users[0].photos.create(photo_file: File.open("./db/seed_images/3.jpg"))
 (1..2).each do |i|
   users[1].photos.create(photo_file: File.open("./db/seed_images/#{i}.jpg"))
 end
+
+questions = Question.create([
+  {body: "What's your political affiliation?"}, 
+  {body: "Cats or dogs?"}, 
+  {body: "What do you admire most?"}, 
+  {body: "Are you nosy?"}, 
+  {body: "Favorite sport?"}, 
+  {body: "I am..."}, 
+  {body: "True or false: people spend too much time worrying about " + 
+    "superfical things?"}, 
+])
+
+questions[0].answer_choices.create([
+  {body: "Liberal"}, {body: "Centrist"}, {body: "Conservative"}
+])
+
+questions[1].answer_choices.create([
+  {body: "Dogs"}, {body: "Cats"}, {body: "Both!"}, {body: "neither :("}
+])
+
+questions[2].answer_choices.create([
+  {body: "Intelligence"}, {body: "Honesty"}, {body: "Courage"}
+])
+
+questions[3].answer_choices.create([
+  {body: "Yes"}, {body: "No"}
+])
+
+questions[4].answer_choices.create([
+  {body: "Basketball"}, {body: "Soccer"}, {body: "Ping pong"}, 
+  {body: "Football"}, {body: "Hockey"}
+])
+
+questions[5].answer_choices.create([
+  {body: "up for anything."}, {body: "a bit reserved."}, 
+  {body: "someone who's never left the house."}
+])
+
+questions[6].answer_choices.create([
+  {body: "True"}, {body: "False"}, {body: "Fralse"}
+])

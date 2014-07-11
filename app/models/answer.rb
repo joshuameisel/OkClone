@@ -9,8 +9,6 @@ class Answer < ActiveRecord::Base
   private
   
   def destroy_previous_answer
-    puts "hey"
-    puts user
     if previous_answer = user.answers
                              .where(answer_choice_id: answer_choice_id)
                              .first
