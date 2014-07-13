@@ -3,6 +3,7 @@ class AnswerChoice < ActiveRecord::Base
   validates :question_id, :order, presence: true
   validates :body, presence: true, uniqueness: {scope: :question_id}
   belongs_to :question
+  has_many :other_choices, through: :question, source: :answer_choices
   
   private
   

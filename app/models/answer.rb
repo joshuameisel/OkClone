@@ -9,9 +9,8 @@ class Answer < ActiveRecord::Base
   private
   
   def destroy_previous_answer
-    previous_answer = user.answers.where(
-      "answer_choice_id IN 
-        (#{answer_choice.question.answer_choices.ids.join(',')})"
+    previous_answer = user.answers.where("
+      answer_choice_id IN (#{answer_choice.other_choices.map(&:id).join(',')})"
     ).first
     
     if previous_answer
