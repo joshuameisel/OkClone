@@ -168,9 +168,7 @@ questions[2].answer_choices.create([
   {body: "Intelligence"}, {body: "Honesty"}, {body: "Courage"}
 ])
 
-questions[3].answer_choices.create([
-  {body: "Yes"}, {body: "No"}
-])
+questions[3].answer_choices.create([{body: "Yes"}, {body: "No"}])
 
 questions[4].answer_choices.create([
   {body: "Basketball"}, {body: "Soccer"}, {body: "Ping pong"}, 
@@ -185,3 +183,20 @@ questions[5].answer_choices.create([
 questions[6].answer_choices.create([
   {body: "True"}, {body: "False"}, {body: "Fralse"}
 ])
+
+questions.each do |question|
+  answer_choices = question.answer_choices
+  
+  users.each do |user|
+    user.answers.create(
+      answer_choice: answer_choices[rand(answer_choices.count)]
+    )
+    
+    answer_choices.each do |answer_choice|
+      ## coin toss
+      if [true, false].sample
+        user.acceptable_answers.create(answer_choice_id: answer_choice.id)
+      end
+    end
+  end
+end
