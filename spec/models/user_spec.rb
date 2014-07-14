@@ -156,9 +156,9 @@ describe User do
   end
 
   describe "#match_percentage" do
-    2.times { |i| let("quest#{i + 1}".to_sym) {FactoryGirl.create(:question)} }
-
     2.times do |i|
+      let("quest#{i + 1}".to_sym) {FactoryGirl.create(:question)}
+      
       let("answer_choice#{i + 1}".to_sym) do
         FactoryGirl.create(:answer_choice, question_id: quest1.id)
       end
@@ -176,15 +176,17 @@ describe User do
     end
 
     it "recognizes a non-match" do
+      initiate_answers
       FactoryGirl.create(
         :answer,
         answer_choice_id: answer_choice2.id,
         user_id: straight_woman.id)
-
+        
       expect(straight_man.match_percentage(straight_woman)).to eq(0)
     end
 
     it "recognizes a match" do
+      initiate_answers
       FactoryGirl.create(
         :answer,
         answer_choice_id: answer_choice1.id,
@@ -194,6 +196,7 @@ describe User do
     end
 
     it "recognizes a match with multiple acceptable answer choices" do
+      initiate_answers
       FactoryGirl.create(
         :answer,
         answer_choice_id: answer_choice2.id,
@@ -201,13 +204,14 @@ describe User do
 
       FactoryGirl.create(
         :acceptable_answer,
-        answer_choice_id: answer_choice1.id,
+        answer_choice_id: answer_choice2.id,
         user_id: straight_man.id)
 
       expect(straight_man.match_percentage(straight_woman)).to eq(100)
     end
 
     it "ignores un-preferred questions" do
+      initiate_answers
       FactoryGirl.create(:question)
       FactoryGirl.create(
         :answer,
@@ -218,6 +222,7 @@ describe User do
     end
 
     it "ignores un-answered questions" do
+      initiate_answers
       [answer_choice1, answer_choice3].each do |answer_choice|
         FactoryGirl.create(
           :answer,
@@ -234,10 +239,15 @@ describe User do
     end
 
     it "works with multiple questions preferred" do
+      initiate_answers
       FactoryGirl.create(
         :acceptable_answer,
         answer_choice_id: answer_choice3.id,
         user_id: straight_man.id)
+      FactoryGirl.create(
+        :answer,
+        answer_choice_id: answer_choice1.id,
+        user_id: straight_woman.id)
       FactoryGirl.create(
         :answer,
         answer_choice_id: answer_choice4.id,
@@ -254,6 +264,7 @@ describe User do
     end
 
     it "works with multiple users" do
+      initiate_answers
       FactoryGirl.create(
         :answer,
         answer_choice_id: answer_choice1.id,
@@ -264,7 +275,7 @@ describe User do
         answer_choice_id: answer_choice2.id,
         user_id: straight_woman.id)
 
-      expect(straight_man.match_percentage(gay_man)).to eq(0)
+      expect(straight_man.match_percentage(gay_man)).to eq(100)
       expect(straight_man.match_percentage(straight_woman)).to eq(0)
     end
   end
@@ -273,4 +284,9 @@ end
 def initiate_messages
   first_message && second_message && third_message && fourth_message &&
     fifth_message
+end
+
+def initiate_answers
+  answer_choice1 && answer_choice2 && answer_choice3 && answer_choice4
+  acceptable_answer1
 end
