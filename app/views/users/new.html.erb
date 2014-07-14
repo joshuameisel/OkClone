@@ -93,5 +93,18 @@
       type="submit" value="Sign in as demo user">
   </form>
 	
-
+	<script>
+	$(document).ready(function () {
+		$("#next").click(function() {
+			event.preventDefault();
+			
+			$form = $("#new-user");
+			if ($form.hasClass("first")) {
+				$form.toggleClass("first second")
+			} else {
+				$form.toggleClass("second third")
+			}
+		});
+	});
+	</script>
 </main>
