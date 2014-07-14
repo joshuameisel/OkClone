@@ -25,43 +25,24 @@ class User < ActiveRecord::Base
 
   def match_percentage(match)
     Question.find_by_sql(<<-SQL)
-
-      SELECT questions.id AS question_id, 
-             (CASE WHEN acceptable_acs.id=answer_acs.id 
-                   THEN 1 ELSE 0 END) AS match
-      FROM questions
-      JOIN answer_choices acceptable_acs 
-        ON questions.id=acceptable_acs.question_id
-      JOIN acceptable_answers 
-        ON acceptable_answers.answer_choice_id = acceptable_acs.id
-      JOIN answer_choices answer_acs 
-        ON questions.id=answer_acs.question_id
-      JOIN answers
-        ON answers.answer_choice_id = answer_acs.id
-      WHERE acceptable_answers.user_id=#{id} AND answers.user_id=#{match.id}
-      GROUP BY questions.id
-      SQL
-    
-    Question.find_by_sql(<<-SQL)
-    SELECT ((SUM(answer_matches.match) * 100)/COUNT(answer_matches.*)) 
-      AS match_pct
-    FROM (
-      SELECT questions.id AS question_id, 
-             (CASE WHEN acceptable_acs.id=answer_acs.id 
-                   THEN 1 ELSE 0 END) AS match
-      FROM questions
-      JOIN answer_choices acceptable_acs 
-        ON questions.id=acceptable_acs.question_id
-      JOIN acceptable_answers 
-        ON acceptable_answers.answer_choice_id = acceptable_acs.id
-      JOIN answer_choices answer_acs 
-        ON questions.id=answer_acs.question_id
-      JOIN answers
-        ON answers.answer_choice_id = answer_acs.id
-      WHERE acceptable_answers.user_id=#{id} AND answers.user_id=#{match.id}
-      ) AS answer_matches
-    GROUP BY question_id
-      SQL
+      SELECT SUM(match) * 100 / COUNT(*) AS match_pct
+      FROM (
+        SELECT MAX(CASE WHEN acceptable_acs.id=answer_acs.id THEN 1 ELSE 0 END)
+          AS match
+        FROM questions
+        JOIN answer_choices acceptable_acs 
+          ON questions.id=acceptable_acs.question_id
+        JOIN acceptable_answers 
+          ON acceptable_answers.answer_choice_id = acceptable_acs.id
+        JOIN answer_choices answer_acs 
+          ON questions.id=answer_acs.question_id
+        JOIN answers
+          ON answers.answer_choice_id = answer_acs.id
+        WHERE acceptable_answers.user_id=#{id} AND answers.user_id=#{match.id}
+        GROUP BY questions.id
+      ) AS matches
+    SQL
+    .first.match_pct
   end
 
   def profile_pic
