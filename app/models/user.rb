@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
     Question.find_by_sql(<<-SQL)
       SELECT SUM(match) * 100 / COUNT(*) AS match_pct
       FROM (
-        SELECT MAX(CASE WHEN acceptable_acs.id=answer_acs.id THEN 1 ELSE 0 END)
-          AS match
+        SELECT MAX(CASE WHEN acceptable_acs.id=answer_acs.id THEN 1.0 ELSE 0
+                   END) AS match
         FROM questions
         JOIN answer_choices acceptable_acs 
           ON questions.id=acceptable_acs.question_id
@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
         GROUP BY questions.id
       ) AS matches
     SQL
-    .first.match_pct
+    .first.match_pct.round
   end
 
   def profile_pic
