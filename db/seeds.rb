@@ -26,7 +26,7 @@ users = User.create([
     max_age: 33,
     dob: Date.new(1988, 12, 28),
     country: "us",
-    zip_code: 90210,
+    zip_code: 10004,
     email: "simone@example.com",
     password: "glitch"
   },

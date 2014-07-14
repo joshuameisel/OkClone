@@ -14,13 +14,13 @@
 
 	<%= render "shared/errors" %>
 
-	<form id="new-user" action="<%= users_url %>" method="post">
+	<form class="first" id="new-user" action="<%= users_url %>" method="post">
 	  <input
 	    type="hidden"
 	    name="authenticity_token"
 	    value="<%= form_authenticity_token %>">
 
-	  <label>
+	  <label class="first">
 	    I am
 	    <select name="user[gender]">
 	      <option value="f">Female</option>
@@ -28,7 +28,7 @@
 	    </select>
 	  </label>
 
-	  <label>
+	  <label class="first">
 	    and
 	    <select name="user[orientation]">
 	      <option value="straight">Straight</option>
@@ -37,21 +37,21 @@
 	    </select>
 	  </label>
 
-	  <label>
+	  <label class="second">
 	    Birthdate
 	    <input type="date" name="user[dob]" value="1990-06-10">
 	  </label>
 
-	  <label>
+	  <label class="second">
 	    Country
 	    <select name="user[country]">
 	      <option value="us">United States</option>
-	      <option value="uk">United Kingdoms</option>
+	      <option value="uk">United Kingdom</option>
 	      <option value="ca">Canada</option>
 	    </select>
 	  </label>
 
-	  <label>
+	  <label class="second">
 	    Zip code
 	    <input
 	      type="text"
@@ -60,24 +60,26 @@
 	  </label>
 
 
-	  <label>
+	  <label class="second">
 	    Email Address
 	    <input type="text" name="user[email]" value="<%= @user.email %>">
 	  </label>
 
-	  <label>
+	  <label class="third">
 	    Username
 	    <input type="text" name="user[username]" value="<%= @user.username %>">
 	  </label>
 
 
-	  <label>
+	  <label class="third">
 	    Password
 	    <input type="password" name="user[password]" value="<%= @user.password %>">
 	  </label>
-
-	  <input class="submit" id="submit" type="submit" value="done">
+		<button class="first second" id="next">Next</button>
+	  <input class="submit third" id="submit" type="submit" value="done">
 	</form>
+
+	<p>OR</p>
 
   <form id="demo-user" action="<%= session_url %>" method="post">
 	  <input
@@ -90,4 +92,6 @@
 	  <input class="submit demo-user" id="submit"
       type="submit" value="Sign in as demo user">
   </form>
+	
+
 </main>

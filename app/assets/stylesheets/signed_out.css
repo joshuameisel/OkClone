@@ -47,6 +47,14 @@ body {
   padding-bottom: 0;
 }
 
+#new-user .first, #new-user .second, #new-user .third {
+	display: none;
+}
+
+#new-user.first .first, #new-user.second .second, #new-user.third .third {
+	display: block;
+}
+
 .signed-out label {
 	display: block;
   font-size: 15px;
@@ -64,11 +72,20 @@ input {
   padding: 5px;
 }
 
-.signed-out #submit.submit {
+.signed-out #submit.submit, button {
   padding: 10px 20px;
 	background: #44a;
   color: white;
   border: none;
+}
+
+button {
+	font-size: 16px;
+	margin: 0 0 25px 0;
+}
+
+p {
+	margin-left: 50px;
 }
 
 .signed-out #submit.submit:hover {
