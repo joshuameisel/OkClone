@@ -108,6 +108,16 @@ ul#matches > li {
 	float: left;
 }
 
+.profile-top .nav {
+	width: 100%;
+	border-bottom: 1px solid gray;
+}
+
+.profile-top .nav li {
+	float: left;
+	margin: 25px 29px 10px 0;
+}
+
 .edit, .edit.can-activate {
 	display: none;
   margin-top: 10px;

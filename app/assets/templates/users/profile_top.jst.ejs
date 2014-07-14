@@ -14,6 +14,19 @@
 	<button class="edit">edit</button>
 </div>
 
+<ul class="nav">
+	<li class="<%= (selected == "about") ? "selected" : "" %>">
+		<a href="<%= userUrl %>">About</a>
+	</li>
+	<li class="<%= (selected == "about") ? "selected" : "" %>">
+		<a href="<%= userUrl + "/photos" %>">Photos</a>
+	</li>
+	<li class="<%= (selected == "about") ? "selected" : "" %>">
+		<a href="<%= userUrl + "/questions" %>">Questions</a>
+	</li>
+</ul>
+
+
 <section id="edit-user-info" class="modal">
   <form>
     <h1>Your basic information</h1>

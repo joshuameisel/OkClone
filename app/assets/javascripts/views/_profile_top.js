@@ -26,9 +26,16 @@ OkClone.Views.ProfileTop = Backbone.View.extend({
 	},
 
   render: function () {
+		var url = location.pathname.split("/");
+		
+		// users/?/photos => photos, .../questions => questions, users/? => about
+		var selected = url[3] || "about"
+		
     var renderedContent = this.template({
       user: this.model,
-      profilePicURL: this.profilePicURL()
+      profilePicURL: this.profilePicURL(),
+			userUrl: url.slice(0,3).join("/"),
+			selected: selected
     });
     this.$el.html(renderedContent);
 
