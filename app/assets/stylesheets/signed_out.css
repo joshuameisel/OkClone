@@ -11,7 +11,7 @@
  *= require_self
  */
 
-html, header, nav, ul, li, h1, body, label, input, select, form {
+html, header, nav, ul, li, h1, body, label, input, select, form, p {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -41,7 +41,7 @@ body {
 
 .signed-out form {
 	margin: auto;
-	width: 300px;
+	width: 335px;
 	display: block;
 	padding: 15px;
   padding-bottom: 0;
@@ -61,6 +61,15 @@ body {
   color: #444;
 }
 
+#new-user.first label.first, #new-user.first select {
+	float: left;
+	margin-right: 10px;
+}
+
+#new-user.first label.first {
+	margin-top: 8px
+}
+
 .signed-out select, .signed-out input {
 	display: block;
 	margin-bottom: 15px;
@@ -72,20 +81,23 @@ input {
   padding: 5px;
 }
 
-.signed-out #submit.submit, button {
+.signed-out #submit.submit, .signed-out button {
   padding: 10px 20px;
 	background: #44a;
   color: white;
   border: none;
 }
 
-button {
+.signed-out button {
 	font-size: 16px;
 	margin: 0 0 25px 0;
 }
 
-p {
-	margin-left: 50px;
+.signed-out p {
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 10px;
+	color: red;
 }
 
 .signed-out #submit.submit:hover {
@@ -101,6 +113,7 @@ form#demo-user {
   background: red;
   margin: 0;
   border: 2px solid blue;
+	margin: auto;
 }
 
 body.signed-out {

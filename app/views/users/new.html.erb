@@ -20,22 +20,18 @@
 	    name="authenticity_token"
 	    value="<%= form_authenticity_token %>">
 
-	  <label class="first">
-	    I am
-	    <select name="user[gender]">
-	      <option value="f">Female</option>
-	      <option value="m">Male</option>
-	    </select>
-	  </label>
-
-	  <label class="first">
-	    and
-	    <select name="user[orientation]">
-	      <option value="straight">Straight</option>
-	      <option value="gay">Gay</option>
-	      <option value="bisexual">Bisexual</option>
-	    </select>
-	  </label>
+	  <label class="first">I am a</label>
+		
+    <select class="first" name="user[orientation]">
+      <option value="straight">Straight</option>
+      <option value="gay">Gay</option>
+      <option value="bisexual">Bisexual</option>
+    </select>
+		
+    <select class="first" name="user[gender]">
+      <option value="f">Female</option>
+      <option value="m">Male</option>
+    </select>
 
 	  <label class="second">
 	    Birthdate
@@ -79,7 +75,7 @@
 	  <input class="submit third" id="submit" type="submit" value="done">
 	</form>
 
-	<p>OR</p>
+	<p>or just...</p>
 
   <form id="demo-user" action="<%= session_url %>" method="post">
 	  <input
