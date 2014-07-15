@@ -18,7 +18,8 @@ OkClone.Views.UserShow = Backbone.View.extend({
 
   toggleActivated: function (event) {
     event.preventDefault();
-    $(event.currentTarget).closest(".gets-activated").toggleClass("activated");
+    $(event.currentTarget).closest(".editable .gets-activated")
+													.toggleClass("activated");
   },
 
   render: function () {
