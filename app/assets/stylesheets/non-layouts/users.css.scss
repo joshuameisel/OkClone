@@ -71,7 +71,7 @@ ul#matches > li {
 }
 
 .profile-top {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .profile-top a {
@@ -80,7 +80,6 @@ ul#matches > li {
 
 .profile-top ul {
 	float: left;
-  margin-bottom: 20px;
 }
 
 .edit-user-info {
@@ -110,12 +109,25 @@ ul#matches > li {
 
 .profile-top .nav {
 	width: 100%;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #ccd0d9;
 }
 
 .profile-top .nav li {
 	float: left;
-	margin: 25px 29px 10px 0;
+	margin: 25px 29px 0 0;
+	padding-bottom: 10px;
+}
+
+.profile-top .nav a {
+	color: #474d59;
+}
+
+.profile-top .nav a:hover, .profile-top .nav .selected a {
+	color: #3260c7;
+}
+
+.profile-top .nav .selected {
+	border-bottom: 3px solid 	#3260c7;
 }
 
 .edit, .edit.can-activate {
