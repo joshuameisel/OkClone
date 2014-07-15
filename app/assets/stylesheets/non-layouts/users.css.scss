@@ -115,7 +115,7 @@ ul#matches > li {
 .profile-top .nav li {
 	float: left;
 	margin: 25px 29px 0 0;
-	padding-bottom: 10px;
+	padding-bottom: 6px;
 }
 
 .profile-top .nav a {
@@ -124,6 +124,10 @@ ul#matches > li {
 
 .profile-top .nav a:hover, .profile-top .nav .selected a {
 	color: #3260c7;
+}
+
+.profile-top .nav .selected a {
+	cursor: default;
 }
 
 .profile-top .nav .selected {

@@ -16,16 +16,20 @@
 
 <ul class="nav">
 	<li class="<%= (selected == "about") ? "selected" : "" %>">
-		<a href="<%= userUrl %>">About</a>
-	</li>
+		<a href="<%= userUrl %>">About</a></li>
 	<li class="<%= (selected == "photos") ? "selected" : "" %>">
-		<a href="<%= userUrl + "/photos" %>">Photos</a>
-	</li>
+		<a href="<%= userUrl + "/photos" %>">Photos</a></li>
 	<li class="<%= (selected == "questions") ? "selected" : "" %>">
-		<a href="<%= userUrl + "/questions" %>">Questions</a>
-	</li>
+		<a href="<%= userUrl + "/questions" %>">Questions</a></li>
+	
+	<script>
+	$(document).ready(function () {
+		$(".selected a").click(function(event) {
+			event.preventDefault();
+		});
+	});
+	</script>
 </ul>
-
 
 <section id="edit-user-info" class="modal">
   <form>
