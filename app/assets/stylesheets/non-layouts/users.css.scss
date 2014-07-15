@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .matches#top {
   width: 100%;
   padding-bottom: 10px;
@@ -18,7 +17,7 @@
 }
 
 .matches#main {
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
 .matches form {
@@ -57,17 +56,42 @@
 }
 
 ul#matches {
-  border-top: 1px solid lightgrey;
-  padding: 10px;
+	display: block;
 }
 
 ul#matches > li {
   float: left;
-  margin: 10px 10px;
+  margin: 20px 27px 20px 0px;
+	background: white;
+}
+
+ul#matches > li:nth-child(3n+3) {  
+	margin-right: 0;
 }
 
 .matches li {
   text-align: center;
+}
+
+ul#matches ul {
+	margin: 10px;
+}
+
+.matches li.user-info {
+	color: #949aa6;
+	font-size: 13px;
+	margin-top: 5px;
+}
+
+.matches li.match-percentage {
+	color: rgb(94, 101, 115);
+	font-size: 15px;
+	margin-top: 10px;
+}
+
+.matches a {
+	color: black;
+	font-size: 18px;
 }
 
 .profile-top {
@@ -247,7 +271,7 @@ button.cancel:hover {
 
 .profile-left {
   float: left;
-  width: 450px;
+  width: 530px;
 }
 
 .profile-right {

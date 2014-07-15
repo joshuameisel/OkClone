@@ -42,7 +42,7 @@
         </a>
         <ul class="match" id="<%= user.id %>">
           <li class="username"><%= link_to user.username, user_url(user) %></li>
-          <li class="user-info"><%= user.zip_code %> · <%= user.age %></li>
+          <li class="user-info"><%= user.age %> · <%= user.zip_code %></li>
 					<li class="match-percentage">
 						<%= current_user.match_percentage(user) %>% Match</li>
         </ul>

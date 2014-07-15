@@ -79,7 +79,7 @@ body, html {
 }
 
 .content {
-  width: 975px;
+  width: 1015px;
   margin: auto;
 }
 
@@ -116,7 +116,7 @@ body, html {
 .content-main {
   display: block;
   background: #eee;
-  width: 735px;
+  width: 775px;
   float: right;
   padding: 20px;
 }
