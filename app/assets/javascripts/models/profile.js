@@ -9,7 +9,7 @@ Profile.displayText = function (attr) {
     case "summary":
       return "My self-summary";
     case "likes":
-      return "Favorite books, movies, shows, music, and food";
+      return "Favorite books, movies, shows, music, and food (or whatever!)";
     case "most_private":
       return "The most private thing I'm willing to admit";
   }
