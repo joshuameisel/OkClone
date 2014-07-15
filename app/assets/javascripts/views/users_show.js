@@ -24,7 +24,6 @@ OkClone.Views.UserShow = Backbone.View.extend({
 
   render: function () {
     this.renderTop().renderLeft().renderRight();
-
     return this
   },
 

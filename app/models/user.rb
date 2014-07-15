@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   GENDERS = {0 => ["f"], 1 => ["m"], 2 => ["f", "m"]}
 
   attr_reader :password
+  
+  geocoded_by :zip_code
 
   has_one :profile
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
@@ -13,6 +15,7 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_session_token
   before_validation :ensure_age_preferences
+  before_validation :geocode, if: :zip_code_changed?
   after_create :make_profile
 
   validates :username, :gender, :min_age, :max_age, :dob,

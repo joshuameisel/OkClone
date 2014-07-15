@@ -1,0 +1,17 @@
+<script>
+$(document).ready(function () {
+  var user = new OkClone.Models.User({id: <%= params[:user_id] %>});
+  user.fetch({
+    success: function () {
+      var view = new OkClone.Views.ProfileTop({model: user});
+      $(".content-main").prepend(view.render().$el);
+    }
+  })
+	
+  var questions = new Questions([], {userId: <%= params[:user_id] %>});
+  questions.fetch({success: function() {
+    var view = new QuestionsIndex({collection: questions});
+    $(".content-main").append(view.render().$el);
+  }});
+})
+</script>
