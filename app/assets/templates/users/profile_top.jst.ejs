@@ -3,13 +3,16 @@
 </a>
 
 <p class='errors'></p>
-<div class="edit-user-info
-  <%= (currentUserId === user.get("id")) ? "can-activate" : "" %>">
+<div class="edit-user-info can-activate">
 	<ul>
 	  <li class="username"><%= user.get("username") %></li>
+		<% if (!isCurrentUser) { %>
+			<li class="match-percentage">
+				<%= user.get("match_percentage") %>% Match</li>
+		<% } %>
 	  <li class="user-info">
 	    <%= user.get("age") %> · <%= user.get("gender") %> · <%= user.get("orientation") %> (<%= user.get("zip_code") %>)
-	  </li>
+		</li>
 	</ul>
 	<button class="edit">edit</button>
 </div>

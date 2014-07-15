@@ -35,7 +35,8 @@ OkClone.Views.ProfileTop = Backbone.View.extend({
       user: this.model,
       profilePicURL: this.profilePicURL(),
 			userUrl: url.slice(0,3).join("/"),
-			selected: selected
+			selected: selected,
+			isCurrentUser: currentUserId === this.model.get("id")
     });
     this.$el.html(renderedContent);
 
