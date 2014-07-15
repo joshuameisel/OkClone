@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :received_messages, class_name: "Message", foreign_key: :recipient_id
   has_many :photos, dependent: :destroy
   has_many :answers
+  has_many :answered_questions, through: :answers, source: :question
   has_many :acceptable_answers
   has_many :answer_choices, through: :answers
 
