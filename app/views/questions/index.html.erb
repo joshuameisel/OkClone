@@ -1,3 +1,5 @@
+<ul class="questions"></ul>
+
 <script>
 $(document).ready(function () {
   var user = new OkClone.Models.User({id: <%= params[:user_id] %>});
@@ -6,28 +8,19 @@ $(document).ready(function () {
       var view = new OkClone.Views.ProfileTop({model: user});
       $(".content-main").prepend(view.render().$el);
     }
-  })
+  });
 	
-  var questionsInfo = new QuestionsInfo({userId: <%= params[:user_id] %>});
-  questionsInfo.fetch({success: function() {
-  		var currentUser = questionsInfo.get("current_user");
-			if (currentUser) {
-				var currentUserAnswers = currentUser.answers;
-				delete currentUser["answers"]
+	<% @questions.each do |question| %>
+		var questionInfo = new QuestionInfo({
+			userId: <%= params[:user_id] %>, 
+			id: <%= question.id %>
+		});
+		questionInfo.fetch({
+			success: function() {
+				var view = new QuestionShow({model: questionInfo});
+				$("ul.questions").append(view.render().$el);
 			}
-			
-  		var user = questionsInfo.get("user");
-			if (user) {
-				var userAnswers = user.answers;
-				delete user["answers"]
-			}
-  		for (var i = 0; i < questionsInfo.get("questions").length; i++) {
-  			var view = new QuestionShow({
-					user: user && jQuery.extend(user, {answer: userAnswers[i]}),
-  				currentUser: currentUser && jQuery.extend(currentUser, {answer: currentUserAnswers[i]})
-  			})
-  		}
-    $(".content-main").append(view.render().$el);
-  }});
-})
+		})
+	<% end %>
+});
 </script>

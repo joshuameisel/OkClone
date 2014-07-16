@@ -1,10 +1,22 @@
 class Api::QuestionsController < ApplicationController
-  def index
-    user = User.find(params[:user_id])
-    @questions = user.answered_questions.order("RANDOM()")
+  def show
+    @question = Question.find(params[:id])
     
-    @current_user = current_user
-    # only set @user (which holds the un-editable answers) if you're not looking at your own profile
-    @user = user unless @current_user == user
+    # @user holds the "other user's" answers. not present on own profile
+    user = User.find(params[:user_id])
+    unless current_user == user
+      @user = user
+      @user_answer = @user.answers.where(
+        "answer_choice_id IN (?)",
+        @question.answer_choices.ids
+      ).limit(1).first
+    end
+    
+    if current_user
+      @current_user_answer = current_user.answers.where(
+        "answer_choice_id IN (?)",
+        @question.answer_choices.ids
+      ).limit(1).first
+    end
   end
 end
