@@ -10,17 +10,23 @@ $(document).ready(function () {
 	
   var questionsInfo = new QuestionsInfo({userId: <%= params[:user_id] %>});
   questionsInfo.fetch({success: function() {
-		var currentUser = questionsInfo.get("current_user");
-		var user = questionsInfo.get("user");
-		for (var i = 0; i < questionsInfo.get("questions").length; i++) {
+  		var currentUser = questionsInfo.get("current_user");
 			if (currentUser) {
-				var model = new AnswerChoice(id: currentUser.answers[i])
+				var currentUserAnswers = currentUser.answers;
+				delete currentUser["answers"]
 			}
-			var view = new QuestionShow({
-				currentUser: currentUser,
-				model: currentUser && new Answer(currentUser.answers[i]),
-			})
-		}
+			
+  		var user = questionsInfo.get("user");
+			if (user) {
+				var userAnswers = user.answers;
+				delete user["answers"]
+			}
+  		for (var i = 0; i < questionsInfo.get("questions").length; i++) {
+  			var view = new QuestionShow({
+					user: user && jQuery.extend(user, {answer: userAnswers[i]}),
+  				currentUser: currentUser && jQuery.extend(currentUser, {answer: currentUserAnswers[i]})
+  			})
+  		}
     $(".content-main").append(view.render().$el);
   }});
 })
