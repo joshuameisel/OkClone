@@ -10,17 +10,18 @@ $(document).ready(function () {
     }
   });
 	
-	<% @questions.each do |question| %>
-		var questionInfo = new QuestionInfo({
+	var questionInfo = [];
+	<% @questions.each_with_index do |question, i| %>
+		questionInfo[<%= i %>] = new QuestionInfo({
 			userId: <%= params[:user_id] %>, 
 			id: <%= question.id %>
 		});
-		questionInfo.fetch({
+		questionInfo[<%= i %>].fetch({
 			success: function() {
-				var view = new QuestionShow({model: questionInfo});
+				var view = new QuestionShow({model: questionInfo[<%= i %>]});
 				$("ul.questions").append(view.render().$el);
 			}
-		})
+		});
 	<% end %>
 });
 </script>
