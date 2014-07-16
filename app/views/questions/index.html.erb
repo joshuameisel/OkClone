@@ -8,9 +8,19 @@ $(document).ready(function () {
     }
   })
 	
-  var questions = new Questions([], {userId: <%= params[:user_id] %>});
-  questions.fetch({success: function() {
-    var view = new QuestionsIndex({collection: questions});
+  var questionsInfo = new QuestionsInfo({userId: <%= params[:user_id] %>});
+  questionsInfo.fetch({success: function() {
+		var currentUser = questionsInfo.get("current_user");
+		var user = questionsInfo.get("user");
+		for (var i = 0; i < questionsInfo.get("questions").length; i++) {
+			if (currentUser) {
+				var model = new AnswerChoice(id: currentUser.answers[i])
+			}
+			var view = new QuestionShow({
+				currentUser: currentUser,
+				model: currentUser && new Answer(currentUser.answers[i]),
+			})
+		}
     $(".content-main").append(view.render().$el);
   }});
 })
