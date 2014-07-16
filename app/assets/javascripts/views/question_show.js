@@ -1,5 +1,7 @@
 QuestionShow = OkClone.Views.QuestionShow = Backbone.View.extend({
   template: JST["questions/show"],
+	tagName: "li",
+	className: "group question",
 
   initialize: function (options) {
     this.listenTo(this.model, "change", this.render);
