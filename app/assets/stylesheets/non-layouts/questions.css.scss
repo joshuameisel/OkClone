@@ -1,19 +1,35 @@
 .questions h2 {
 	color: rgb(94, 101, 115);
 	font-size: 15px;
+	font-weight: 600;
 	line-height: 22px;
+	margin-bottom: 15px;
+	width: 305px;
 }
 
 .questions > li {
   display: block;
   background: white;
   margin-top: 10px;
-  padding: 33px 100px 16.5px 33px;
-	width: 350px;
+  padding: 33px 0 16.5px 33px;
+	width: 450px;
+}
+
+.answers > li {
+	margin-bottom: 5px;
 }
 
 .answers img {
 	width: 36px;
 	height: 36px;
+	float: left;
+	margin-right: 12px;
+}
+
+.answers p {
+	line-height: 35px;
+	height: 36px;
+	font-size: 13px;
+	color: rgb(85, 85, 85);
 }
 

@@ -2,9 +2,11 @@
 <ul class="answers">
 	<% if (user) { %><li>
 		<img src="<%= user.profile_pic_url %>">
+		<p><%= user.answer.body %></p>
 	</li><% } %>
 	
 	<% if (currentUser) { %><li>
 		<img src="<%= currentUser.profile_pic_url %>">
+		<p><%= currentUser.answer.body %></p>
 	</li><% } %>
 </ul>
