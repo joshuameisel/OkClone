@@ -8,10 +8,13 @@
 }
 
 .questions > li {
+	background: white;
+}
+
+.question-top {
   display: block;
-  background: white;
   margin-top: 10px;
-  padding: 33px 0 16.5px 33px;
+  padding: 25px 0 10px 33px;
 	width: 450px;
 }
 
@@ -33,3 +36,28 @@
 	color: rgb(85, 85, 85);
 }
 
+.question-bottom {
+	display: block;
+	height: 40px;
+}
+
+.question-bottom a {
+	display: none;
+	margin: 12px 25px;
+	text-align: right;
+	color: #999;
+	font-size: 14px;
+}
+
+.question-bottom a:hover {
+	cursor: pointer;
+};
+
+.editable .question:hover .question-bottom {
+	background: #ddd;
+}
+
+.editable .question:hover .question-bottom a {
+	display: block;
+	float: right;
+}
