@@ -4,6 +4,6 @@ else
   json.profile_pic_url "/images/default_thumb.gif"
 end
 
-json.answer do
-  json.(answer.answer_choice, :body, :id)
-end
+json.answer {json.(answer.answer_choice, :body, :id)}
+
+json.acceptable_answers {json.(acceptable_answers, :ids)}
