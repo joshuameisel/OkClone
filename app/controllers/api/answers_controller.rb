@@ -17,6 +17,15 @@ class Api::AnswersController < ApplicationController
   def update
     @answer = current_user.answers.where(*where_args).limit(1).first
     @answer.update_attributes(answer_params)
+
+    AcceptableAnswer.destroy(
+      current_user.acceptable_answers.where(*where_args).ids)
+
+    current_user.acceptable_answers.create(
+      (params[:acceptable_answers] || []).map do |answer_choice_id|
+        {answer_choice_id: answer_choice_id}
+      end
+    )
   end
 
   private
