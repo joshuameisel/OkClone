@@ -21,8 +21,8 @@ class Api::AnswersController < ApplicationController
     @answer.update_attributes(answer_params)
 
     AcceptableAnswer.destroy(relevant_acceptable_answers(current_user).ids)
-    current_user.acceptable_answers.create(
-      (params[:acceptable_answers] || []).map do |answer_choice_id|
+    @acceptable_answers = current_user.acceptable_answers.create(
+      params[:acceptable_answers].to_a.map do |answer_choice_id|
         {answer_choice_id: answer_choice_id}
       end
     )
