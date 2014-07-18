@@ -23,6 +23,18 @@
           <%= (answerChoice.id == currentUser.answer.id) ? "checked" : "" %>
         > <%= answerChoice.body %><br>
       <% }) %>
+
+    	<h2>Answer(s) you'll accept</h2>
+      <% this.model.get("question").answer_choices
+             .forEach(function (answerChoice) { %>
+        <input
+          type="checkbox"
+          name="acceptable_answers[]"
+          value="<%= answerChoice.id %>"
+          <%= (answerChoice.id == currentUser.answer.id) ? "checked" : "" %>
+        > <%= answerChoice.body %><br>
+      <% }) %>
+
       <button class="submit">Answer</button>
       <button class="cancel can-activate">Cancel</button>
     </form>
