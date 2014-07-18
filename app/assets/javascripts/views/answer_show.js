@@ -18,7 +18,7 @@ AnswerShow = OkClone.Views.AnswerShow = Backbone.View.extend({
   },
 
   initialize: function (options) {
-
+    this.listenTo(this.model, "sync", this.render);
   },
 
   render: function () {

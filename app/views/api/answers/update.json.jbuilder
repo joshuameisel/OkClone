@@ -1,0 +1,1 @@
+json.current_user {json.partial!("user", user: current_user, answer: @answer)}
