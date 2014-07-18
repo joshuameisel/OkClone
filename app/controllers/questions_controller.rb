@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions =
-      User.find(params[:user_id]).answered_questions.order("RANDOM()")
+    @answers =
+      User.find(params[:user_id]).answers.order("RANDOM()")
   end
 end

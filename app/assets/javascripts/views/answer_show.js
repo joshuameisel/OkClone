@@ -1,8 +1,15 @@
-QuestionShow = OkClone.Views.QuestionShow = Backbone.View.extend({
-  template: JST["questions/show"],
+AnswerShow = OkClone.Views.AnswerShow = Backbone.View.extend({
+  template: JST["answers/show"],
 	tagName: "li",
 	className: "group question gets-activated",
-    events: {"click .can-activate": "toggleActivated"},
+    events: {
+      "click .can-activate": "toggleActivated",
+      "submit form": "updateAnswer"
+    },
+
+    updateAnswer: function(event){
+      OkClone.Helpers.updateModel.bind(this)(event);
+    },
 
   toggleActivated: function (event) {
     event.preventDefault();

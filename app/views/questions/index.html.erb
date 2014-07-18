@@ -10,15 +10,12 @@ $(document).ready(function () {
     }
   });
 
-	var questionInfo = [];
-	<% @questions.each_with_index do |question, i| %>
-		questionInfo[<%= i %>] = new QuestionInfo({
-			userId: <%= params[:user_id] %>,
-			id: <%= question.id %>
-		});
-		questionInfo[<%= i %>].fetch({
+	var answers = [];
+	<% @answers.each_with_index do |answer, i| %>
+		answers[<%= i %>] = new Answer({id: <%= answer.id %>});
+		answers[<%= i %>].fetch({
 			success: function() {
-				var view = new QuestionShow({model: questionInfo[<%= i %>]});
+				var view = new AnswerShow({model: answers[<%= i %>]});
 				$("ul.questions").append(view.render().$el);
 			}
 		});
