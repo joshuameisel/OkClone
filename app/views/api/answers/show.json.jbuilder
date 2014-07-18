@@ -1,12 +1,12 @@
-json.user {json.partial!("user", user: @user, answer: @user_answer)} if @user
+json.user {json.partial!("user", user: @user, answer: @answers[@user])} if @user
 
 if current_user
   json.current_user do
-    json.partial!("user", user: current_user, answer: @current_user_answer)
+    json.partial!("user", user: current_user, answer: @answers[current_user])
   end
 end
 
-json.question do 
+json.question do
   json.(@question, :body)
   json.answer_choices do
     json.array!(@question.answer_choices) do |answer_choice|
