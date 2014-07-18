@@ -1,8 +1,11 @@
-json.user {json.partial!("user", user: @user, answer: @answers[@user])} if @user
-
-if current_user
-  json.current_user do
-    json.partial!("user", user: current_user, answer: @answers[current_user])
+@users.each do |user|
+  current_user == user ? json.current_user : json.user do
+    json.partial!(
+      "user",
+      user: user,
+      answer: @answers[user],
+      acceptable_answers: @acceptable_answers[user]
+    )
   end
 end
 
