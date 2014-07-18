@@ -27,7 +27,6 @@ textarea,
 select {
   display: inline-block;
   box-sizing: content-box;
-  -webkit-appearance: none;
   margin: 0;
   padding: 0;
   border: 0;
