@@ -7,35 +7,24 @@ class Api::AnswersController < ApplicationController
     user = @answer.user
     unless current_user == user
       @user = user
-      @user_answer = @user.answers.where(
-        "answer_choice_id IN (?)",
-        @question.answer_choices.ids
-      ).limit(1).first
+      @user_answer = @user.answers.where(*where_args).limit(1).first
     end
 
-    if current_user
-      @current_user_answer = current_user.answers.where(
-        "answer_choice_id IN (?)",
-        @question.answer_choices.ids
-      ).limit(1).first
-    end
+    @current_user_answer =
+      current_user.answers.where(*where_args).limit(1).first if current_user
   end
 
   def update
-    @answer = current_user
-      .answers
-      .where(
-        "answer_choice_id IN (?)",
-        Answer.find(params[:id]).answer_choice.other_choices.map(&:id))
-      .limit(1)
-      .first
-
-    if @answer.update_attributes(answer_params)
-      render "update"
-    end
+    @answer = current_user.answers.where(*where_args).limit(1).first
+    @answer.update_attributes(answer_params)
   end
 
   private
+
+  def where_args
+    @where_var ||= Answer.find(params[:id]).question.answer_choices.ids
+    ["answer_choice_id IN (?)", @where_var]
+  end
 
   def answer_params
     params.require(:answer).permit(:answer_choice_id)
