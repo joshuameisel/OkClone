@@ -20,7 +20,7 @@
         name="answer[answer_choice_id]"
         value="<%= answerChoice.id %>"
         <%= (answerChoice.id == currentUser.answer.id) ? "checked" : "" %>
-      ><%= answerChoice.body %>
+      > <%= answerChoice.body %><br>
     <% }) %>
     <button class="submit">Answer</button>
     <button class="cancel can-activate">Cancel</button>
