@@ -18,7 +18,9 @@
       <input
         type="radio"
         name="answer[answer_choice_id]"
-        value="<%= answerChoice.id %>"><%= answerChoice.body %>
+        value="<%= answerChoice.id %>"
+        <%= (answerChoice.id == currentUser.answer.id) ? "checked" : "" %>
+      ><%= answerChoice.body %>
     <% }) %>
   </form>
 
