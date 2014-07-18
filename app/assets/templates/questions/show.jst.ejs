@@ -12,7 +12,15 @@
 		</li><% } %>
 	</ul>
 
-
+  <form class="question-re-answer on-activated">
+    <% this.model.get("question").answer_choices
+           .forEach(function (answerChoice) { %>
+      <input
+        type="radio"
+        name="answer[answer_choice_id]"
+        value="<%= answerChoice.id %>"><%= answerChoice.body %>
+    <% }) %>
+  </form>
 
 </span>
 <span class="question-bottom can-activate on-inactive"><a>Re-answer</a></span>
