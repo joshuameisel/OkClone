@@ -7,6 +7,14 @@
 	width: 305px;
 }
 
+.questions button {
+  margin: 15px 0;
+}
+
+.questions form h2 {
+  margin-top: 15px;
+};
+
 .questions > li {
 	background: white;
 }
@@ -60,4 +68,8 @@
 .editable .question:hover .question-bottom a {
 	display: block;
 	float: right;
+}
+
+.questions input[type="radio"] {
+
 }
