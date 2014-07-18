@@ -44,6 +44,10 @@
 	color: rgb(85, 85, 85);
 }
 
+.answers p.mismatch {
+  color: red;
+}
+
 .question-bottom {
 	display: block;
 	height: 40px;
