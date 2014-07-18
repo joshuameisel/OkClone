@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 20140715090743) do
   add_index "answer_choices", ["question_id", "order"], name: "index_answer_choices_on_question_id_and_order", unique: true, using: :btree
   add_index "answer_choices", ["question_id"], name: "index_answer_choices_on_question_id", using: :btree
 
+  create_table "answer_choices_tables", force: true do |t|
+  end
+
   create_table "answers", force: true do |t|
     t.integer "answer_choice_id"
     t.integer "user_id"

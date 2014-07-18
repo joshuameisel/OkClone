@@ -9,11 +9,11 @@ $(document).ready(function () {
       $(".content-main").prepend(view.render().$el);
     }
   });
-	
+
 	var questionInfo = [];
 	<% @questions.each_with_index do |question, i| %>
 		questionInfo[<%= i %>] = new QuestionInfo({
-			userId: <%= params[:user_id] %>, 
+			userId: <%= params[:user_id] %>,
 			id: <%= question.id %>
 		});
 		questionInfo[<%= i %>].fetch({

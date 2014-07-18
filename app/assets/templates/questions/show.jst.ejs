@@ -1,15 +1,18 @@
-<span class="question-top">
+<span class="question-main">
 	<h2><%= question.body %></h2>
-	<ul class="answers">
+	<ul class="answers on-inactive">
 		<% if (user) { %><li>
 			<img src="<%= user.profile_pic_url %>">
 			<p><%= user.answer.body %></p>
 		</li><% } %>
-	
+
 		<% if (currentUser) { %><li>
 			<img src="<%= currentUser.profile_pic_url %>">
 			<p><%= currentUser.answer.body %></p>
-		</li><% } %>	
+		</li><% } %>
 	</ul>
-</span>	
-<span class="question-bottom can-activate"><a>Re-answer</a></span>
+
+
+
+</span>
+<span class="question-bottom can-activate on-inactive"><a>Re-answer</a></span>

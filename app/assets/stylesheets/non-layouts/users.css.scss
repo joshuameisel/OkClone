@@ -65,7 +65,7 @@ ul#matches > li {
 	background: white;
 }
 
-ul#matches > li:nth-child(3n+3) {  
+ul#matches > li:nth-child(3n+3) {
 	margin-right: 0;
 }
 
@@ -296,7 +296,7 @@ button.submit:hover {
 	margin-top: 5px;
 }
 
-.profile-item.activated p {
+.activated .on-inactive {
   display: none;
 }
 
