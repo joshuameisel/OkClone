@@ -31,8 +31,10 @@
           type="checkbox"
           name="acceptable_answers[]"
           value="<%= answerChoice.id %>"
-          <%= (answerChoice.id == currentUser.answer.id) ? "checked" : "" %>
-        > <%= answerChoice.body %><br>
+          <% currentUser.acceptable_answers.forEach(function (acc_answer) { %>
+            <%= (acc_answer.answer_choice_id == answerChoice.id) ?
+              "checked" : "" %>
+          <% }) %>> <%= answerChoice.body %><br>
       <% }) %>
 
       <button class="submit">Answer</button>
