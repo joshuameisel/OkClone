@@ -12,19 +12,21 @@
 		</li><% } %>
 	</ul>
 
-  <form class="question-re-answer on-activated">
-    <% this.model.get("question").answer_choices
-           .forEach(function (answerChoice) { %>
-      <input
-        type="radio"
-        name="answer[answer_choice_id]"
-        value="<%= answerChoice.id %>"
-        <%= (answerChoice.id == currentUser.answer.id) ? "checked" : "" %>
-      > <%= answerChoice.body %><br>
-    <% }) %>
-    <button class="submit">Answer</button>
-    <button class="cancel can-activate">Cancel</button>
-  </form>
+  <% if (currentUser) { %>
+    <form class="question-re-answer on-activated">
+      <% this.model.get("question").answer_choices
+             .forEach(function (answerChoice) { %>
+        <input
+          type="radio"
+          name="answer[answer_choice_id]"
+          value="<%= answerChoice.id %>"
+          <%= (answerChoice.id == currentUser.answer.id) ? "checked" : "" %>
+        > <%= answerChoice.body %><br>
+      <% }) %>
+      <button class="submit">Answer</button>
+      <button class="cancel can-activate">Cancel</button>
+    </form>
+  <% } %>
 
 </span>
 <span class="question-bottom can-activate on-inactive"><a>Re-answer</a></span>
