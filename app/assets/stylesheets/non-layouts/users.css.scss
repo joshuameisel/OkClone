@@ -41,13 +41,17 @@
   background: #628cbc;
   border: 1px solid lightgrey;
   float: left;
-  margin: 4px 10px;
-  padding: 5px;
+  margin: 8px 10px;
+  padding: 1px;
+}
+
+.matches select {
   border-radius: 10px;
 }
 
-.matches input#age {
-  width: 20px;
+.matches input {
+  width: 25px;
+  text-align: center;
 }
 
 .matches button {
@@ -224,6 +228,10 @@ ul#matches ul {
 .modal input, .modal select {
   border: 1px solid lightgrey;
   padding: 10px;
+}
+
+.modal select {
+  margin-top: 9px;
 }
 
 .modal h4 {
