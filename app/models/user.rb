@@ -114,7 +114,13 @@ class User < ActiveRecord::Base
   end
 
   def defaults
-    {show_me: likes, who_like: [gender], min_age: min_age, max_age: max_age}
+    {
+      show_me: likes,
+      who_like: [gender], 
+      min_age: min_age, 
+      max_age: max_age, 
+      order_by: :random
+    }
   end
 
   def users(options = nil)
@@ -153,8 +159,9 @@ class User < ActiveRecord::Base
 
       where_str.concat("(#{where_concats.join(' OR ')})")
     end
-
+    
     User.where(where_str, *where_args)
+        .order(options[:order_by] == :random ? "RANDOM()" : :min_age)
   end
 
   def is_password?(unencrypted_password)
