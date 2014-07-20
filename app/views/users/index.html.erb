@@ -51,8 +51,7 @@
         <ul class="match" id="<%= user.id %>">
           <li class="username"><%= link_to user.username, user_url(user) %></li>
           <li class="user-info"><%= user.age %> · <%= user.zip_code %></li>
-					<li class="match-percentage">
-						<%= current_user.match_percentage(user) %>% Match</li>
+					<li class="match-percentage"><%= user.match_pct.round %>% Match</li>
         </ul>
       </li>
     <% end %>
