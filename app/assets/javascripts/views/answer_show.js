@@ -22,35 +22,32 @@ AnswerShow = OkClone.Views.AnswerShow = Backbone.View.extend({
   },
 
   mismatch: function () {
-    var mismatch = {};
+    var mismatch = {user: false, currentUser: false};
     var user = this.model.get("user");
     var currentUser = this.model.get("current_user");
     if (user && currentUser) {
-      var isMatch = false;
       if (currentUser.acceptable_answers.length > 0) {
+				mismatch.user = true;
+				
         currentUser.acceptable_answers.forEach(function(acc_answer) {
           if (acc_answer.answer_choice_id == user.answer.id) {
-            isMatch = true;
+						mismatch.user = false;
           }
         });
-        if (!isMatch) {
-          mismatch.user = true;
-        }
       }
-
+			
       if (user.acceptable_answers.length > 0) {
-        isMatch = false;
+				mismatch.currentUser = true;
+				var that = this;
+				
         user.acceptable_answers.forEach(function(acc_answer) {
           if (acc_answer.answer_choice_id == currentUser.answer.id) {
-            var isMatch = true;
+						mismatch.currentUser = false;
           }
         });
-        if (!isMatch) {
-          mismatch.currentUser = true;
-        }
       }
-    }
-    return mismatch;
+		}
+	  return mismatch;
   },
 
   render: function () {
