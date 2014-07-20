@@ -151,13 +151,13 @@ class User < ActiveRecord::Base
           gen == who_like.first ? "gay" : "straight"
         ])
 
-        where_concats << "AND (users.gender=? AND users.orientation IN (?))"
+        where_concats << "(users.gender=? AND users.orientation IN (?))"
         where_args.concat([gen, orientations])
       end
 
-      where_str.concat("AND (#{where_concats.join(' OR ')})")
+      where_str.concat(" AND (#{where_concats.join(' OR ')})")
     end
-    
+        
     User.find_by_sql([<<-SQL, *where_args])
       SELECT SUM(match) * 100 / COUNT(*) AS match_pct, users.*
       FROM (

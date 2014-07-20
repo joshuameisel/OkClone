@@ -62,7 +62,7 @@ describe User do
       )
     end
 
-    context "without defaults" do
+    context "without options" do
 
       it "doesn't include users with an unpreferred gender" do
         expect(gay_man.users).not_to include straight_woman
@@ -91,7 +91,7 @@ describe User do
       end
     end
 
-    context "with" do
+    context "with options" do
       it "correctly overwrites defaults" do
         options =
           {show_me: ["m", "f"], who_like: ["m"], min_age: 18, max_age: 70}
