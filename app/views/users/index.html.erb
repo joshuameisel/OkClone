@@ -4,36 +4,38 @@
 
 <section class="matches" id="main">
 	<form id="search-params" action="<%= match_url %>" method="get" class="group">
-    <select name="search[show_me]">
-      <% (0..2).each do |i| %>
-        <option value="<%= i %>" <%= "selected" if show_me(i) %>>
-          <%= search_text[:show_me][i] %></option>
-      <% end %>
-    </select>
+		<div class="group search-inputs">
+	    <select name="search[show_me]">
+	      <% (0..2).each do |i| %>
+	        <option value="<%= i %>" <%= "selected" if show_me(i) %>>
+	          <%= search_text[:show_me][i] %></option>
+	      <% end %>
+	    </select>
 
-    <h3>who like</h3>
-    <select name="search[who_like]">
-      <% (0..2).each do |i| %>
-        <option value="<%= i %>" <%= "selected" if who_like(i) %>>
-          <%= search_text[:who_like][i] %></option>
-      <% end %>
-    </select>
+	    <h3>who like</h3>
+	    <select name="search[who_like]">
+	      <% (0..2).each do |i| %>
+	        <option value="<%= i %>" <%= "selected" if who_like(i) %>>
+	          <%= search_text[:who_like][i] %></option>
+	      <% end %>
+	    </select>
 
-    <h3>ages</h3>
-    <input id="age" class="age" type="text" value="<%= min_age %>"
-      name="search[min_age]">
+	    <h3>ages</h3>
+	    <input id="age" class="age" type="text" value="<%= min_age %>"
+	      name="search[min_age]">
 
-    <h3>to</h3>
-    <input id="age" class="age" type="text" value="<%= max_age %>"
-       name="search[max_age]">
+	    <h3>to</h3>
+	    <input id="age" class="age" type="text" value="<%= max_age %>"
+	       name="search[max_age]">
 
-    <h3>order by</h3>
-    <select name="search[order_by]">
-      <% (0..1).each do |i| %>
-        <option value="<%= i %>" <%= "selected" if order_by(i) %>>
-          <%= search_text[:order_by][i] %></option>
-      <% end %>
-    </select>
+	    <h3>order by</h3>
+	    <select name="search[order_by]">
+	      <% (0..1).each do |i| %>
+	        <option value="<%= i %>" <%= "selected" if order_by(i) %>>
+	          <%= search_text[:order_by][i] %></option>
+	      <% end %>
+	    </select>
+		</div>
 		
 	  <button class="submit">search</button>
 	</form>

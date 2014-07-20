@@ -3,7 +3,7 @@ module UsersHelper
     {
       show_me: ["Girls", "Guys", "Guys and girls"],
       who_like: ["girls", "guys", "either"],
-      order_by: ["random", "match percentage"]
+      order_by: ["random", "match %"]
     }
   end
 

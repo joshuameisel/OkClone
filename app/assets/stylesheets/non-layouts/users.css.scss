@@ -20,15 +20,14 @@
   padding-top: 30px;
 }
 
-.matches form {
+.matches form .search-inputs {
   background: white;
   padding: 10px;
   margin-bottom: 10px;
 }
 
 .matches h3 {
-  margin: 0;
-  margin-top: 10px;
+  margin: 2px 10px 0 0;
   font-size: 16px;
   float: left;
 }
@@ -41,7 +40,7 @@
   background: #628cbc;
   border: 1px solid lightgrey;
   float: left;
-  margin: 8px 10px;
+  margin: 0px 10px 0 0;
   padding: 1px;
 }
 
@@ -55,8 +54,7 @@
 }
 
 .matches button {
-  margin: 0 20px;
-  float: right;
+	margin-top: 0px;
 }
 
 ul#matches {
