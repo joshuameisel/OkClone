@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
     Question.find_by_sql(<<-SQL)
       SELECT SUM(match) * 100 / COUNT(*) AS match_pct
       FROM (
-        SELECT MAX(CASE WHEN acceptable_acs.id=answer_acs.id THEN 1.0 ELSE 0
-                   END) AS match
+        SELECT MAX(CASE WHEN acceptable_acs.id=answer_acs.id 
+                        THEN 1.0 ELSE 0 END) AS match
         FROM questions
         JOIN answer_choices acceptable_acs 
           ON questions.id=acceptable_acs.question_id
@@ -59,22 +59,22 @@ class User < ActiveRecord::Base
 
   def conversations
     Message.find_by_sql(<<-SQL)
-    SELECT stripped_msgs.* FROM
-      (SELECT DISTINCT ON (full_msgs.other_user_id) full_msgs.other_user_id, 
-        full_msgs.created_at, full_msgs.body
-      FROM (
-        SELECT (CASE 
-            WHEN messages.sender_id=#{id} 
-            THEN messages.recipient_id 
-            ELSE messages.sender_id 
-            END) AS other_user_id, body, created_at
-        FROM messages
-        WHERE messages.sender_id=#{id} OR
-        messages.recipient_id=#{id}
-        ORDER BY created_at DESC
-      ) AS full_msgs) AS stripped_msgs
-    ORDER BY stripped_msgs.created_at DESC
-      SQL
+      SELECT stripped_msgs.* FROM
+        (SELECT DISTINCT ON (full_msgs.other_user_id) full_msgs.other_user_id, 
+          full_msgs.created_at, full_msgs.body
+        FROM (
+          SELECT (CASE 
+              WHEN messages.sender_id=#{id} 
+              THEN messages.recipient_id 
+              ELSE messages.sender_id 
+              END) AS other_user_id, body, created_at
+          FROM messages
+          WHERE messages.sender_id=#{id} OR
+          messages.recipient_id=#{id}
+          ORDER BY created_at DESC
+        ) AS full_msgs) AS stripped_msgs
+      ORDER BY stripped_msgs.created_at DESC
+    SQL
   end
 
   def self.find_by_credentials(username, password)
@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
     }
   end
 
-  def users(options = nil)
+  def users(options = nil)    
     options ||= defaults
     show_me = options[:show_me]
     who_like = options[:who_like]
@@ -132,20 +132,18 @@ class User < ActiveRecord::Base
     min_dob = Date.new(now.year - options[:max_age], now.month, now.day)
     max_dob = Date.new(now.year - options[:min_age], now.month, now.day)
 
-    where_str = "(id!=#{id}) AND (dob BETWEEN ? AND ?)"
+    where_str = "(users.id!=#{id}) AND (users.dob BETWEEN ? AND ?)"
     where_args = [min_dob, max_dob]
-
 
     # easy case where we only (possibly) care about gender, not orientation
     if who_like.length == 2
       if show_me.length < 2
-        where_str.concat(" AND (gender=?)")
+        where_str.concat("AND (users.gender=?)")
         where_args << show_me.first
       end
 
     # hard case where we care about orientation
     else
-      where_str.concat(" AND ")
       where_concats = []
 
       show_me.each do |gen|
@@ -153,15 +151,35 @@ class User < ActiveRecord::Base
           gen == who_like.first ? "gay" : "straight"
         ])
 
-        where_concats << "(gender=? AND orientation IN (?))"
+        where_concats << "AND (users.gender=? AND users.orientation IN (?))"
         where_args.concat([gen, orientations])
       end
 
-      where_str.concat("(#{where_concats.join(' OR ')})")
+      where_str.concat("AND (#{where_concats.join(' OR ')})")
     end
     
-    User.where(where_str, *where_args)
-        .order(options[:order_by] == :random ? "RANDOM()" : :min_age)
+    User.find_by_sql([<<-SQL, *where_args])
+      SELECT SUM(match) * 100 / COUNT(*) AS match_pct, users.*
+      FROM (
+        SELECT MAX(CASE WHEN acceptable_acs.id=answer_acs.id THEN 1.0 ELSE 0
+                   END) AS match, answers.user_id
+        FROM questions
+        JOIN answer_choices acceptable_acs 
+          ON questions.id=acceptable_acs.question_id
+        JOIN acceptable_answers 
+          ON acceptable_answers.answer_choice_id = acceptable_acs.id
+        JOIN answer_choices answer_acs 
+          ON questions.id=answer_acs.question_id
+        JOIN answers
+          ON answers.answer_choice_id = answer_acs.id
+        JOIN users
+          ON answers.user_id = users.id
+        WHERE acceptable_answers.user_id=#{id} AND #{where_str}
+        GROUP BY answers.user_id, questions.id
+      ) as matches JOIN users ON matches.user_id = users.id
+      GROUP BY users.id
+      ORDER BY #{options[:order_by] == :random ? "RANDOM()" : "match_pct DESC"}
+    SQL
   end
 
   def is_password?(unencrypted_password)

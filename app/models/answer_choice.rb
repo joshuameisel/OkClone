@@ -4,6 +4,7 @@ class AnswerChoice < ActiveRecord::Base
   validates :body, presence: true, uniqueness: {scope: :question_id}
   belongs_to :question
   has_many :other_choices, through: :question, source: :answer_choices
+  has_many :acceptable_answers
   
   private
   
