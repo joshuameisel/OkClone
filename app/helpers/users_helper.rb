@@ -2,7 +2,8 @@ module UsersHelper
   def search_text
     {
       show_me: ["Girls", "Guys", "Guys and girls"],
-      who_like: ["girls", "guys", "either"]
+      who_like: ["girls", "guys", "either"],
+      order_by: ["random", "match percentage"]
     }
   end
 
@@ -28,5 +29,11 @@ module UsersHelper
 
   def max_age
     params[:search] ? params[:search][:max_age] : current_user.max_age
+  end
+  
+  def order_by(num)
+    if params[:search]
+      params[:search][:order_by].to_i == num
+    end
   end
 end
