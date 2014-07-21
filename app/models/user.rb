@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   validate :password_digest_presence
 
   def match_percentage(match)
-    Question.find_by_sql(<<-SQL)
+    (Question.find_by_sql(<<-SQL)
       SELECT SUM(match) * 100 / COUNT(*) AS match_pct
       FROM (
         SELECT MAX(CASE WHEN acceptable_acs.id=answer_acs.id 
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
         GROUP BY questions.id
       ) AS matches
     SQL
-    .first.match_pct.round
+    .first.match_pct || 0).round
   end
 
   def profile_pic

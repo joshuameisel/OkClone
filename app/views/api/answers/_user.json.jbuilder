@@ -4,7 +4,7 @@ else
   json.profile_pic_url "/images/default_thumb.gif"
 end
 
-json.answer {json.(answer.answer_choice, :body, :id)}
+json.answer {json.(answer.answer_choice, :body, :id)} if answer
 
 json.acceptable_answers do
   json.array!(acceptable_answers) do |acc_answer|
