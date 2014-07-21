@@ -34,6 +34,7 @@ class Api::QuestionsController < ApplicationController
   private
 
   def where_args
+    @question ||= Question.find(params[:id])
     @where_var ||= @question.answer_choices.ids
     ["answer_choice_id IN (?)", @where_var]
   end
