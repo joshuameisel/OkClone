@@ -1,14 +1,13 @@
-class Api::AnswersController < ApplicationController
+class Api::QuestionsController < ApplicationController
   def show
-    answer = Answer.find(params[:id])
-    @question = answer.question
+    @question = Question.find(params[:id])
     @answers = {}
     @acceptable_answers = {}
 
     @users = current_user ? [current_user] : []
 
     # @user holds the "other user's" answers. not present on own profile
-    user = answer.user
+    user = User.find(params[:user_id])
     @users << user unless current_user == user
     @users.each do |u|
       @answers[u] = u.answers.where(*where_args).limit(1).first
@@ -35,7 +34,7 @@ class Api::AnswersController < ApplicationController
   private
 
   def where_args
-    @where_var ||= Answer.find(params[:id]).question.answer_choices.ids
+    @where_var ||= @question.answer_choices.ids
     ["answer_choice_id IN (?)", @where_var]
   end
 

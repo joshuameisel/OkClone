@@ -10,27 +10,18 @@ $(document).ready(function () {
     }
   });
 
-  var answers = [];
-  <% if !current_user || params[:user_id].to_i != current_user.id %>
-  	<% @answers.each_with_index do |answer, i| %>
-  		answers[<%= i %>] = new Answer({id: <%= answer.id %>});
-  		answers[<%= i %>].fetch({
-  			success: function() {
-  				var view = new AnswerShow({model: answers[<%= i %>]});
-  				$("ul.questions").append(view.render().$el);
-  			}
-  		});
-  	<% end %>
-  <% else %>
-    <% Question.all.each_with_index do |question, i| %>
-  		answers[<%= i %>] = new Answer();
-  		answers[<%= i %>].fetch({
-  			success: function() {
-  				var view = new AnswerShow({model: answers[<%= i %>]});
-  				$("ul.questions").append(view.render().$el);
-  			}
-  		});
-    <% end %>
-  <% end %>
+  var questions = [];
+	<% @questions.each_with_index do |question, i| %>
+		questions[<%= i %>] = new Question({
+      id: <%= question.id %>,
+      userId: <%= params[:user_id] %>
+    });
+		questions[<%= i %>].fetch({
+			success: function() {
+				var view = new QuestionShow({model: questions[<%= i %>]});
+				$("ul.questions").append(view.render().$el);
+			}
+		});
+	<% end %>
 });
 </script>

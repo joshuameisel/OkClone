@@ -77,7 +77,7 @@ users = User.create([
     zip_code: 10031,
     email: "rod@example.com",
     password: "glitch"
-  },   
+  },
 ])
 
 def straight_male_user(name, zip, birth_yr=1988)
@@ -139,21 +139,15 @@ profiles = [
   })
 ]
 
-users[0].photos.create(photo_file: File.open("./db/seed_images/3.jpg"))
-
-(1..2).each do |i|
-  users[1].photos.create(photo_file: File.open("./db/seed_images/#{i}.jpg"))
-end
-
 questions = Question.create([
-  {body: "What's your political affiliation?"}, 
-  {body: "Cats or dogs?"}, 
-  {body: "What do you admire most?"}, 
-  {body: "Are you nosy?"}, 
-  {body: "Favorite sport?"}, 
-  {body: "I am..."}, 
-  {body: "True or false: people spend too much time worrying about " + 
-    "superfical things?"}, 
+  {body: "What's your political affiliation?"},
+  {body: "Cats or dogs?"},
+  {body: "What do you admire most?"},
+  {body: "Are you nosy?"},
+  {body: "Favorite sport?"},
+  {body: "I am..."},
+  {body: "True or false: people spend too much time worrying about " +
+    "superfical things?"},
 ])
 
 questions[0].answer_choices.create([
@@ -171,12 +165,12 @@ questions[2].answer_choices.create([
 questions[3].answer_choices.create([{body: "Yes"}, {body: "No"}])
 
 questions[4].answer_choices.create([
-  {body: "Basketball"}, {body: "Soccer"}, {body: "Ping pong"}, 
+  {body: "Basketball"}, {body: "Soccer"}, {body: "Ping pong"},
   {body: "Football"}, {body: "Hockey"}
 ])
 
 questions[5].answer_choices.create([
-  {body: "up for anything."}, {body: "a bit reserved."}, 
+  {body: "up for anything."}, {body: "a bit reserved."},
   {body: "someone who's never left the house."}
 ])
 
@@ -186,12 +180,12 @@ questions[6].answer_choices.create([
 
 questions.each do |question|
   answer_choices = question.answer_choices
-  
+
   users.each do |user|
     user.answers.create(
       answer_choice: answer_choices[rand(answer_choices.count)]
     )
-    
+
     answer_choices.each do |answer_choice|
       ## coin toss
       if [true, false].sample
@@ -199,4 +193,10 @@ questions.each do |question|
       end
     end
   end
+end
+
+users[0].photos.create(photo_file: File.open("./db/seed_images/3.jpg"))
+
+(1..2).each do |i|
+  users[1].photos.create(photo_file: File.open("./db/seed_images/#{i}.jpg"))
 end

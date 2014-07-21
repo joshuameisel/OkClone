@@ -1,5 +1,5 @@
-AnswerShow = OkClone.Views.AnswerShow = Backbone.View.extend({
-  template: JST["answers/show"],
+QuestionShow = OkClone.Views.QuestionShow = Backbone.View.extend({
+  template: JST["questions/show"],
 	tagName: "li",
 	className: "group question gets-activated",
     events: {
