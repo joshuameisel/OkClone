@@ -9,8 +9,10 @@
 
 		<% if (currentUser) { %><li>
 			<img src="<%= currentUser.profile_pic_url %>">
-			<p class="<%= (mismatch.currentUser) ? "mismatch" : "" %>">
-        <%= currentUser.answer.body %></p>
+      <% if (currentUser.answer) { %>
+  			<p class="<%= (mismatch.currentUser) ? "mismatch" : "" %>">
+          <%= currentUser.answer.body %></p>
+      <% } %>
 		</li><% } %>
 	</ul>
 
@@ -22,7 +24,8 @@
           type="radio"
           name="answer[answer_choice_id]"
           value="<%= answerChoice.id %>"
-          <%= (answerChoice.id == currentUser.answer.id) ? "checked" : "" %>
+          <%= (currentUser.answer && answerChoice.id == currentUser.answer.id)
+              ? "checked" : "" %>
         > <%= answerChoice.body %><br>
       <% }) %>
 
@@ -45,4 +48,6 @@
   <% } %>
 
 </span>
-<span class="question-bottom can-activate on-inactive"><a>Re-answer</a></span>
+<span class="question-bottom can-activate on-inactive">
+  <a><%= (currentUser && currentUser.answer) ? "Re-answer" : "Answer" %></a>
+</span>
