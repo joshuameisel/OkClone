@@ -11,7 +11,7 @@
 			<img src="<%= currentUser.profile_pic_url %>">
       <% if (currentUser.answer) { %>
         <p class="<%= (mismatch.currentUser) ? "mismatch" : "" %>">
-          currentUser.answer.body</p>
+          <%= currentUser.answer.body %></p>
       <% } else { %>
         <p class="un-answered">Un-answered</p>
       <% } %>

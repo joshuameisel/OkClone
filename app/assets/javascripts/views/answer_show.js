@@ -22,31 +22,33 @@ AnswerShow = OkClone.Views.AnswerShow = Backbone.View.extend({
   },
 
   mismatch: function () {
-    var mismatch = {user: false, currentUser: false};
     var user = this.model.get("user");
     var currentUser = this.model.get("current_user");
-    if (user && currentUser && currentUser.answer) {
-      if (currentUser.acceptable_answers.length > 0) {
-				mismatch.user = true;
+    if (!(user && currentUser && currentUser.answer)) {
+      return {};
+    }
 
-        currentUser.acceptable_answers.forEach(function(acc_answer) {
-          if (acc_answer.answer_choice_id == user.answer.id) {
-						mismatch.user = false;
-          }
-        });
-      }
+    var mismatch = {user: false, currentUser: false};
+    if (currentUser.acceptable_answers.length > 0) {
+			mismatch.user = true;
 
-      if (user.acceptable_answers.length > 0) {
-				mismatch.currentUser = true;
-				var that = this;
+      currentUser.acceptable_answers.forEach(function(acc_answer) {
+        if (acc_answer.answer_choice_id == user.answer.id) {
+					mismatch.user = false;
+        }
+      });
+    }
 
-        user.acceptable_answers.forEach(function(acc_answer) {
-          if (acc_answer.answer_choice_id == currentUser.answer.id) {
-						mismatch.currentUser = false;
-          }
-        });
-      }
-		}
+    if (user.acceptable_answers.length > 0) {
+			mismatch.currentUser = true;
+			var that = this;
+
+      user.acceptable_answers.forEach(function(acc_answer) {
+        if (acc_answer.answer_choice_id == currentUser.answer.id) {
+					mismatch.currentUser = false;
+        }
+      });
+    }
 	  return mismatch;
   },
 
