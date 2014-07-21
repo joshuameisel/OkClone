@@ -18,7 +18,11 @@ class Api::AnswersController < ApplicationController
 
   def update
     @answer = current_user.answers.where(*where_args).limit(1).first
-    @answer.update_attributes(answer_params)
+    if @answer
+      @answer.update_attributes(answer_params)
+    else
+      @answer = current_user.answers.create(answer_params)
+    end
 
     AcceptableAnswer.destroy(relevant_acceptable_answers(current_user).ids)
     @acceptable_answers = current_user.acceptable_answers.create(
