@@ -3,7 +3,7 @@
 </a>
 
 <p class='errors'></p>
-<div class="edit-user-info can-activate">
+<div class="edit-user-info<%= (ownProfile) ? " can-activate" : "" %>">
 	<ul>
 	  <li class="username"><%= user.get("username") %></li>
 		<% if (currentUserId && currentUserId != this.model.get("id")) { %>
