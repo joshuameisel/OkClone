@@ -48,9 +48,9 @@ users = User.create([
     orientation: "straight",
     min_age: 18,
     max_age: 60,
-    dob: Date.new(1987, 5, 23),
+    dob: Date.new(1991, 5, 23),
     country: "us",
-    zip_code: 10457,
+    zip_code: 11249,
     email: "jacob@example.com",
     password: "glitch"
   },
@@ -61,7 +61,7 @@ users = User.create([
     orientation: "gay",
     min_age: 20,
     max_age: 26,
-    dob: Date.new(1987, 4, 16),
+    dob: Date.new(1991, 4, 16),
     country: "us",
     zip_code: 10002,
     email: "bryan@example.com",
@@ -199,4 +199,8 @@ users[0].photos.create(photo_file: File.open("./db/seed_images/3.jpg"))
 
 (1..2).each do |i|
   users[1].photos.create(photo_file: File.open("./db/seed_images/#{i}.jpg"))
+end
+
+(2..9).each do |i|
+  users[i].photos.create(photo_file: File.open("./db/seed_images/#{i+2}.jpg"))
 end
