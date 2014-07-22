@@ -36,4 +36,8 @@ module UsersHelper
       params[:search][:order_by] == search_text[:order_by][num]
     end
   end
+  
+  def within(d)
+    d == (params[:search] ? params[:search][:within].to_i : 50)
+  end
 end

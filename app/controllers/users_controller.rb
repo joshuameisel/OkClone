@@ -38,6 +38,7 @@ class UsersController < ApplicationController
       who_like: User.genders(params[:search][:who_like].to_i),
       min_age: params[:search][:min_age].to_i,
       max_age: params[:search][:max_age].to_i,
+      within: params[:search][:within].blank? ? nil : params[:search][:within],
       order_by: params[:search][:order_by]
     }
   end
