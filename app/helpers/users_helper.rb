@@ -3,7 +3,7 @@ module UsersHelper
     {
       show_me: ["Girls", "Guys", "Guys and girls"],
       who_like: ["girls", "guys", "either"],
-      order_by: ["random", "match percentage"]
+      order_by: ["random", "match", "distance"]
     }
   end
 
@@ -33,7 +33,7 @@ module UsersHelper
   
   def order_by(num)
     if params[:search]
-      params[:search][:order_by].to_i == num
+      params[:search][:order_by] == search_text[:order_by][num]
     end
   end
 end

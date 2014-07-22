@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       who_like: User.genders(params[:search][:who_like].to_i),
       min_age: params[:search][:min_age].to_i,
       max_age: params[:search][:max_age].to_i,
-      order_by: params[:search][:order_by] == "0" ? :random : :match_pct
+      order_by: params[:search][:order_by]
     }
   end
 

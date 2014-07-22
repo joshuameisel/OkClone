@@ -30,9 +30,10 @@
 
 	    <h3>order by</h3>
 	    <select name="search[order_by]">
-	      <% (0..1).each do |i| %>
-	        <option value="<%= i %>" <%= "selected" if order_by(i) %>>
-	          <%= search_text[:order_by][i] %></option>
+	      <% (0..2).each do |i| %>
+	        <option value="<%= search_text[:order_by][i] %>" 
+						<%= "selected" if order_by(i) %>><%= search_text[:order_by][i] %>
+					</option>
 	      <% end %>
 	    </select>
 		</div>
