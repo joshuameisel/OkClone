@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
   before_validation :ensure_age_preferences
   before_validation :geocode, if: :zip_code_changed?
+  after_validation :ensure_city
   after_create :make_profile
 
   validates :username, :gender, :min_age, :max_age, :dob,
@@ -216,6 +217,14 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
+  end
+  
+  def ensure_city
+    self.city = 
+      Geocoder.search("#{latitude},#{longitude}")
+              .first
+              .data["formatted_address"]
+              .split(", ")[-3]
   end
 
   def ensure_age_preferences

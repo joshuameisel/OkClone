@@ -11,7 +11,9 @@
 				<%= user.get("match_percentage") %>% Match</li>
 		<% } %>
 	  <li class="user-info">
-	    <%= user.get("age") %> · <%= user.get("gender") %> · <%= user.get("orientation") %> (<%= user.get("zip_code") %>)
+	    <%= user.get("age") %> · 
+			<%= user.get("gender") %> · 
+			<%= user.get("city") %>
 		</li>
 	</ul>
 	<button class="edit">edit</button>

@@ -1,5 +1,5 @@
 json.(user, :id, :username, :gender, :orientation, :min_age, :max_age, :dob,
-  :country, :session_token, :zip_code, :email, :password_digest, :created_at,
+  :country, :session_token, :city, :email, :password_digest, :created_at,
   :updated_at, :age, :profile, :likes)
 
 if user.profile_pic
