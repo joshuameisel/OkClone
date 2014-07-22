@@ -141,8 +141,16 @@ class User < ActiveRecord::Base
       who_like: [gender], 
       min_age: min_age, 
       max_age: max_age, 
-      order_by: :random,
+      order_by: "random",
       within: 50
+    }
+  end
+  
+  def self.order_str
+    {
+      "random" => "RANDOM()",
+      "match" => "match_pct DESC",
+      "distance" => "distance"
     }
   end
 
@@ -208,9 +216,9 @@ class User < ActiveRecord::Base
           GROUP BY answers.user_id, questions.id
         ) as matches RIGHT OUTER JOIN users ON matches.user_id = users.id
         GROUP BY users.id
-        ORDER BY #{options[:order_by] == :random ? "RANDOM()" : "match_pct DESC"}
       ) as users
       WHERE #{where_str}
+      ORDER BY #{User.order_str[options[:order_by]]}
       SQL
   end
 
