@@ -14,7 +14,9 @@
 	    <%= user.get("age") %> · 
 			<%= user.get("gender") %> · 
 			<%= user.get("city") %>
-
+			<% if (user.get("distance")) { %>
+				<%= " (" + user.get("distance") + " Miles)" %>
+			<% } %>
 		</li>
 	</ul>
 	<button class="edit">edit</button>

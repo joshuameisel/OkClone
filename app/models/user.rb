@@ -49,6 +49,27 @@ class User < ActiveRecord::Base
     SQL
     .first.match_pct || 0).round
   end
+  
+  def distance(match)
+    User.find_by_sql(<<-SQL)
+    SELECT #{distance_str} AS d
+    FROM users 
+    WHERE id=#{match.id}
+    SQL
+    .first.d.round
+  end
+  
+  def distance_str
+    <<-SQL
+      (DEGREES(
+        ACOS(
+          SIN(RADIANS( #{latitude} )) * SIN(RADIANS( latitude ))
+          + COS(RADIANS( #{latitude} )) * COS(RADIANS( latitude ))
+          * COS(RADIANS( #{longitude} - longitude ))
+        ) * 60 * 1.1515
+      ))
+    SQL
+  end
 
   def profile_pic
     photos.find_by(photo_id: 1)
@@ -120,7 +141,8 @@ class User < ActiveRecord::Base
       who_like: [gender], 
       min_age: min_age, 
       max_age: max_age, 
-      order_by: :random
+      order_by: :random,
+      within: 50
     }
   end
 
@@ -133,13 +155,13 @@ class User < ActiveRecord::Base
     min_dob = Date.new(now.year - options[:max_age], now.month, now.day)
     max_dob = Date.new(now.year - options[:min_age], now.month, now.day)
     
-    where_str = "(users.id!=#{id}) AND (users.dob BETWEEN ? AND ?)"
+    where_str = "(id!=#{id}) AND (dob BETWEEN ? AND ?)"
     where_args = [min_dob, max_dob]
 
     # easy case where we only (possibly) care about gender, not orientation
     if who_like.length == 2
       if show_me.length < 2
-        where_str.concat("AND (users.gender=?)")
+        where_str.concat("AND (gender=?)")
         where_args << show_me.first
       end
 
@@ -152,15 +174,19 @@ class User < ActiveRecord::Base
           gen == who_like.first ? "gay" : "straight"
         ])
 
-        where_concats << "(users.gender=? AND users.orientation IN (?))"
+        where_concats << "(gender=? AND users.orientation IN (?))"
         where_args.concat([gen, orientations])
       end
 
       where_str.concat(" AND (#{where_concats.join(' OR ')})")
     end
+    
+    if options[:within]
+      where_str.concat(" AND (#{distance_str}<=#{options[:within]})") 
+    end
         
     User.find_by_sql([<<-SQL, *where_args])
-      SELECT * 
+      SELECT *, #{distance_str} AS distance
       FROM (
         SELECT CASE WHEN MAX(match) IS NOT NULL 
                     THEN SUM(match) * 100 / COUNT(*) 

@@ -14,4 +14,5 @@ end
 
 if current_user && current_user != user
   json.match_percentage current_user.match_percentage(user) 
+  json.distance current_user.distance(user)
 end
