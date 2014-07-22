@@ -17,16 +17,23 @@
 }
 
 .matches#main {
-  padding-top: 30px;
+  padding-top: 10px;
 }
 
-.matches form .search-inputs {
+.matches form div {
   background: white;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 3px;
 }
 
-.matches h3 {
+.matches form h2 {
+	margin-bottom: 8px;
+	color: #999;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.matches form h3 {
   margin: 2px 10px 0 0;
   font-size: 16px;
   float: left;
@@ -54,7 +61,7 @@
 }
 
 .matches button {
-	margin-top: 0px;
+	margin-top: 7px;
 }
 
 ul#matches {

@@ -4,7 +4,8 @@
 
 <section class="matches" id="main">
 	<form id="search-params" action="<%= match_url %>" method="get" class="group">
-		<div class="group search-inputs">
+		<div class="group">
+			<h2>Show me</h2>
 	    <select name="search[show_me]">
 	      <% (0..2).each do |i| %>
 	        <option value="<%= i %>" <%= "selected" if show_me(i) %>>
@@ -30,24 +31,24 @@
 				 
  	    <h3>within</h3>
  	    <select name="search[within]">
-				<option value=<%= nil %>>Anywhere</option>
+				<option value=<%= nil %>>anywhere</option>
  	      <% [5, 10, 25, 50, 100, 250, 500].each do |d| %>
  	        <option value=<%= d %> <%= "selected" if within(d) %>>
-						<%= d %> miles
+						<%= d %> miles of me
 					</option>
  	      <% end %>
  	    </select>
+		</div>
 
-			<div id="order-by">
-		    <h3>order by</h3>
-		    <select name="search[order_by]">
-		      <% (0..2).each do |i| %>
-		        <option <%= "selected" if order_by(i) %>>
-							<%= search_text[:order_by][i] %>
-						</option>
-		      <% end %>
-		    </select>
-			</div>
+		<div class="group">
+	    <h2>Order by</h2>
+	    <select name="search[order_by]">
+	      <% (0..2).each do |i| %>
+	        <option <%= "selected" if order_by(i) %>>
+						<%= search_text[:order_by][i] %>
+					</option>
+	      <% end %>
+	    </select>
 		</div>
 		
 	  <button class="submit">search</button>
