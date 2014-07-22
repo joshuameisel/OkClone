@@ -6,7 +6,7 @@
 <div class="edit-user-info<%= (ownProfile) ? " can-activate" : "" %>">
 	<ul>
 	  <li class="username"><%= user.get("username") %></li>
-		<% if (currentUserId && currentUserId != this.model.get("id")) { %>
+		<% if (user.get("match_percentage")) { %>
 			<li class="match-percentage">
 				<%= user.get("match_percentage") %>% Match</li>
 		<% } %>
@@ -14,6 +14,7 @@
 	    <%= user.get("age") %> · 
 			<%= user.get("gender") %> · 
 			<%= user.get("city") %>
+
 		</li>
 	</ul>
 	<button class="edit">edit</button>

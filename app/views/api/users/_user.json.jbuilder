@@ -12,4 +12,6 @@ json.photos(photos) do |photo|
   json.partial!("api/photos/photo", :photo => photo)
 end
 
-json.match_percentage current_user.match_percentage(user) if current_user
+if current_user && current_user != user
+  json.match_percentage current_user.match_percentage(user) 
+end
