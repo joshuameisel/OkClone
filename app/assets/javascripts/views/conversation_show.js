@@ -2,11 +2,12 @@ ConversationShow = OkClone.Views.ConversationShow = Backbone.View.extend({
   template: JST["conversations/show"],
 
   events: {
-    "submit form":"sendMessage"
+    "submit form": "sendMessage",
+		"click .delete": "deleteMessage"
   },
 
   initialize: function () {
-    this.listenTo(this.collection, "add", this.render);
+    this.listenTo(this.collection, "add remove", this.render);
   },
 
   sendMessage: function(event) {
@@ -23,9 +24,17 @@ ConversationShow = OkClone.Views.ConversationShow = Backbone.View.extend({
       }
     });
   },
+	
+	deleteMessage: function(event) {
+		var that = this;
+		new Message({id: parseInt(event.currentTarget.id)}).destroy({
+			success: function () {
+				that.collection.fetch();
+			}
+		});
+	},
 
   render: function () {
-    console.log("got here");
     var renderedContent = this.template({conversation: this.collection});
     this.$el.html(renderedContent);
 

@@ -22,6 +22,11 @@ class Api::MessagesController < ApplicationController
     @other_user = params[:user_id]
     render "index"
   end
+  
+  def destroy
+    @message = Message.find(params[:id]).destroy
+    render "show"
+  end
 
   private
 
