@@ -26,6 +26,7 @@ JoshKCupid was built using the following technologies:
 
 Additional features to implement include:
 
+* Grab most recent message in conversation correctly in production, not just development
 * Implement adding and deleting photos in Backbone
 * Question-weighting
 * User favoriting
