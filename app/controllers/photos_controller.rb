@@ -8,6 +8,11 @@ class PhotosController < ApplicationController
 
   def new
   end
+  
+  def destroy
+    Photo.find(params[:id]).delete
+    redirect_to user_photos_url(User.find(params[:user_id]))
+  end
 
   def create
     photo = current_user.photos.new(photo_file: params[:photo_file])
