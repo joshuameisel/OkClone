@@ -3,7 +3,22 @@
 
   <ul>
     <% @photos.each do |photo| %>
-      <li><img src="<%= photo.photo_file.url(:full) %>"></li>
+      <li>
+        <img src="<%= photo.photo_file.url(:full) %>">
+        <% if @user == current_user %>
+          <form action="<%= user_photo_url(@user, photo) %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden"
+                   name="authenticity_token"
+                   value="<%= form_authenticity_token %>">
+            <button>
+            <img class="delete" 
+                 src="/images/trash.png" 
+                 width="40" height="40">  
+            </button>
+          </form>
+        <% end %>        
+      </li>
     <% end %>
   </ul>
 
