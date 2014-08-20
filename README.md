@@ -1,6 +1,6 @@
 # JoshKCupid: an OkCupid Clone
 
-[JoshKCupid](http://joshkcupid.herokuapp.com/) is a clone of [OkCupid](http://www.okcupid.com), the popular dating app.  It was built by [Joshua Meisel](http://www.joshuameisel.me/) in Summer 2014.  You can view it at (http://joshkcupid.herokuapp.com/).
+[JoshKCupid](http://joshkcupid.herokuapp.com/) is a clone of [OkCupid](http://www.okcupid.com), the popular dating app.  It was built by [Joshua Meisel](http://www.joshuameisel.me/) in Summer 2014.  You can view it [here](http://joshkcupid.herokuapp.com/).
 
 ## Features
 
