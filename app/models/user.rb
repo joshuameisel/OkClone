@@ -51,24 +51,17 @@ class User < ActiveRecord::Base
   end
   
   def distance(match)
-    User.find_by_sql(<<-SQL)
-    SELECT #{distance_str} AS d
-    FROM users 
-    WHERE id=#{match.id}
-    SQL
-    .first.d.round
+    User.where("id=?", match.id).pluck(distance_str).first.round
   end
   
   def distance_str
-    <<-SQL
-      (DEGREES(
+    "(DEGREES(
         ACOS(
           SIN(RADIANS( #{latitude} )) * SIN(RADIANS( latitude ))
           + COS(RADIANS( #{latitude} )) * COS(RADIANS( latitude ))
           * COS(RADIANS( #{longitude} - longitude ))
         ) * 60 * 1.1515
-      ))
-    SQL
+      ))"
   end
 
   def profile_pic
